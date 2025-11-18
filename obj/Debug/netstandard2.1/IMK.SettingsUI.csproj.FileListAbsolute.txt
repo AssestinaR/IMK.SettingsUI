@@ -10,3 +10,4 @@ C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netsta
 C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.Sett.F096AACB.Up2Date
 C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.dll
 C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.pdb
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.sourcelink.json
