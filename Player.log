@@ -1,0 +1,1201 @@
+Mono path[0] = 'D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/Managed'
+Mono config path = 'D:/SteamLibrary/steamapps/common/Escape from Duckov/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 32 workers.
+Initialize engine version: 2022.3.62f2 (7670c08855a9)
+[Subsystems] Discovering subsystems at path D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/UnitySubsystems
+GfxDevice: creating device client; threaded=1; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4070 Ti (ID=0x2782)
+    Vendor:   NVIDIA
+    VRAM:     11996 MB
+    Driver:   32.0.15.8142
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.128 seconds
+- Finished resetting the current domain, in  0.001 seconds
+<RI> Initializing input.
+Using Windows.Gaming.Input
+<RI> Input initialized.
+<RI> Initialized touch support.
+[PhysX] Initialized MultithreadedTaskDispatcher with 32 workers.
+UnloadTime: 0.596300 ms
+Odin Serializer ArchitectureInfo initialization with defaults (all unaligned read/writes disabled).
+Odin Serializer detected whitelisted runtime platform WindowsPlayer and memory read test succeeded; enabling all unaligned memory read/writes.
+Sorted mods:
+ItemModKit
+IMK.SettingsUI
+IMK.D2T
+Diablo2Totem
+MoreTotem
+D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/StreamingAssets/Localization
+Player Info:
+{"role_name":"UNKOWN","profession_type":"ChineseSimplified","gender":"1.1.6","level":"0","b_account_id":"76561198428003012","b_role_id":"1|Rule_Standard","b_tour_indicator":"0","b_zone_id":"CN","b_sdk_uid":"Steam|Win32NT"}
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+Sorted mods:
+modhook
+yuanshen
+ItemModKit
+IMK.SettingsUI
+Newbe.SaveSavior
+IMK.D2T
+Diablo2Totem
+gzthook
+DuckovCustomModel
+jiuhu
+ShowQuestsAreaOnMap
+KeyedLootAll
+ShowDisassemblyInfo
+LightLootBox
+KeycardRecordedIndicator
+QuickDecomposition
+AutoLootCorpseAmmo
+NoRequiredUnlockPerk
+Duckov_CashSlot
+ModPerformanceMonitor
+MoreTotem
+FS_FreeFishing
+BossLiveMapMod
+AutoFishing
+BetterBuff
+LootAll
+MaxStack
+FancyItems
+NoDurabilityLoss
+KangyuPL_IngoreQuestCondMod
+bigInventory
+DisplayItemValue
+ModActive_modhook: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3600454729\modhook.dll
+[BetterModConfig v1.0.0] [23:09:16] [INFO] Awake (L1707): BetterModConfig 已加载
+[BetterModConfig v1.0.0] [23:09:16] [INFO] OnEnable (L1712): 启用中...
+Fallback handler could not load library D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/MonoBleedingEdge/data-0000024DDF97A040.dll
+Fallback handler could not load library D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/MonoBleedingEdge/data-0000024DDFDE9900.dll
+[BetterModConfig v1.0.0] [23:09:16] [INFO] OnEnable (L157): Harmony 补丁 BetterModConfig 已加载
+[BetterModConfig v1.0.0] [23:09:16] [INFO] OnEnable (L1714): 已加载 Harmony Patch
+Mod Loaded: modhook
+ModActive_yuanshen: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3591672666\yuanshen.dll
+Mod Loaded: yuanshen
+[Additionalmshookl] [INFO] 日志路径: D:\SteamLibrary\steamapps\workshop\content\3167020\3591672666\logs\mshook_log.txt
+[Additionalmshookl] [INFO] 模组启动，开始初始化
+[Additionalmshookl] [INFO] DLL路径: D:\SteamLibrary\steamapps\workshop\content\3167020\3591672666
+[Additionalmshookl] [INFO] 父级目录: D:\SteamLibrary\steamapps\workshop\content\3167020
+[Additionalmshookl] [INFO] 准备从 D:\SteamLibrary\steamapps\workshop\content\3167020\3591672666\Configs\ItemIdMappings.json 加载ID映射
+[Additionalmshookl] [INFO] 成功加载ID映射，共 0 个映射项
+[Additionalmshookl] [INFO] ID映射加载完成，将在处理物品时动态管理已使用ID
+[Additionalmshookl] [ERROR] 配置文件 ItemIdMappings.json DisplayName为空
+[Additionalmshookl] [INFO] 从默认配置文件夹加载了 0 个有效的配置文件
+[Additionalmshookl] [INFO] 从其他目录加载了 0 个额外的配置文件
+[Additionalmshookl] [ERROR] 没有找到有效的配置文件，无法创建物品
+ModActive_ItemModKit: True
+Loading mod dll at path: D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data\Mods\ItemModKit\ItemModKit.dll
+Mod Loaded: ItemModKit
+ModActive_IMK.SettingsUI: True
+Loading mod dll at path: D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data\Mods\IMK.SettingsUI\IMK.SettingsUI.dll
+[SettingsUI.Breadcrumb] SetSegments chain=1
+[SettingsUI.ContentPresenter] InitialShow frame0 width=84 firstShow=True models=0
+[IMK.SettingsUI] ModBehaviour initialized.
+Mod Loaded: IMK.SettingsUI
+ModActive_Newbe.SaveSavior: False
+ModActive_IMK.D2T: True
+Loading mod dll at path: D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data\Mods\IMK.D2T\IMK.D2T.dll
+FileNotFoundException: Could not load file or assembly 'IMK.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies.
+UnityEngine.GameObject:Internal_AddComponentWithType(GameObject, Type)
+UnityEngine.GameObject:AddComponent(Type)
+Duckov.Modding.ModManager:ActivateMod(ModInfo)
+Duckov.Modding.ModManager:ScanAndActivateMods()
+Duckov.Modding.SteamWorkshopManager:OnSteamUGCQueryCompleted(SteamUGCQueryCompleted_t, Boolean)
+Steamworks.CallResult`1:OnRunCallResult(IntPtr, Boolean, UInt64)
+Steamworks.CallbackDispatcher:RunFrame(Boolean)
+Steamworks.SteamAPI:RunCallbacks()
+SteamManager:Update()
+
+Mod Loaded: IMK.D2T
+ModActive_Diablo2Totem: False
+ModActive_gzthook: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3600553498\gzthook.dll
+[EnhancedCraft] Mod loaded!
+[EnhancedCraft] EnhancedCraftManager instance created
+[EnhancedCraft] EnhancedCraftUI instance created
+[PinyinSearch] Available resources: mshook.data.txt
+[PinyinSearch] Found resource: mshook.data.txt
+[PinyinSearch] Loaded 26585 pinyin mappings from 26585 lines
+[EnhancedCraft] PinyinSearchHelper initialized
+[EnhancedCraft] Harmony patches applied
+[EnhancedCraft] Mod enabled
+Mod Loaded: gzthook
+ModActive_DuckovCustomModel: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3600560151\DuckovCustomModel.dll
+[Duckov Custom Model - Mod Loader] Duckov Custom Model - Mod Loader Loaded
+[Duckov Custom Model - Mod Loader] Harmony Initialized Successfully
+[Duckov Custom Model - Mod Loader] Triggering ReadyToPatch Event
+[Duckov Custom Model - Mod Loader] Loading Assembly from: D:\SteamLibrary\steamapps\workshop\content\3167020\3600560151\DuckovCustomModel.GameModules.dll
+Fallback handler could not load library D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/MonoBleedingEdge/data-0000024E056C2010.dll
+[Duckov Custom Model - Mod Loader] Invoking ModEntry.Initialize...
+[Duckov Custom Model - Mod Loader] Resolving assembly: DuckovCustomModel.Core.dll from D:\SteamLibrary\steamapps\workshop\content\3167020\3600560151\DuckovCustomModel.Core.dll
+Fallback handler could not load library D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/MonoBleedingEdge/data-0000024E0593C050.dll
+[Duckov Custom Model] Initializing Duckov Custom Model...
+[Duckov Custom Model] Using install directory for ModConfigs: D:\SteamLibrary\steamapps\common\Escape from Duckov\ModConfigs
+[Duckov Custom Model] Configuration files loaded successfully
+[Duckov Custom Model] Applied 8 Harmony patch(es) successfully by method A
+[Duckov Custom Model] New bundle 'jiuhu' detected, will load
+[Duckov Custom Model] ConfigWindow initialized.
+[Duckov Custom Model] Duckov Custom Model loaded (Version 1.8.1)
+[Duckov Custom Model - Mod Loader] ModEntry.Initialize invoked successfully.
+[Duckov Custom Model - Mod Loader] ModLoader initialization complete.
+Mod Loaded: DuckovCustomModel
+ModActive_jiuhu: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3601557685\jiuhu.dll
+Mod Loaded: jiuhu
+ModActive_ShowQuestsAreaOnMap: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3591556337\ShowQuestsAreaOnMap.dll
+[ShowQuestsAreaOnMap][Manager] 实例已初始化。
+[ShowQuestsAreaOnMap][Manager] 已启用。订阅 sceneLoaded 事件。
+[ShowQuestsAreaOnMap][Manager] 开始预扫描场景中的 RequireQuestsActive...
+[ShowQuestsAreaOnMap][Manager] 场景中找到 0 个 RequireQuestsActive 组件。
+[ShowQuestsAreaOnMap][Manager] 预扫描完成，缓存了 0 个不同的 Quest ID 关联的触发器。
+[ShowQuestsAreaOnMap] 创建了 QuestsAreaManager 组件。
+[ShowQuestsAreaOnMap] Mod 初始化完成。
+[ShowQuestsAreaOnMap] Mod 已启用。应用补丁...
+[ShowQuestsAreaOnMap][QuestSpawnPatcher] 正在应用 Harmony 补丁...
+[ShowQuestsAreaOnMap][QuestSpawnPatcher] 成功反射 TaskEventEmitter 的字段: eventKey
+[ShowQuestsAreaOnMap][QuestSpawnPatcher] 成功修补 SpawnItemForTask.SpawnItem
+[ShowQuestsAreaOnMap][QuestSpawnPatcher] 成功修补 SpawnPrefabForTask.Spawn (Prefix)
+[ShowQuestsAreaOnMap][QuestSpawnPatcher] 成功修补 Object.Instantiate (Postfix)
+[ShowQuestsAreaOnMap][QuestSpawnPatcher] 成功修补 MapElementForTask.SetVisibility
+[ShowQuestsAreaOnMap][QuestSpawnPatcher] 成功修补 MapElementForTask.DespawnAll
+Mod Loaded: ShowQuestsAreaOnMap
+ModActive_KeyedLootAll: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3590570097\KeyedLootAll.dll
+Mod Loaded: KeyedLootAll
+ModActive_ShowDisassemblyInfo: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3593274421\ShowDisassemblyInfo.dll
+[ShowDisassemblyInfo] OnEnable called. Subscribing to events...
+[ModConfig_v1] 在所有程序集中未找到类型 ModConfig.ModBehaviour，已加载程序集数量: 203
+[ModConfig_v1] ModConfig.ModBehaviour 类型未找到，ModConfig 可能未加载
+Mod Loaded: ShowDisassemblyInfo
+ModActive_LightLootBox: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3591174267\LightLootBox.dll
+[LightLootBox] 启用mod，执行相关逻辑
+[ModConfig_v1] 在所有程序集中未找到类型 ModConfig.ModBehaviour，已加载程序集数量: 204
+[ModConfig_v1] ModConfig.ModBehaviour 类型未找到，ModConfig 可能未加载
+[LightLootBox] 主逻辑注册成功！
+Mod Loaded: LightLootBox
+ModActive_KeycardRecordedIndicator: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3590154134\KeycardRecordedIndicator.dll
+[已录入钥匙标识] Loaded!!!
+[已录入钥匙标识] OnEnable
+[已录入钥匙标识] Harmony patches applied successfully
+Mod Loaded: KeycardRecordedIndicator
+ModActive_QuickDecomposition: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3592108921\QuickDecomposition.dll
+[QuickDecomposition] QuickDecomposition 已加载
+[ModConfig_v1] 在所有程序集中未找到类型 ModConfig.ModBehaviour，已加载程序集数量: 206
+[ModConfig_v1] ModConfig.ModBehaviour 类型未找到，ModConfig 可能未加载
+[QuickDecomposition] ModConfig 未找到，使用默认快捷键: None
+[QuickDecomposition] 成功应用Harmony补丁
+Mod Loaded: QuickDecomposition
+ModActive_AutoLootCorpseAmmo: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3594454318\AutoLootCorpseAmmo.dll
+Mod Loaded: AutoLootCorpseAmmo
+ModActive_NoRequiredUnlockPerk: False
+ModActive_Duckov_CashSlot: False
+ModActive_ModPerformanceMonitor: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3594997139\ModPerformanceMonitor.dll
+# [ModPerformanceMonitor] Patching modhook ReflectionHelper: GetFieldValue SetFieldValue
+# [ModPerformanceMonitor] Patching modhook ModLogger: Debug Info Warn Error Format
+# [ModPerformanceMonitor] Patching modhook HarmonyHelper: get_PatchTag
+# [ModPerformanceMonitor] Patching modhook ModLockManager: GetLockFilePath LoadLockedMods SaveLockedMods IsModLocked GetLockedIndex SetModLocked ClearAllLocks
+[BetterModConfig v1.0.0] [23:09:17] [INFO] LoadLockedMods (L275): 已加载 5 个mod的锁定状态
+# [ModPerformanceMonitor] Patching modhook ModEntryDragHandler: Initialize OnBeginDrag OnDrag OnEndDrag IsPointerOverButton GetTargetIndex
+# [ModPerformanceMonitor] Patching modhook ModBehaviour: Awake OnEnable OnDisable OnDestroy
+# [ModPerformanceMonitor] Patching yuanshen ModBehaviour: ModifyAccessoryEffects ApplyArmorProperties ApplyMeleeWeaponProperties ⁮‌‬​‌‍‌⁫‏‏⁫⁯‭⁬‪⁮‏‫‭‏‏⁬‭‎‮⁪‏‮‏⁯‎​⁮‬‫⁬‭‌‬‌‮ ‏‮‪​‪‌⁮⁮⁭⁮⁮‮⁭⁮⁫‏​⁬‌‏⁯⁬⁫⁮‪⁮‬‭‏⁬‏⁭⁬⁭⁯⁯⁫‬⁮‎‮ ⁪‎‬‎‪⁪‍⁮‏⁪‮⁮‍⁬⁯‏‏⁬‎‪⁪‪​‎‎‮‍⁫‬⁪‪‌‌‎⁬⁭⁪‮⁬‬‮ ⁭‎‏‭⁭⁯‌‏‍⁬‎‎‬‮⁪‏⁯⁭‎‍‏​‮⁭⁮⁪⁬⁫⁮‌‫‏⁪⁫⁪⁫⁬⁪⁭⁫‮ ApplyAmmoProperties ⁪‍‬⁪⁯‪‏⁯‎‍⁫⁯‮‪‭‌‪‍⁪‮‏⁬‍‫⁭​⁪⁭⁫⁯⁪⁬‏‎‮‌⁬‎‏‎‮ ‏⁮‍⁯⁯‏⁮‭‫‌​‌⁮‫‌⁯‏‎‎‮⁯‮‭​‪⁯⁬⁭‍‬‮​⁬‏​‬‭⁯‏⁪‮ ‫‪⁬‮​‮⁯⁭‍⁫⁭⁫‍⁯‬⁯⁮‎⁮⁮⁫‬⁯‎‏‌‬⁪‭‏‪⁬‪‪⁭‪‎‬⁪‫‮ ‎‎⁫⁫⁭⁮⁮‪‍⁮‬⁬⁪⁬‭‎​​⁪‮⁭‪‍‬⁯⁯‬⁮⁭‬‮⁫‎‏‌‬‪⁫⁭⁭‮ ‭⁯⁬‭‍⁪‌‭‍‍‫‍⁬‬​⁫‬⁬⁫⁪⁬⁯‬​⁭​‭‪⁬⁭⁮‍‎‭⁪​⁬‫‭⁫‮ ‮‎⁬⁫⁪⁫⁪‍‌‎‪‪​‌⁬‬⁫‮‍‬‬​‪⁬‍⁮‫‪‎⁪‪‎‬‮‫‏‏‮‪‫‮ ⁬‎⁯‭​‎⁫‫⁬⁮‬⁯‬‭‪⁯⁯‍‏⁯⁫⁯‪​‮‪‮‬⁯‮‎⁮‮⁪​‫⁪‍⁬‍‮ ⁯‏‫‮‫​‌⁯⁫⁫‪‌‭​‌‌‬‬‪‫⁯⁫⁮‏‌⁪‪⁮⁭‮​‎‏‮‭‏‫⁯‍‮ ⁯‮‎‮‌⁯‍⁫‍‪⁯‮‫‍‏⁯‬‎‍⁪‭⁯⁯‏‏‭‍⁬‪‮⁬⁪​‏‪⁯‍‬‍‬‮ ‎​‪⁮‫⁯⁮‏‏​‫‮⁪‪⁭⁫‭‎⁮‭‫‫‮⁪‍⁭‌‭‍⁪‪‍‬⁭‭⁫‫‎⁯‏‮ ⁭‌‎⁫‮⁫⁯​‌‏‮‌‮‬‪‭⁬‌⁫‏⁫‬⁯‏⁬‮‫‏‬‍‍‏‬⁮⁮‍‏⁯‫‍‮ ⁬⁮⁭⁪⁬‍‮⁬‭⁯​‮‭‪⁯⁪‮‬⁪‪‫‮‎‪‬‍‌‏‏‪⁯⁮⁫⁬‬‏‌‫‮⁮‮ ⁬⁫‌⁯⁭‫‬⁯‍‎⁫⁫⁪‬⁮‎⁯⁫​⁬‭‏⁭‎‏‍⁬‬‏‮⁭‮⁭⁭⁮‏‪⁫‮⁯‮ OnAfterSetup OnBeforeDeactivate OnDisable ‫‏‎‎‌‎‬⁭‭‍‏⁬⁯⁪‍⁮⁮‏‫⁮‎‪‪‬‭⁭‬⁬‍⁬⁯⁮‮‎⁬‍‪‭⁯‏‮ CreateCustomItem ⁭⁭‍‏‫‎‭​‎⁮⁮⁪‎‏‌‏‮⁪‬⁯‭⁪‍‭‪‏‫‭‫‏⁮⁯⁪‭‏⁮⁯⁪⁭⁬‮ ⁮‌‭‏⁮‪‬⁬‫⁬​‬⁪‪⁪​⁮‏⁪‌‭‏‪⁭⁬⁪‪​‎‮‌‬⁪‬⁪⁫‏‭‎‎‮ ‍‍⁮⁯‍⁮‬‪⁬⁪‭‏⁫‫‍⁯‏‬‭‪⁬‮⁮⁪‫⁭⁫‏‬‏‫‮⁬‬‪‌‫‫‮‌‮ ⁯‮‮⁫‍​⁯⁮⁪⁫‭‫⁫‎‍‮​‍‏‌‏‪‭‍⁪⁭⁫⁮‏‫‎⁬⁬⁭‭‭‏‏⁯‏‮ ‏‎‭‏‬‌‏⁭‍‬‫⁪‮​⁭‭⁯‮‌⁮​‎‌⁮‎⁮‏‌⁮‫‎‍​‫​‏⁮‪‫⁬‮ ‬‎⁮‍⁬⁭‭‫⁫⁪‫‮‮‬⁫‮‏⁭‫⁯‪‬‌‫⁬‍⁫‎​‬‬​⁪‌‮‪‌⁫‮⁪‮ ‫⁮⁫‫‍‏⁬‬‬‪⁬​⁪​⁫‍‬‭​‮‭‍⁪⁭⁪‭‬‏‏​⁪⁭‪‫⁬⁮​⁯⁪‮‮ ‬⁪‍⁬‌⁫⁫‪⁪‭‏‭‌‌‮⁫⁯‬⁮⁪⁯‪‮‎⁪⁪‏⁮⁫⁫⁪‌‭‪⁪⁫‫‍‍⁫‮ ⁪⁪‮‫⁮‪⁭‭‪⁬​⁭‪​‏‫⁭‌​‏⁫⁭‌‍⁬‌‬⁮⁬‍​⁯‫⁯‏‍⁮‮⁭‮‮ ⁫⁯⁯⁮‏‮⁫‬⁮⁭⁬‍⁯‫​⁯‍‮‎⁫⁪⁮‌‪⁯‭⁮⁯‮‎⁭‭⁯‎‏⁮⁫‮‭‏‮ ⁮⁮⁪‏⁪‫⁫⁮⁭‍⁬‮‪‬‮⁭​⁯‪​‌‫​‫⁬‫‫⁮​‍⁯‍‫‏‏‏‬‍⁭‬‮ ⁫⁭⁪‍‫⁬⁬‪​‏‬‫‭⁪‮‫‍⁮‏⁯‫‍‌‏⁭​⁯⁭​⁪​‫⁫‬⁪‮⁫⁯⁭⁮‮ ⁬⁭‭‬⁮‮‬‍‌⁪⁯⁫⁫‭⁬‍‏⁬⁯‫‬⁮‎⁮‏⁬⁭‫‬​⁪​​‮‍‬⁪‍‮‪‮ ⁮‍‏⁬‌‍‭⁪‪⁫⁪‌‌⁮⁫‭⁬‬​⁭⁭⁫⁮‎‪​‍⁭⁫‪⁭‫‏‭⁪⁮‭⁭‪‮ ​‫⁬​⁮‎‍⁬⁫‎‮⁪⁯⁭⁬⁮‬‍‍‬‌⁪‪‎​‎‏‍‎⁫⁬‌‌⁪‍‌⁫‪⁮‪‮ ‮‌⁭‌⁭⁯⁬‬‍⁮‎​‭‎⁬‌‭⁪⁮‮⁬​‎‬⁬‌‫⁬⁪‬⁯⁪⁭‬‎‌‭‬⁬⁬‮ ‭​‌⁮‌​‌‮⁯‏‪⁪‮​‬⁫‭‪⁭‪‬‭‭⁬‮‎‭‬⁮‮⁮⁬‎‮⁭‏‬‬⁫⁮‮ ⁬⁬‫⁭‬‎⁭‪⁯⁫‬‎‫‬‎‏‫‪⁬⁭‫‌‏​‫⁬⁬‌​‍⁭​⁪⁭‪⁭⁭‌‬‮ ‎‎⁪‪⁭‎⁬‫⁮‌‫⁬​‭⁫‫‭‏‏⁮‌⁭⁪⁬‎​⁪‭⁫⁯‮‬⁬‭⁮⁭⁭‪⁮⁯‮ ‬‮⁪⁫‍⁯⁪​‏‍⁪⁫‌⁮​​‪‫‌‍‏‎‮⁫⁮‪⁯‫⁭‏‏‮‭⁬‌‍⁭‌⁪‫‮ ‏‪⁯‪⁮⁫⁬⁭⁭‎⁪‏‍‫⁭‏‏‭‭‍‭​⁭‬‮‫‪‌⁪⁭‭⁮⁯⁫‎‎‫⁪⁪⁯‮ ​‪‍⁪⁫‫⁪‪⁭‌‪‎⁯‏‍‪‫‎⁬‪‬‏‮‍⁯⁮‍⁯⁮⁭​‫⁯⁪⁮⁫‌‎‎‏‮ ‎⁭⁫‮⁮​‎⁪‪⁮‎⁫​⁬‌‪⁬‮⁪‌‎‎⁫‎‬‭‌⁯‏‫‫‍⁪⁯⁬‭​⁪‭⁮‮ ‫​⁭⁮‎⁯⁪‪‍‮‮‭‬⁪⁭⁯‎‍⁮​​‍‭‭⁯⁫‪‏⁬⁪‪‫‭⁯⁫‎⁬⁫⁪⁬‮ ⁫‌‎​⁫⁮‏⁪⁭‪‎‏‎⁮‭‍⁬‌‌‏‪⁭‌‍‎‭‎‏⁬‌⁫‮⁫‫⁭‮⁫⁮⁮‫‮ ‪⁬⁫‮⁬‏‬‮‎‌⁬‌​‫​‬⁭‮‭‌⁯‪‬⁪‏‪⁬‭‫‏‌‭‫‫⁪‬⁫⁭‮‮ ‍​‍⁭⁫‍⁫‌⁯‎‭‪‌‫⁪⁭‭⁪‬‪​‫⁮​‌‬​‍‭‍‍‌‫‬⁬⁪⁭⁯⁭‫‮ ‪⁪⁭⁬⁬‍‫‎‎‪‏‎‎‫⁫⁯‏⁫⁭⁫⁯‪‭‭​‪⁮⁮‫⁮⁯​‌‫⁪⁫‌​⁪‮‮ ‍​‮‭⁬⁫⁪⁭‮⁯‮⁯‏⁫⁯‬⁫‬⁫⁯⁮⁭‮‌‌‬⁯⁫‎‌‫⁭‎⁪​​⁯‎​‏‮ ⁪‮⁬‪⁭⁪⁪​‌⁫‫‍‬​‬⁮⁫‮⁯‭⁬⁫‏‍‮⁪⁭‬⁪⁯‭⁬‍⁯‮⁮‭⁯⁫‍‮ ‌‭⁭‮‏⁭‪‬⁮‮‎‫‮‫‎⁮‍⁫‏⁯⁫‫‍‌​‏⁪‮‬⁮‬⁫‍‏‮‌‏⁯‫⁪‮ ‌‎⁬‬‬⁮⁯⁭⁮⁬‬⁭‪‌‫⁭‭‫‎⁪‏‎‍⁪⁯‮‏‭‫​⁫‎‮⁯⁮⁮‎⁬‏‎‮ ​‫⁪‎‬‌⁫‍⁮⁭⁫⁯⁫‬‎⁫‮‬‬⁪‭‎‎‭‏‌‏‏‏‭‫⁮‮‪⁮⁭‫⁬⁯‮ ⁪⁪⁭‬‏⁮‍​​‮‍⁭‍‎​‌‮⁫‭⁪‪‮⁭‍‍‍‌​‭‫⁬‏‭‏‪⁭‍‫⁪‍‮ ​⁪⁪⁯‭⁭‬​⁮‬⁪‭⁬‎‎‏‎⁬‮⁮‏‍⁬‪‫‎‫‫‏‎⁭⁪‭‫‬⁬‪⁫⁭‬‮ SetGacha SetGacha ValidateGachaConfig ApplyWeaponProperties ‭⁯‪‪‏⁭‎⁬‪⁯⁫⁯⁫‭‌‬‎⁪‪‪‍‫⁪‫‬‍​‬​‪​‪‏‭⁫​⁫⁫⁫‪‮ ‏‭‪⁪‬‍‬‬‏‍‌​‌⁯⁭⁭‮⁯⁯‏⁬⁯⁪‫‫⁮‪‮‪⁫‎‮‍⁬⁫‫⁭‌‌⁯‮ ⁫⁬‌⁭​⁬‏​‍‬‬⁪‮‭⁭‪‮⁬‍‌⁮‫‭⁬‫‮⁪‪‮⁯‪‏‏⁮⁭‏‌‪‪‬‮ ‫⁯‏⁮‫⁮‬‭⁪‍‪⁯⁪⁫‪⁯‪‌​‍​‎⁭‮⁮‫‭‮‍‪‫⁪‬‌‮⁯‎‭⁫‭‮ ‍‮‍⁬‬‎‏‪‮‎‭​​‎⁬⁭‎⁬⁯‏​⁪⁭‭‮‬‭‎‍‬‍‫‌⁫​‮‏⁮‌‍‮ ‮⁬‎​‬​‮‪‭​⁫⁯‌‭‪⁪‏‏‍‪‏‭‎⁪‌⁮⁮‭⁮⁭‭‎‎‬⁪⁪‌⁬‭‎‮ ‮​‫⁭‎‭‭⁪​⁮‍‬‮‮‌‏⁭​⁮‬‭⁫‮‍‎‪​‪​​⁪⁭⁮‮‌‬⁭‮⁪‪‮ ‮‫⁫​‌⁫⁪‬‭‏‎⁯‏‫⁭‌‍⁪‫​‮‮⁫⁫‭⁮‬‫⁬‫‏‎⁬⁮⁫‏⁮‮⁯⁪‮
+# [ModPerformanceMonitor] Patching yuanshen BuffUtils: ModifyBuffDuration ReplaceOrModifyBuff ‎‌‮⁯⁭‏‪‌‪‪‪‭‏⁭​⁪⁯⁫‎‏‫‫‬‌‏⁮⁪‪‍⁯‬‭‌⁭‍⁪‪‫‌‫‮ ‬‬‏​‫⁯⁪‫‏‮‪‌⁯⁬‮‭⁫‬‬‏‬⁯⁮‭⁯⁫⁭⁭‮⁫‫⁯⁪‎‮‮‪‬⁮⁫‮ ⁯​​‮⁮‬‌‪⁪⁫‍⁬‌‌‭‏‬‏‌‪‍‪⁪‎‪‍⁯‎​‫⁭⁬⁭‪⁬​‍⁬⁯‭‮ ReplaceAllAddBuffs CopyAndAddBuff CopyAndAddBuffs DuplicateAllAddBuffs
+# [ModPerformanceMonitor] Patching yuanshen TagCollectionWrapper: get_Count get_Item set_Item Add Clear Contains IndexOf Insert Remove RemoveAt CopyTo GetEnumerator
+# [ModPerformanceMonitor] Patching ItemModKit ModBehaviour: Awake OnDestroy OnApplicationQuit Update
+# [ModPerformanceMonitor] Patching ItemModKit IMKPerf: Enable Scope ParseIntEnv ParseDoubleEnv
+# [ModPerformanceMonitor] Patching ItemModKit Cloner: CloneFromTemplate CloneFromTemplate AdapterOrArgsInvalid
+# [ModPerformanceMonitor] Patching ItemModKit ItemStateExtensions: RegisterContributor RegisterEnricher RegisterApplier Contribute Enrich TryApply
+# [ModPerformanceMonitor] Patching ItemModKit ItemHandle: get_HasSlot
+# [ModPerformanceMonitor] Patching ItemModKit RichResult`1: Fail
+# [ModPerformanceMonitor] Patching ItemModKit KeyHelper: BuildOwnedKey NextIncrementalKey
+# [ModPerformanceMonitor] Patching ItemModKit UnityLogger: Log
+# [ModPerformanceMonitor] Patching ItemModKit Log: Use Debug Info Warn Error
+# [ModPerformanceMonitor] Patching ItemModKit PerfCounters: ResetWindow
+# [ModPerformanceMonitor] Patching ItemModKit PerfFlushMetrics: Reset RecordItem RecordFlushOp Snapshot
+# [ModPerformanceMonitor] Patching ItemModKit Persistence: BuildMetaFromSnapshot
+# [ModPerformanceMonitor] Patching ItemModKit PersistenceSettings: Configure
+# [ModPerformanceMonitor] Patching ItemModKit PersistenceScheduler: get_PendingCount EnqueueDirty Flush FlushAll RequestFlushAllDeferred Tick InternalFlush ComputeChecksum Now
+# [ModPerformanceMonitor] Patching ItemModKit Crc32: HashCore HashFinal
+# [ModPerformanceMonitor] Patching ItemModKit ItemQueryExtensions: Backpack Storage AnyInventory WeaponSlot All
+# [ModPerformanceMonitor] Patching ItemModKit Rebirth: Replace
+# [ModPerformanceMonitor] Patching ItemModKit ItemSnapshot: Capture
+# [ModPerformanceMonitor] Patching ItemModKit ItemSnapshotExtensions: ToPrettyString
+# [ModPerformanceMonitor] Patching ItemModKit SnapshotHelper: CaptureCore RollbackCore
+# [ModPerformanceMonitor] Patching ItemModKit IMKVersion: Require
+# [ModPerformanceMonitor] Patching ItemModKit ItemHandle: TryGetRaw ToString RebindLogical get_TypeId get_DisplayName get_Tags RefreshMetadata
+# [ModPerformanceMonitor] Patching ItemModKit LootBoxScope: Includes
+# [ModPerformanceMonitor] Patching ItemModKit Atomic: Run
+# [ModPerformanceMonitor] Patching ItemModKit DuckovBindings: get_PathFile EnsureLoaded Save TryGetAddSignature RecordAddSignature FindType
+# [ModPerformanceMonitor] Patching ItemModKit DuckovClonePipeline: TryCloneToInventory ResolveTargetInventory TryScheduleNextFrame TryRefreshInventory
+# [ModPerformanceMonitor] Patching ItemModKit DuckovEventBridge: Initialize Dispose OnSceneLoaded SafeScanAndSubscribe TrySubscribe OnItemChanged OnItemDestroyed
+# [ModPerformanceMonitor] Patching ItemModKit DuckovInventoryAdapter: IsInInventory GetInventory GetCapacity GetItemAt IndexOf AddAt AddAndMerge Detach UnwrapItem
+# [ModPerformanceMonitor] Patching ItemModKit DuckovInventoryPlacementService: TryPlace TryScheduleNextFrame
+# [ModPerformanceMonitor] Patching ItemModKit DuckovInventoryResolver: Resolve ResolveFallback
+# [ModPerformanceMonitor] Patching ItemModKit DuckovItemAdapter: GetName SetName GetDisplayNameRaw SetDisplayNameRaw GetTypeId SetTypeId GetQuality SetQuality GetDisplayQuality SetDisplayQuality GetValue SetValue GetVariables SetVariable GetVariable RemoveVariable GetModifiers ReapplyModifiers GetSlots GetTags SetTags GetConstants SetConstant GetConstant RemoveConstant ReadCustomDataValue
+# [ModPerformanceMonitor] Patching ItemModKit DuckovItemEventSource: add_OnItemAdded remove_OnItemAdded add_OnItemRemoved remove_OnItemRemoved add_OnItemChanged remove_OnItemChanged BeginExternalMode EndExternalMode ExternalActive PublishAdded PublishRemoved PublishChanged PublishMoved PublishMerged PublishSplit Publish HintActive Tick EnsureEnumBuffer Hash IsUIActive IsActive
+# [ModPerformanceMonitor] Patching ItemModKit DuckovItemFactory: EnsureCoreTypes TryInstantiateByTypeId TryInstantiateFromPrefab TryGenerateByTypeId TryRegisterDynamicEntry TryCloneItem TryDeleteItem
+# [ModPerformanceMonitor] Patching ItemModKit DuckovItemMover: ResolveItemComponent TryAddToInventory TryRemoveFromInventory TryMoveInInventory TryTransferBetweenInventories TrySendToPlayer TrySendToPlayerInventory TrySendToWarehouse TryTakeFromWarehouseBuffer TryDropToWorldNearPlayer TryDropToWorld TrySplitStack TryMergeStacks TryRepackStacks
+# [ModPerformanceMonitor] Patching ItemModKit DuckovItemQuery: TryGetFromBackpack TryGetFromStorage TryGetFromAnyInventory TryGetWeaponSlot EnumerateBackpack EnumerateStorage EnumerateAllInventories GetBackpack GetStorage EnumerateInventories EnumerateInventory GetItem TryGetAt
+# [ModPerformanceMonitor] Patching ItemModKit DuckovMigration: EnsureMigrated
+# [ModPerformanceMonitor] Patching ItemModKit DuckovMutex: TryLock Unlock
+# [ModPerformanceMonitor] Patching ItemModKit DuckovOwnership: CurrentOrInfer IsSubclassOf
+# [ModPerformanceMonitor] Patching ItemModKit DuckovPersistenceAdapter: RecordMeta TryExtractMeta EnsureApplied ClearTemplateEffects ShouldConsider ApplyBasic WriteVars EmbedMeta TryReadEmbedded ToInt HasEmbedded GetOwnerId IsOwnedBy ComputeChecksum
+# [ModPerformanceMonitor] Patching ItemModKit DuckovRebirthService: ReplaceRebirth SafeTypeId EnsureMetaFromObject UnwrapToItem TrySet SendToPlayer TryRefreshInventories
+# [ModPerformanceMonitor] Patching ItemModKit DuckovReflectionCache: GetProp GetMethod GetMethod GetField GetGetter GetSetter GetEnumNames SafeGetProperty SafeGetMethod SafeGetMethod SafeGetField ParamSig BuildGetter BuildSetter
+# [ModPerformanceMonitor] Patching ItemModKit DuckovSlotAdapter: TryPlugToCharacter
+# [ModPerformanceMonitor] Patching ItemModKit DuckovTransactionManager: Begin TryGet Commit Rollback
+# [ModPerformanceMonitor] Patching ItemModKit DuckovTreeDataService: Ensure TryExport ExportEntry ExportVariable SafeFieldOrProp SafeGet TryImportMinimal TryCloneFromSource TryCloneIntoPlayerInventory TryCloneIntoInventoryAdvanced TryCloneIntoInventoryAdvancedWithDiag AwaitUniTask ResolvePlayerInventory
+# [ModPerformanceMonitor] Patching ItemModKit DuckovTypeUtils: FindType GetProp SetProp GetMaybe ConvertToFloat ConvertToBool GetStableId
+# [ModPerformanceMonitor] Patching ItemModKit DuckovUIRefreshService: RefreshInventory
+# [ModPerformanceMonitor] Patching ItemModKit DuckovUISelection: TryGetDetailsItem TryGetOperationMenuItem TryGetCurrentItem GetDetailsInstance GetOperationMenuInstance IsActive
+# [ModPerformanceMonitor] Patching ItemModKit DuckovVariableMergeService: Merge
+# [ModPerformanceMonitor] Patching ItemModKit DuckovWorldDropEventSource: add_OnEnemyDrop remove_OnEnemyDrop add_OnEnvironmentDrop remove_OnEnvironmentDrop Tick EnsureBuffer
+# [ModPerformanceMonitor] Patching ItemModKit IMKDuckov: GetOwnerId IsOwnedBy EnsureMigrated BeginExternalEvents EndExternalEvents PublishItemAdded PublishItemRemoved PublishItemChanged PublishItemMoved PublishItemMerged PublishItemSplit AllowDirtyFromWriteService MarkDirty FlushDirty FlushAllDirty RegisterHandle UnregisterHandle IncrementalRefresh QueryDiagnostics ResetQueryIndex ReindexAll DefaultEnumerateAll ReindexAll TryGetCurrentSelectedHandle RefreshHandleMetadata TryGetHandle TryGetHandleByInstanceId QueryPerfStats
+# [ModPerformanceMonitor] Patching ItemModKit ReadService: TryReadCoreFields TryReadVariables TryReadConstants TryReadModifiers TryReadTags TryReadSlots TryReadStackInfo TryReadDurabilityInfo TryReadInspectionInfo TryReadOrderingInfo TryReadWeightInfo TryReadRelations TryReadFlags TryReadSoundKey TryReadStats TryReadChildInventoryInfo TryEnumerateChildInventoryItems TryReadEffects TryReadItemGraphic TryReadAgentUtilities Snapshot TryReadModifierDescriptions TryReadEffectsDetailed DuckovInventoryAdapter_GetItem
+# [ModPerformanceMonitor] Patching ItemModKit WriteService: TrySetStackCount TrySetMaxStack TrySetDurability TrySetMaxDurability TrySetDurabilityLoss TrySetInspected TrySetInspecting TryAddToChildInventory TryRemoveFromChildInventory TryMoveInChildInventory TryClearChildInventory TrySetVariableMeta TrySetConstantMeta TryWriteCoreFields TrySetOrder TrySetSoundKey TrySetWeight TrySetIcon NotifySlotAndChildChanged EnsureUniqueSlotKey ResolveAddModifierSignatureCached DiscoverAddSignature CreateModifierInstance MapModifierEnumName TryAddModifier TryRemoveAllModifiersFromSource TryReapplyModifiers TryAddModifierDescription TryRemoveModifierDescription TrySetModifierDescriptionValue InternalSetDescField TrySetModifierDescriptionType TrySetModifierDescriptionOrder TrySetModifierDescriptionDisplay TryClearModifierDescriptions TrySanitizeModifierDescriptions TryAddEffect TryRemoveEffect TryEnableEffect TrySetEffectProperty TryAddEffectComponent TryRemoveEffectComponent TrySetEffectComponentProperty SetPropOrField DebugDumpMembers DebugLog DebugDumpModifiers TrySetByNames TrySetEnumByAny ResolveSlotByKeyOrIndex TryPlugIntoSlot TryUnplugFromSlot TryMoveBetweenSlots TryAddSlot TryRemoveSlot TrySetStatValue TryEnsureStat TryAssignStatValue TryRemoveStat BeginTransaction CommitTransaction RollbackTransaction TryWriteVariables TryWriteConstants TryWriteTags
+# [ModPerformanceMonitor] Patching ItemModKit DuckovHandleFactory: CreateItemHandle
+# [ModPerformanceMonitor] Patching ItemModKit DuckovInventoryClassifier: ClassifyInventory IsLootBox IsPlayerInventory IsStorage EnumerateLootBoxes
+# [ModPerformanceMonitor] Patching ItemModKit DuckovItemLocator: FromInstance FromInstanceId FromLogicalId FromUISelection Query OnCreated OnDestroyed FindAllByTypeId TryResolveByInstanceId TryGetInstanceId TryGetInventory TryGetOwner
+# [ModPerformanceMonitor] Patching ItemModKit DuckovItemQueryV2: IsEquippedRaw AddHandle RemoveHandle UpdateHandle UpdateInventoryEquipped ComputeDepth ComputeAncestorChain IndexNameWords ByTypeId InInventory InScope ByTags ByTagAny NameContains OwnedBy Equipped Depth First Take All SelectSource Match TryTypeId TryInventory Clear ResetPredicates ResetFilterState RecordDiag SnapshotPerf
+# [ModPerformanceMonitor] Patching ItemModKit DuckovLogicalIdMap: Bind Resolve TryGetLogicalId Unbind
+# [ModPerformanceMonitor] Patching ItemModKit DuckovOwnershipService: GetOwner GetCharacterRoot GetInventory GetSlot
+# [ModPerformanceMonitor] Patching ItemModKit DuckovUISelectionV2Adapter: TryGetCurrent TryGetCurrentInventory
+# [ModPerformanceMonitor] Patching ItemModKit EffectsContributor: TryCapture TryListTypeNames TryApply TryRecreateComponents
+# [ModPerformanceMonitor] Patching ItemModKit StatsContributor: TryCapture TryApply
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ModBehaviour: Awake Update
+# [ModPerformanceMonitor] Patching IMK.SettingsUI PublicApi: IsVersionAtLeast Parse
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ThemeColors: get_DefaultFont
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SchemaTableController: Init Update RebuildAll ComputeColumnWidths BuildHeaderOrUpdate CreateRowView CreateCell MakeText ApplyColumnGeometryToRow UpdateVisibleRows SelectIndex Parse totalContentHeight AddNew Save Reload RemoveSelected MoveSelectedUp MoveSelectedDown LateUpdate
+# [ModPerformanceMonitor] Patching IMK.SettingsUI JsonFileDataSet`1: get_Count GetRow AddNew RemoveAt Move Commit Reload
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ReflectionRowAdapter`1: Get Set Resolve ConvertValue
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SettingsApplyService: Apply SequenceEqual RecordSeqEqual ToF
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SettingsRefreshUtil: RefreshLayout
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SettingsStore: GetDir GetFile Load Save Apply
+# [ModPerformanceMonitor] Patching IMK.SettingsUI UiSettingsPageBuilder: Build
+# [ModPerformanceMonitor] Patching IMK.SettingsUI RecordListJsonUtil: ToJson TryParse E
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ProviderRegistry: add_ProvidersChanged remove_ProvidersChanged Register TryGet Unregister
+# [ModPerformanceMonitor] Patching IMK.SettingsUI BreadcrumbBar: Awake SetSegments
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ConfirmModal: Show Close EnsureInstance BuildUI CreateButton Bind SafeClose
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ContentPresenter: Awake get_ViewportWidth Set SetWithTransition WipeAnim ForceRebind Update HandleWheelSmooth OnEnable InitialShowRoutine DelayedLayoutFix
+# [ModPerformanceMonitor] Patching IMK.SettingsUI DragWindowOnBar: OnPointerDown OnBeginDrag OnDrag
+# [ModPerformanceMonitor] Patching IMK.SettingsUI Frame: add_ActiveChanged remove_ActiveChanged ShowHome Show Activate
+# [ModPerformanceMonitor] Patching IMK.SettingsUI NavController: Awake RebuildHome ScheduleAutoExpandFirstMarkdown AutoExpandFirstMarkdown Log HandleNavSelect NavigateTo InternalNavigate
+# [ModPerformanceMonitor] Patching IMK.SettingsUI NavPane: Awake BuildFromProviders MakeButton BuildDemo
+# [ModPerformanceMonitor] Patching IMK.SettingsUI UITransitions: Begin End
+# [ModPerformanceMonitor] Patching IMK.SettingsUI AutoWidthInput: Awake OnEnable TryHook Unhook UpdateWidth
+# [ModPerformanceMonitor] Patching IMK.SettingsUI DockPanelLayout: Layout
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ItemsControl: Awake Clear SetItems
+# [ModPerformanceMonitor] Patching IMK.SettingsUI StackPanelLayout: Awake LateUpdate PerformLayout
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SettingsPanelProvider: GetNavItems BuildPage
+# [ModPerformanceMonitor] Patching IMK.SettingsUI UiSettingsPageBuilder: Build
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SampleProvider: GetNavItems BuildPage
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ItemModKitPanelPages: Navigate FindCurrentTable BuildVariablesPage BuildStatsPage BuildSlotsPage BuildModifiersPage
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ItemModKitPanelProvider: GetNavItems BuildPage
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ItemModKitPanelState: get_HasActiveTransaction TryCaptureSelected EnsureTransactionStarted CaptureCoreSnapshot GetDuckovType BuildOriginalSnapshot TryGetName BuildItemDetailCards CommitTransactionAndFlush TryWriteCoreField RefreshCapturedValues RollbackPreferTransaction RollbackToOriginal RebuildCurrentDetailPage IsPrimitiveSupported ConvertValue NavigateProgrammatic
+# [ModPerformanceMonitor] Patching IMK.SettingsUI ModifiersDataSet: get_Count GetRow AddNew RemoveAt Move Log InvokeRich Commit UniqueKey FindType GetStaticMember GetMaybe ConvertToFloat GetOk GetErr LogRich ManualFallbackAdd DirectAssign DirectAssignEnum DirectSetDescriptor DumpUnderlyingCollection Reload
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SlotsDataSet: get_Count GetRow AddNew FallbackManualAddSlot GetSlotsCollection DuckovReflectionCacheGet EnumerateEnumerable EnsureUniqueKey SetProp RemoveAt Move Reload GetMaybe FindType GetStaticMember
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SlotsPageAugment: InjectActions
+# [ModPerformanceMonitor] Patching IMK.SettingsUI StatsDataSet: get_Count GetRow AddNew RemoveAt Move Commit Reload Log FindType GetStaticMember GetMaybe ConvertToFloat UniqueKey
+# [ModPerformanceMonitor] Patching IMK.SettingsUI VarsDataSet: get_Count GetRow AddNew UniqueKey RemoveAt Move Commit Reload Log FindType GetStaticMember AppendVarEntries AppendTagEntries GetMaybe InferTypeName ParseToType
+# [ModPerformanceMonitor] Patching IMK.SettingsUI RecordListCardModel: ToTableCardModel
+# [ModPerformanceMonitor] Patching IMK.SettingsUI CardTemplates: Bind EnsureBase FindOrMakeText ResetCard BindNavigation BindMarkdown BindAction BindBoundSetting BindListSetting BindSetting MakeValueInput MakeDropdown MakeSliderWithValue BindToggleSlider BindRecordList BindSchemaTable MakeRow SetRowTexts MakeInput MakeFloatInput MakeIntInput MakeDropdownCell MakeButtonCell MakeBarButton PositionTitleDesc PositionArrow ResolveHeight _GetCardWidth AttachDirtyPulse AttachTooltipOnFocus ShowTooltip LayoutTooltip PositionTooltipOnce BeginFadeOutTooltip UpdateTooltipText
+# [ModPerformanceMonitor] Patching IMK.SettingsUI MarkdownExpandable: Awake TryExpand AnimateHeight
+# [ModPerformanceMonitor] Patching IMK.SettingsUI MarkdownParser: ToRichText ParseBlock FormatInline Escape
+# [ModPerformanceMonitor] Patching IMK.SettingsUI PageFactory: BuildHome
+# [ModPerformanceMonitor] Patching IMK.SettingsUI RecordListTableController: Init EnsurePendingSnapshot Update RebuildAll ComputeColumnWidths BuildHeader CreateRowView MakeInput UpdateVisibleRows BindRowListeners AddNew ImportFromClipboard ExportToClipboard
+# [ModPerformanceMonitor] Patching IMK.SettingsUI DirtyIndicator: Init Update
+# [ModPerformanceMonitor] Patching IMK.SettingsUI SettingsShell: Init Toggle ShowHome
+# [ModPerformanceMonitor] Patching gzthook ModBehaviour: OnEnable OnDisable
+# [ModPerformanceMonitor] Patching gzthook CraftViewSearchEnhancer: get_Instance AddSearchToCraftView FindListParent FindChildRecursive CreateSearchUI CreatePlaceholder OnSearchTextChanged FilterCraftList ShouldShowEntry RemoveSearchUI ClearSearch
+# [ModPerformanceMonitor] Patching gzthook EnhancedCraftManager: get_Instance Awake SubscribeToCraftingEvents CanCraft ExecuteQuickCraft ExecuteQuickCraftAsync RefreshUIAfterCraft DelayedRefreshUI InvalidateCache ShowNotification GetMaxCraftableQuantity CalculateMaxCraftableQuantity
+# [ModPerformanceMonitor] Patching gzthook EnhancedCraftUI: Awake OnDestroy OnCraftProgress OnCraftComplete AddQuickCraftButtonToCraftView RefreshButtonStateForFormulasIndex AddQuickCraftButtonToFormulasIndex FindSuitableParent DelayedRefreshMaterialList CreateCraftButton CreateCraftButtonForFormulasIndex CreateUIContainer DelayedCreateUIElements RefreshLayoutAfterFrame UpdateButtonState UpdateButtonStateForFormulasIndex OnQuickCraftButtonClicked DelayedRefreshButton ClearCraftButton ClearFormulasIndexButton CreateRoundedRectSprite CreateQuantitySelector CreateMaterialList CreateProgressPanel RefreshMaterialList DelayedRefreshContentSize OnCraftMaxButtonClicked ExecuteCraft DelayedActivateInputField
+# [ModPerformanceMonitor] Patching gzthook FormulasIndexViewCategoryFilter: get_Instance AddCategoryFilterToFormulasIndex CollectCategories TranslateCategoryToChinese GetDetailedCategoryFromEntry FindListParent FindChildRecursive CreateCategoryUI CreateCategoryButton OnCategorySelected FilterFormulasByCategory GetCategoryFromMetaData GetEntryCategory RefreshFilter GetEntryCategoryPublic RemoveCategoryUI GetSelectedCategory
+# [ModPerformanceMonitor] Patching gzthook FormulasIndexViewSearchEnhancer: get_Instance AddSearchToFormulasIndex FindListParent FindChildRecursive CreateSearchUI CreatePlaceholder OnSearchTextChanged FilterFormulasList ShouldShowEntry RemoveSearchUI ClearSearch GetCurrentSearchText MatchesWithCache ClearCache
+# [ModPerformanceMonitor] Patching gzthook MaterialInfoHelper: GetMaterialList GetItemCountInInventory GetMissingMaterials FormatMissingMaterialsMessage
+# [ModPerformanceMonitor] Patching gzthook PinyinSearchHelper: get_Instance LoadPinyinData RemoveToneNumber GetPinyins GetPinyinString Matches
+# [ModPerformanceMonitor] Patching DuckovCustomModel HarmonyLoader: add_OnReadyToPatch remove_OnReadyToPatch Initialize RegisterModActivatedEvents UnregisterModActivatedEvents ReadyToPatch OnModActivated LoadHarmony FindHarmonyLibLocally
+# [ModPerformanceMonitor] Patching DuckovCustomModel ModBehaviour: Awake OnEnable OnDisable OnDestroy add_OnModDisabled remove_OnModDisabled
+# [ModPerformanceMonitor] Patching DuckovCustomModel ModLoader: Initialize Uninitialize OnAssemblyResolve OnReadyToPatch OnModDisabled InvokeModEntryMethodInitialize InvokeModEntryMethodUninitialize InvokeModEntryMethod
+# [ModPerformanceMonitor] Patching DuckovCustomModel ModLogger: Log Log LogFormat LogFormat LogFormat LogError LogError LogErrorFormat LogErrorFormat LogWarning LogWarning LogWarningFormat LogWarningFormat
+# [ModPerformanceMonitor] Patching jiuhu ModBehaviour: get_ModDirectory get_ModelDirectory OnEnable CreateModelDirectoryIfNeeded CopyModels CopyFolder
+# [ModPerformanceMonitor] Patching ShowQuestsAreaOnMap ModBehaviour: Awake ClearCircle DrawCircles DrawQuestMarker GetQuestIcon BeginDraw EndDraw OnEnable OnActiveViewChanged IsMapOpen
+# [ModPerformanceMonitor] Patching ShowQuestsAreaOnMap QuestsAreaManager: Awake OnEnable OnDisable OnDestroy OnSceneLoaded PreScanSceneForTriggers GetMapElementFromTask UpdateQuestLocations
+# [ModPerformanceMonitor] Patching ShowQuestsAreaOnMap QuestSpawnPatcher: RescanAndClear OnItemSpawned OnInstantiate_Postfix OnSetVisibility OnDespawnAll
+# [ModPerformanceMonitor] Patching KeyedLootAll ModBehaviour: OnAfterSetup OnBeforeDeactivate OnLootViewOpened OnLootViewClosed Update OnSingleClick OnDoubleClick
+# [ModPerformanceMonitor] Patching ShowDisassemblyInfo ModBehaviour: OnDestroy OnEnable OnDisable get_OutputsText get_SourcesText OnSetupItemHoveringUI OnSetupMetaHoveringUI UpdateLabels HideLabels GetOutputsFromCost BuildSourceLookupCacheIfNeeded ProcessFormulas SetupModConfig LoadConfigFromModConfig OnModConfigOptionsChanged
+# [ModPerformanceMonitor] Patching ShowDisassemblyInfo ModConfigAPI: CheckVersionCompatibility Initialize FindTypeInAssemblies SafeAddOnOptionsChangedDelegate SafeRemoveOnOptionsChangedDelegate SafeAddDropdownList SafeAddInputWithSlider SafeAddBoolDropdownList SafeLoad SafeSave GetVersionInfo IsVersionCompatible
+# [ModPerformanceMonitor] Patching ShowDisassemblyInfo ModLocalization: GetTranslation
+# [ModPerformanceMonitor] Patching LightLootBox HarmonyLoad: EnsureHandler CurrentDomain_AssemblyResolve Load0Harmony
+# [ModPerformanceMonitor] Patching LightLootBox LootBoxOutlineManager: Awake OnEnable OnDisable SetupModConfig OnModConfigOptionsChanged StartInitializeForCurrentScene InitializeForCurrentSceneCoroutine FindPlayerTransformCoroutine ScanAndSetupOutlinesCoroutine EnqueueAddOutline UpdateOutlinesCoroutine
+# [ModPerformanceMonitor] Patching LightLootBox ModConfigAPI: CheckVersionCompatibility Initialize FindTypeInAssemblies SafeAddOnOptionsChangedDelegate SafeRemoveOnOptionsChangedDelegate SafeAddDropdownList SafeAddInputWithSlider SafeAddBoolDropdownList SafeLoad SafeSave IsAvailable GetVersionInfo IsVersionCompatible
+# [ModPerformanceMonitor] Patching LightLootBox MyLog: Log LogWarning LogError
+# [ModPerformanceMonitor] Patching KeycardRecordedIndicator ModBehaviour: Awake OnDestroy
+# [ModPerformanceMonitor] Patching KeycardRecordedIndicator RecordedIndicatorUI: AddIndicator RemoveIndicator CreateIndicator ClearAll
+# [ModPerformanceMonitor] Patching QuickDecomposition ModBehaviour: Awake Update OnEnable OnDisable OnDestroy TriggerDecomposition
+# [ModPerformanceMonitor] Patching QuickDecomposition ModConfig: SetupModConfig OnOptionsChanged LoadAndSetKeyCode Cleanup
+# [ModPerformanceMonitor] Patching QuickDecomposition ModConfigAPI: CheckVersionCompatibility Initialize FindTypeInAssemblies SafeAddOnOptionsChangedDelegate SafeRemoveOnOptionsChangedDelegate SafeAddDropdownList SafeAddInputWithSlider SafeAddBoolDropdownList SafeLoad SafeSave IsAvailable GetVersionInfo IsVersionCompatible
+# [ModPerformanceMonitor] Patching QuickDecomposition ModLogger: Log Log LogFormat LogFormat LogFormat LogError LogError LogErrorFormat LogErrorFormat LogWarning LogWarning LogWarningFormat LogWarningFormat
+# [ModPerformanceMonitor] Patching AutoLootCorpseAmmo ModBehaviour: Start InitializeEventListeners RemoveEventListeners OnLootboxOpened IsCorpse IsGun IsBullet GetPlayerInventory UnloadGunBullets TransferBulletToPlayer LoadConfig CreateDefaultConfig GetBulletLevel ParseDisplayQualityToLevel CalculateItemLevel
+# [ModPerformanceMonitor] Patching ModPerformanceMonitor ModBehaviour: OnEnable OnDisable OnModActivated HarmonyLike DontPatch PatchAssembly InitializeAndPatch GetModDisplayName OnMethodStart OnMethodEnd CreateUI Update OnGUI
+[ModPerformanceMonitor] All ModBehaviour methods patched.
+Mod Loaded: ModPerformanceMonitor
+# [ModPerformanceMonitor] Patching ModPerformanceMonitor ModBehaviour: OnEnable OnDisable OnModActivated HarmonyLike DontPatch PatchAssembly InitializeAndPatch GetModDisplayName OnMethodStart OnMethodEnd CreateUI Update OnGUI
+ModActive_MoreTotem: False
+ModActive_FS_FreeFishing: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3589415374\FS_FreeFishing.dll
+Mod Loaded: FS_FreeFishing
+ModActive_BossLiveMapMod: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3589079671\BossLiveMapMod.dll
+Mod Loaded: BossLiveMapMod
+# [ModPerformanceMonitor] Patching BossLiveMapMod BossListScrollHandler: Initialize OnScroll
+# [ModPerformanceMonitor] Patching BossLiveMapMod MapViewUI: Ensure Create GetRootCanvas GetCanvasScaleFactor GetPanelScale PixelsToUiUnits GetCurrentScreenWidth GetBossScrollWidthBounds ComputeDefaultMaxHeightPixels UpdateScreenCache UpdateScaleCache GetBossFontSize ApplyBossFontSize GetBossTextPreferredWidth Initialize InitializeLocalization Update OnDestroy Build FindChildByName CreateToggle OnAlphaChanged OnFontSizeChanged OnScalePercentChanged GetLocalizedText
+# [ModPerformanceMonitor] Patching BossLiveMapMod MarkerVisuals: GetMarkerIcon GetMarkerColor ApplyRoleTint GetIconIndex TryGetSelectedIcon
+# [ModPerformanceMonitor] Patching BossLiveMapMod ModBehaviour: get_BossNames get_SpecialNames ComputeBossListHash ComputeSpecialListHash FormatListEntry GetBossListTextColor LoadSpecialPresets EnsureSpecialPresetsWatcher OnSpecialPresetsFileChanged Awake InitializeLocalization OnEnable OnDisable OnSceneFinishedLoading IsMapOpen OnActiveViewChanged BeginTracking EndTracking ResetMarkers ScanCharacters EnumerateSpawnedCharacters GetSpawnerRoots ClassifyCharacter GetCharacterRole GetTeamRelation SafeIsEnemy RefreshMainCharacterReference OnMainCharacterTeamChanged RefreshAllMarkerRelations SubscribeToTeamChanges UnsubscribeFromTeamChanges OnTrackedCharacterTeamChanged AddOrUpdateMarker UpdateMarker Update LateUpdate IsCharacterValid IsCharacterValidLightweight DestroyMarker OnAnyHealthDead RemoveStaleMarkers GetDisplayName AdjustNonBossColor ColorsApproximatelyEqual ShouldTrack IsCharacterActive StepScanTimer DestroySafely
+# [ModPerformanceMonitor] Patching BossLiveMapMod ModConfig: Load SetShowNearbyEnemies SetShowAllEnemies SetShowLivePositions SetShowMarkers SetShowBossList SetShowNearbyOnly SetShowMarkerNames SetTransparency SetUiScale SetUiScaleAuto SetBossFontScale Save EnsurePath TryReadConfig ComputeAutoUiScale EnsureWatcher OnConfigFileChanged ApplyPendingChanges
+# [ModPerformanceMonitor] Patching BossLiveMapMod ModLocalization: Initialize GetText ParseIni TryResolve
+ModActive_AutoFishing: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3589147123\AutoFishing.dll
+Mod Loaded: AutoFishing
+[自动钓鱼补丁] 补丁已注册并标记为已加载。
+ModActive_BetterBuff: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3588968687\BetterBuff.dll
+Mod Loaded: BetterBuff
+# [ModPerformanceMonitor] Patching BetterBuff ModBehaviour: get_durationMulti Start InitUI RefreshLabelText Update OnAddBuff OnDestroy Log
+# [ModPerformanceMonitor] Patching BetterBuff CustomPanel: CreateUI AddRoot AddOption AddInputArea AddToggleButton AddLabelArea AddLabel AddBindHotKeyArea AddButton AddButton AddInputField SetActive ToggleUI IsUIReady Destroy GetDisplayString GetDisplayString
+# [ModPerformanceMonitor] Patching BetterBuff HotKey: add_OnKeyChanged remove_OnKeyChanged get_isCtrlDown get_isAltDown get_isShiftDown ReadHotKey SaveHotKey BindKeyUpdate BindKey IsDown ClearKey Log ToString
+# [ModPerformanceMonitor] Patching BetterBuff ModBehaviour: get_durationMulti Start CreateUI RefreshLabelText ToggleUI Update OnAddBuff OnDestroy Log
+ModActive_LootAll: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3588543011\LootAll.dll
+Mod Loaded: LootAll
+# [ModPerformanceMonitor] Patching LootAll ModBehaviour: Awake OnDestroy OnLootViewOpened RegisterInventoryEvents UnRegisterInventoryEvents InitPickAllButton RefreshButton PickAllClick
+ModActive_MaxStack: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3588401047\MaxStack.dll
+Fallback handler could not load library D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/MonoBleedingEdge/data-0000024E12716040.dll
+Mod Loaded: MaxStack
+# [ModPerformanceMonitor] Patching MaxStack HarmonyLoad: Load0Harmony
+ModActive_FancyItems: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3588329796\FancyItems.dll
+[FancyItems] ModBehaviour 已启用
+[FancyItems] Mod已启用 - 带设置界面版本
+[FancyItems] 配置加载成功
+Mod Loaded: FancyItems
+# [ModPerformanceMonitor] Patching fancy-items ModBehaviour: OnEnable OnDisable
+# [ModPerformanceMonitor] Patching fancy-items ItemQualityVisualizer: OnEnable DelayedInitialize CreateBackground LateUpdate UpdateItemDisplay UpdateBackgroundColor OnDestroy
+# [ModPerformanceMonitor] Patching fancy-items QualityColorConfig: GetQualityColor GetBackgroundAlpha
+# [ModPerformanceMonitor] Patching fancy-items SettingsUIManager: Awake ShowSettings HideSettings IsVisible InitializeSettingsPanel CreateSettingsPanel CreateUIComponents CleanupUI OnDestroy
+# [ModPerformanceMonitor] Patching fancy-items SearchTimeOptimizer: GetOptimizedInspectingTime ProcessSearchTimeOptimization LogOptimizationInfo
+# [ModPerformanceMonitor] Patching fancy-items ItemSoundTrigger: Awake Start Update
+# [ModPerformanceMonitor] Patching fancy-items QualitySoundManager: PlayQualitySound PlaySound
+# [ModPerformanceMonitor] Patching fancy-items AutoSettingsGenerator: GenerateSettingsUI CreateTitle CreateCategoryTitle CreateSettingItem CreateToggleSetting CreateRestartHint CreateCloseButton OnSettingChanged GetCategoryEmoji GetCategoryDisplayName
+# [ModPerformanceMonitor] Patching fancy-items ConfigManager: add_OnConfigChanged remove_OnConfigChanged LoadConfig SaveConfig UpdateConfig ResetToDefault
+# [ModPerformanceMonitor] Patching fancy-items FancyItemsMod: OnEnable InitializeMod Update OnDisable OnConfigChanged
+# [ModPerformanceMonitor] Patching fancy-items ModConfiguration: get_EnableQualityVisuals get_EnableSoundEffects get_EnableSearchOptimization ApplyConfiguration
+ModActive_NoDurabilityLoss: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3588717210\NoDurabilityLoss.dll
+Fallback handler could not load library D:/SteamLibrary/steamapps/common/Escape from Duckov/Duckov_Data/MonoBleedingEdge/data-0000024E12B69040.dll
+Mod Loaded: NoDurabilityLoss
+# [ModPerformanceMonitor] Patching NoDurabilityLoss HarmonyLoad: Load0Harmony
+ModActive_KangyuPL_IngoreQuestCondMod: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3588962245\KangyuPL_IngoreQuestCondMod.dll
+[com.kangyupl.ignorequestcond] 已激活
+[com.kangyupl.ignorequestcond] 补丁注册成功
+Mod Loaded: KangyuPL_IngoreQuestCondMod
+# [ModPerformanceMonitor] Patching KangyuPL_IngoreQuestCondMod ModBehaviour: HealthOnDeadPrefix HealthOnDeadPostfix
+ModActive_bigInventory: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3588077855\bigInventory.dll
+Mod Loaded: bigInventory
+[ShopModifier] 成功应用商店修改补丁
+[PerkInstantUnlock] 成功应用天赋即时解锁补丁
+[ExtraTotemSlots] 成功为 3 个方法注入了槽位名称补丁
+更好的鸭科夫mod已注册并标记为已加载。
+# [ModPerformanceMonitor] Patching bigInventory WeaponExtraSlotsConfig: LoadTagByName GetCachedTag InitializeTagCache
+# [ModPerformanceMonitor] Patching bigInventory WeaponExtraSlotsUI: PostfixSlotDisplay GetBoundSlot UpdateSlotDisplayName GetSlotTypeFromKey GetLocalizedSlotName UpdateUIText
+# [ModPerformanceMonitor] Patching bigInventory ShopModifier: InstallPatches MaxStock_Postfix OnAwake_Postfix_RefreshTime OnAwake_Postfix_RefreshChance Uninstall
+# [ModPerformanceMonitor] Patching bigInventory DurabilityPatchManager: CreateManager Awake
+# [ModPerformanceMonitor] Patching bigInventory EquipmentEventDetector: add_OnEquipmentChanged remove_OnEquipmentChanged Initialize Uninitialize OnSlotContentChanged IsCapacityAffectingSlot
+# [ModPerformanceMonitor] Patching bigInventory BigInventoryConfigUI: ToggleUI ForceCloseUI OnEnable OnDisable OnSceneLoaded EnsureCanvas CreateSettingsPanel CreateModConfigTabContent CreateUIScaleControls ApplyUIScale CreateSectionTitle CreateToggleWithControls CreateSliderWithInput SetupSliderVisuals CreateToggle CreateTabButton ToggleLanguage ApplyLanguage UpdateInputTexts CreateButton SetButtonSize ClearActiveSlider ToggleInputBlocker Update
+# [ModPerformanceMonitor] Patching bigInventory TotemNegativeRemover: Initialize ExecuteAfterFrame DelayedExecute UpdateValue ProcessComponents RemoveComponents ProcessModifierDescriptions ProcessSingleModifier IsPositiveEffect UpdateCounters
+# [ModPerformanceMonitor] Patching bigInventory TotemNegativeRemoverComponent: Start DelayedInitialize
+# [ModPerformanceMonitor] Patching bigInventory BigInventoryKeyListener: Update
+# [ModPerformanceMonitor] Patching bigInventory BigInventoryConfigManager: add_OnConfigChanged remove_OnConfigChanged get_Config LoadConfig SaveConfig UpdateConfig ResetToDefault
+# [ModPerformanceMonitor] Patching bigInventory ForceSlotDisplayNamePatch: PostfixForceText GetLocalizedTotemName GetFallbackTotemName UpdateUIText
+# [ModPerformanceMonitor] Patching bigInventory SlotContentRestrictionDynamic: SlotSetContentPrefix IsTotemItem
+# [ModPerformanceMonitor] Patching bigInventory ReflectionCache: KeyFor GetFieldCached GetPropertyCached GetMethodCached CreateFieldGetter CreateFieldSetter CreatePropertyGetter CreatePropertySetter CreateMethodInvoker
+ModActive_DisplayItemValue: True
+Loading mod dll at path: D:\SteamLibrary\steamapps\workshop\content\3167020\3532400883\DisplayItemValue.dll
+DisplayItemValue Loaded!!!
+Mod Loaded: DisplayItemValue
+# [ModPerformanceMonitor] Patching DisplayItemValue ModBehaviour: get_Text Awake OnDestroy OnEnable OnDisable OnSetupMeta OnSetupItemHoveringUI
+UnloadTime: 0.471700 ms
+[ShowQuestsAreaOnMap][Manager] 场景 'MainMenu' 已加载。重置扫描标记并执行预扫描...
+[ShowQuestsAreaOnMap][Manager] 开始预扫描场景中的 RequireQuestsActive...
+[ShowQuestsAreaOnMap][Manager] 场景中找到 0 个 RequireQuestsActive 组件。
+[ShowQuestsAreaOnMap][Manager] 预扫描完成，缓存了 0 个不同的 Quest ID 关联的触发器。
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 100345.
+Total: 55.146300 ms (FindLiveObjects: 2.773400 ms CreateObjectMapping: 1.908200 ms MarkObjects: 50.386800 ms  DeleteObjects: 0.077800 ms)
+
+[Duckov Custom Model] ConfigWindow initialized.
+[LightLootBox][Warn] 重新扫描Lootboxes
+[FancyItems] Configuration applied:
+[FancyItems] - Quality Visuals: True
+[FancyItems] - Sound Effects: True
+[FancyItems] - Search Optimization: True
+[LightLootBox][Warn] 重新更新状态
+[LightLootBox] 当前场景无需加载
+[FancyItems] 设置界面管理器已创建
+[LightLootBox] 当前场景无需加载
+[LightLootBox] 扫描完成，收集到 0 个可描边对象
+[LightLootBox] 当前场景没有找到可描边容器或玩家尚未找到
+[FancyItems] Harmony补丁应用成功
+[FancyItems] 处理了 0 个现有ItemDisplay对象
+[FancyItems] 初始化完成！
+Sorted mods:
+modhook
+yuanshen
+ItemModKit
+IMK.SettingsUI
+Newbe.SaveSavior
+IMK.D2T
+Diablo2Totem
+gzthook
+DuckovCustomModel
+jiuhu
+ShowQuestsAreaOnMap
+KeyedLootAll
+ShowDisassemblyInfo
+LightLootBox
+KeycardRecordedIndicator
+QuickDecomposition
+AutoLootCorpseAmmo
+NoRequiredUnlockPerk
+Duckov_CashSlot
+ModPerformanceMonitor
+MoreTotem
+FS_FreeFishing
+BossLiveMapMod
+AutoFishing
+BetterBuff
+LootAll
+MaxStack
+FancyItems
+NoDurabilityLoss
+KangyuPL_IngoreQuestCondMod
+bigInventory
+DisplayItemValue
+<color=#0099bc><b>DOTWEEN ► </b></color>Max Tweens reached: capacity has automatically been increased from 200/50 to 500/50. Use DOTween.SetTweensCapacity to set it manually at startup
+[BetterModConfig v1.0.0] [23:09:24] [INFO] CreateSearchPanel (L1386): 搜索面板已创建
+[BetterModConfig v1.0.0] [23:09:24] [INFO] CreateSearchToggleButton (L1425): 搜索按钮已创建
+[BetterModConfig v1.0.0] [23:09:24] [INFO] CreateSortButtons (L1468): 排序按钮已创建
+Sorted mods:
+modhook
+yuanshen
+ItemModKit
+IMK.SettingsUI
+Newbe.SaveSavior
+IMK.D2T
+Diablo2Totem
+gzthook
+DuckovCustomModel
+jiuhu
+ShowQuestsAreaOnMap
+KeyedLootAll
+ShowDisassemblyInfo
+LightLootBox
+KeycardRecordedIndicator
+QuickDecomposition
+AutoLootCorpseAmmo
+NoRequiredUnlockPerk
+Duckov_CashSlot
+ModPerformanceMonitor
+MoreTotem
+FS_FreeFishing
+BossLiveMapMod
+AutoFishing
+BetterBuff
+LootAll
+MaxStack
+FancyItems
+NoDurabilityLoss
+KangyuPL_IngoreQuestCondMod
+bigInventory
+DisplayItemValue
+Unloading 10 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 32.128700 ms
+[ShowQuestsAreaOnMap][Manager] 场景 'LoadingScreen_Black' 已加载。重置扫描标记并执行预扫描...
+[ShowQuestsAreaOnMap][Manager] 开始预扫描场景中的 RequireQuestsActive...
+[ShowQuestsAreaOnMap][Manager] 场景中找到 0 个 RequireQuestsActive 组件。
+[ShowQuestsAreaOnMap][Manager] 预扫描完成，缓存了 0 个不同的 Quest ID 关联的触发器。
+Unloading 612 unused Assets to reduce memory usage. Loaded Objects now: 89441.
+Total: 64.087700 ms (FindLiveObjects: 2.892000 ms CreateObjectMapping: 2.267700 ms MarkObjects: 57.478000 ms  DeleteObjects: 1.449900 ms)
+
+[LightLootBox] 当前场景无需加载
+[LightLootBox] 当前场景无需加载
+[LightLootBox] 扫描完成，收集到 0 个可描边对象
+[LightLootBox] 当前场景没有找到可描边容器或玩家尚未找到
+GL.End requires material.SetPass before!
+0x00007fffab85350d (UnityPlayer) StackWalker::GetCurrentCallstack
+0x00007fffab853288 (UnityPlayer) StackWalker::ShowCallstack
+0x00007fffab839cd9 (UnityPlayer) GetStacktrace
+0x00007fffabed9e51 (UnityPlayer) DebugStringToFile
+0x00007fffab58dc56 (UnityPlayer) DrawImmediate::FlushBuffer
+0x00007fffabf0daf7 (UnityPlayer) GfxDeviceWorker::RunCommand
+0x00007fffabf082ae (UnityPlayer) GfxDeviceWorker::RunExt
+0x00007fffabf081f7 (UnityPlayer) GfxDeviceWorker::RunGfxDeviceWorker
+0x00007fffab4f9d6c (UnityPlayer) Thread::RunThreadWrapper
+0x00007ff9362ee8d7 (KERNEL32) BaseThreadInitThunk
+0x00007ff9381cc53c (ntdll) RtlUserThreadStart
+
+tree data is empty
+[ShowQuestsAreaOnMap][Manager] 场景 'Base' 已加载。重置扫描标记并执行预扫描...
+[ShowQuestsAreaOnMap][Manager] 开始预扫描场景中的 RequireQuestsActive...
+[ShowQuestsAreaOnMap][Manager] 场景中找到 0 个 RequireQuestsActive 组件。
+[ShowQuestsAreaOnMap][Manager] 预扫描完成，缓存了 0 个不同的 Quest ID 关联的触发器。
+New boot
+[AutoPickupSystem] 初始化完成
+[Level Initialization] Starting up...
+[Level Initialization] Invoking Beginning Event...
+[Level Initialization] Setting up rule...
+Rule is:均衡,Recoil:1
+[Level Initialization] Getting location...
+[Level Initialization] Creating location info...
+[Level Initialization] Setting start position...
+[Level Initialization] Creating character at location...
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+[Level Initialization] Teleporting to location...
+[BetterBuff] 已绑定主角
+[LightLootBox] 玩家对象已找到（Instance）
+[LightLootBox] 玩家对象已找到（Instance）
+[ShowQuestsAreaOnMap][Manager] 场景 'Base_SceneV2' 已加载。重置扫描标记并执行预扫描...
+[ShowQuestsAreaOnMap][Manager] 开始预扫描场景中的 RequireQuestsActive...
+[ShowQuestsAreaOnMap][Manager] 场景中找到 0 个 RequireQuestsActive 组件。
+[ShowQuestsAreaOnMap][Manager] 预扫描完成，缓存了 0 个不同的 Quest ID 关联的触发器。
+[Level Initialization] Opening ears
+[Level Initialization] Hearing Ambient
+[Level Initialization] Hearing Buses
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Reach location task caching
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning prefabs for task
+[Level Initialization] Spawning item for task
+[Level Initialization] Spawning bodies
+[Level Initialization] Setting up character status...
+[Level Initialization] Setting up pet...
+[LightLootBox] 玩家对象已找到（Instance）
+[LightLootBox] 扫描完成，收集到 1 个可描边对象
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+[Level Initialization] Setting character items...
+[Level Initialization] Waiting for other initialization...
+[Level Initialization] Handling raid initialization...
+[Level Initialization] Invoking initialized event...
+[Duckov Custom Model] ModelHandler initialized successfully.
+[Duckov Custom Model] ModelHandler initialized successfully.
+[Level Initialization] Healing...
+[Level Initialization] Spawing exits...
+[Level Initialization] Creating map element...
+[Level Initialization] Setting character position...
+[Duckov Custom Model] ModelHandler initialized successfully.
+Load bool:StormZone_GetHardDrive  value:False
+[LightLootBox] 玩家对象已找到（Instance）
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+Error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: startIndex
+[LightLootBox] 扫描完成，收集到 1 个可描边对象
+[LightLootBox] 已为 1 个容器初始化描边（更新协程启动）
+[Level Initialization] Done!
+[Duckov Custom Model] Initialized 22 custom sounds for model '酒狐' (10004).
+[Duckov Custom Model] Custom model initialized: 酒狐模型
+[Duckov Custom Model] Changed to custom model.
+[Duckov Custom Model] Applied model '酒狐' (10004) to 1 Character object(s)
+[AutoPickupSystem] 场景完全初始化完成，开始自动拾取扫描
+[BetterBuff] AddBuff 1496 - 免疫恶心 - 不会犯恶心了 - True - 1.5 - Nauseous
+[BetterBuff] DealBuff 22.5 / 22.5
+[ShowDisassemblyInfo] Lazy initializing OutputsText...
+[ShowDisassemblyInfo] Lazy initializing SourcesText...
+[ShowDisassemblyInfo] Using dictionary (406 entries) for cache.
+[SettingsUI.ContentPresenter] InitialShow frame0 width=964 firstShow=True models=0
+[SettingsUI.Nav] NavigateTo: HOME
+[SettingsUI.Nav] Home models=1
+[SettingsUI.Breadcrumb] SetSegments chain=1
+[SettingsUI.ContentPresenter] InitialShow frame1 width=964
+[SettingsUI.ContentPresenter] Rebinding all cards on initial show.
+[SettingsUI.ContentPresenter] InitialShow frame2 width=964
+[SettingsUI.Nav] NavSelect: ItemModKit
+[SettingsUI.Nav] Provider root models=6 navItems=6
+[SettingsUI.Breadcrumb] SetSegments chain=2
+[SettingsUI.Nav] NavigateTo: ItemModKit:Inspector
+[SettingsUI.Breadcrumb] SetSegments chain=3
+[ItemModKitPanel] Captured item: Magazine_SHT_CAP_3(Clone)
+[SettingsUI.Nav] NavigateTo: ItemModKit:Detail
+[SettingsUI.Breadcrumb] SetSegments chain=4
+[SettingsUI.Nav] NavigateTo: ItemModKit:Modifiers
+[IMK.ModifiersTable] Reload(desc) key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload done total=3
+[SettingsUI.Breadcrumb] SetSegments chain=5
+[IMK.ModWrite] TryAddModifier begin key=BodyArmor value=1 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add total=3
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add total=4
+[IMK.ModWrite] TryAddModifier success key=BodyArmor
+[IMK.ModifiersTable] RawAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=BodyArmor value=1 type=Add
+[IMK.ModWrite] EnsureStat for desc key=BodyArmor
+[IMK.ModWrite] TryAddModifierDescription count before=4 after=5
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add total=5
+[IMK.ModifiersTable] DescAdd key=BodyArmor ok=True err=
+[IMK.ModifiersTable] Underlying[0] key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[1] key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[3] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[4] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload done total=5
+[IMK.ModifiersTable] Commit(test2) reload=True rows=5
+[IMK.ModWrite] TryAddModifier begin key=BodyArmor value=0 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add total=5
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add total=6
+[IMK.ModWrite] TryAddModifier success key=BodyArmor
+[IMK.ModifiersTable] RawAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=BodyArmor value=0 type=Add
+[IMK.ModWrite] EnsureStat for desc key=BodyArmor
+[IMK.ModWrite] TryAddModifierDescription count before=6 after=7
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add total=7
+[IMK.ModifiersTable] DescAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifier begin key=BodyArmor value=1 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add total=7
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add total=8
+[IMK.ModWrite] TryAddModifier success key=BodyArmor
+[IMK.ModifiersTable] RawAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=BodyArmor value=1 type=Add
+[IMK.ModWrite] EnsureStat for desc key=BodyArmor
+[IMK.ModWrite] TryAddModifierDescription count before=8 after=9
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add total=9
+[IMK.ModifiersTable] DescAdd key=BodyArmor ok=True err=
+[IMK.ModifiersTable] Underlying[0] key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[1] key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[3] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[4] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[5] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[6] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[7] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[8] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload done total=9
+[IMK.ModifiersTable] Commit(test2) reload=True rows=9
+[IMK.ModifiersTable] Reload(desc) key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload done total=9
+[IMK.ModWrite] TryAddModifier begin key=BodyArmor value=1 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add total=9
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add total=10
+[IMK.ModWrite] TryAddModifier success key=BodyArmor
+[IMK.ModifiersTable] RawAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=BodyArmor value=1 type=Add
+[IMK.ModWrite] EnsureStat for desc key=BodyArmor
+[IMK.ModWrite] TryAddModifierDescription count before=10 after=11
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add total=11
+[IMK.ModifiersTable] DescAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifier begin key=BodyArmor value=0 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add total=11
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add total=12
+[IMK.ModWrite] TryAddModifier success key=BodyArmor
+[IMK.ModifiersTable] RawAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=BodyArmor value=0 type=Add
+[IMK.ModWrite] EnsureStat for desc key=BodyArmor
+[IMK.ModWrite] TryAddModifierDescription count before=12 after=13
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add total=13
+[IMK.ModifiersTable] DescAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifier begin key=BodyArmor value=0 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add total=13
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add total=14
+[IMK.ModWrite] TryAddModifier success key=BodyArmor
+[IMK.ModifiersTable] RawAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=BodyArmor value=0 type=Add
+[IMK.ModWrite] EnsureStat for desc key=BodyArmor
+[IMK.ModWrite] TryAddModifierDescription count before=14 after=15
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[14] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add total=15
+[IMK.ModifiersTable] DescAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifier begin key=BodyArmor value=1 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[14] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add total=15
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[14] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[15] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add total=16
+[IMK.ModWrite] TryAddModifier success key=BodyArmor
+[IMK.ModifiersTable] RawAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=BodyArmor value=1 type=Add
+[IMK.ModWrite] EnsureStat for desc key=BodyArmor
+[IMK.ModWrite] TryAddModifierDescription count before=16 after=17
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[14] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[15] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[16] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add total=17
+[IMK.ModifiersTable] DescAdd key=BodyArmor ok=True err=
+[IMK.ModWrite] TryAddModifier begin key=NewMod value=0 type=Add percent=False
+[IMK.ModWrite] before-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] before-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] before-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] before-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[14] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] before-add[15] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add[16] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] before-add total=17
+[IMK.ModWrite] object add path
+[IMK.ModWrite] object add invoked applied=False
+[IMK.ModWrite] fallback stat.AddModifier path
+[IMK.ModWrite] descriptor fallback path
+[IMK.ModWrite] descriptor add applied
+[IMK.ModWrite] after-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[14] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-add[15] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[16] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-add[17] key=NewMod val=0 type=Add
+[IMK.ModWrite] after-add total=18
+[IMK.ModWrite] TryAddModifier success key=NewMod
+[IMK.ModifiersTable] RawAdd key=NewMod ok=True err=
+[IMK.ModWrite] TryAddModifierDescription begin key=NewMod value=0 type=Add
+[IMK.ModWrite] EnsureStat for desc key=NewMod
+[IMK.ModWrite] TryAddModifierDescription count before=18 after=19
+[IMK.ModWrite] after-desc-add[0] key=Capacity val=1.5 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[1] key=ADSTime val=0.2 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd
+[IMK.ModWrite] after-desc-add[3] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[4] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[5] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[6] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[7] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[8] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[9] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[10] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[11] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[12] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[13] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[14] key=BodyArmor val=0 type=Add
+[IMK.ModWrite] after-desc-add[15] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[16] key=BodyArmor val=1 type=Add
+[IMK.ModWrite] after-desc-add[17] key=NewMod val=0 type=Add
+[IMK.ModWrite] after-desc-add[18] key=NewMod val=0 type=Add
+[IMK.ModWrite] after-desc-add total=19
+[IMK.ModifiersTable] DescAdd key=NewMod ok=True err=
+[IMK.ModifiersTable] Underlying[0] key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[1] key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[2] key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Underlying[3] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[4] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[5] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[6] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[7] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[8] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[9] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[10] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[11] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[12] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[13] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[14] key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[15] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[16] key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[17] key=NewMod val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Underlying[18] key=NewMod val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=NewMod val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=NewMod val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload done total=19
+[IMK.ModifiersTable] Commit(test2) reload=True rows=19
+[IMK.ModifiersTable] Reload(desc) key=Capacity val=1.5 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=ADSTime val=0.2 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=MoveSpeedMultiplier val=-0.05 type=PercentageAdd disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=BodyArmor val=1 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=NewMod val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload(desc) key=NewMod val=0 type=Add disp=True order=0
+[IMK.ModifiersTable] Reload done total=19

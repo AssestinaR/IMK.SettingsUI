@@ -1,0 +1,2831 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ItemModKit</name>
+    </assembly>
+    <members>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovClonePipeline">
+            <summary>
+            克隆管线：支持 TreeData 与 Unity 两种克隆策略，随后可按需合并变量/复制标签并尝试放入背包。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovClonePipeline.TryCloneToInventory(System.Object,ItemModKit.Core.ClonePipelineOptions)">
+            <summary>
+            从源物品克隆一个副本，按策略完成克隆并尝试放入目标背包。
+            </summary>
+            <param name="source">源物品。</param>
+            <param name="options">管线选项（可为 null）。</param>
+            <returns>包含新物品、放置情况与诊断信息的结果。</returns>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovEventBridge">
+            <summary>
+            引擎事件桥：订阅场景加载与 Item 的关键生命周期事件，将其转换为 IMK 的统一物品事件。
+            用于降低频繁轮询导致的性能开销。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovEventBridge.Initialize">
+            <summary>
+            初始化（只执行一次）：订阅 <see cref="E:UnityEngine.SceneManagement.SceneManager.sceneLoaded"/> 并对当前活动场景进行首次扫描。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovEventBridge.Dispose">
+            <summary>
+            反初始化：取消订阅并清空已订阅集合。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovEventBridge.SafeScanAndSubscribe">
+            <summary>
+            扫描场景中的 <see cref="T:ItemStatsSystem.Item"/> 并为尚未订阅的实例挂接事件。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovEventBridge.TrySubscribe(ItemStatsSystem.Item)">
+            <summary>
+            为单个物品挂接各种变化与销毁事件（重复调用会被忽略）。
+            </summary>
+            <param name="it">目标物品。</param>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovEventBridge.OnItemChanged(ItemStatsSystem.Item)">
+            <summary>统一处理除销毁外的变化事件并发布到 IMK。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovEventBridge.OnItemDestroyed(ItemStatsSystem.Item)">
+            <summary>处理销毁事件并发布“移除”。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovInventoryPlacementService">
+            <summary>
+            背包放置服务：尝试把物品加入背包，支持合并与失败时的下一帧重试。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovInventoryPlacementService.TryPlace(System.Object,System.Object,System.Boolean,System.Boolean)">
+            <summary>
+            尝试放置：优先 AddAndMerge，然后查询 IndexOf 确认；若失败可调度下一帧重试。
+            </summary>
+            <param name="inventory">目标背包。</param>
+            <param name="item">待放置物品。</param>
+            <param name="allowMerge">是否允许合并。</param>
+            <param name="enableDeferredRetry">是否在失败时安排下一帧重试。</param>
+            <returns>返回是否添加、索引以及是否安排了延迟重试。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovInventoryPlacementService.TryScheduleNextFrame(System.Action)">
+            <summary>安排在下一帧执行一个动作（用于降低当前帧压力）。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovInventoryResolver">
+            <summary>
+            背包解析服务：根据字符串标识解析到具体背包对象。
+            支持 "character"/空值 -> 主角背包；"storage" -> 仓库背包；否则返回 null。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovInventoryResolver.Resolve(System.String)">
+            <summary>
+            按目标标识解析背包。
+            </summary>
+            <param name="target">目标标识：character/storage/null(auto)。</param>
+            <returns>解析到的背包对象或 null。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovInventoryResolver.ResolveFallback">
+            <summary>解析默认背包（主角背包）。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovItemAdapter">
+            <summary>
+            Duckov 物品访问适配器：提供对核心字段、变量、常量、修饰、插槽与标签的读写封装。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetName(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetName(System.Object,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetDisplayNameRaw(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetDisplayNameRaw(System.Object,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetTypeId(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetTypeId(System.Object,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetQuality(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetQuality(System.Object,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetDisplayQuality(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetDisplayQuality(System.Object,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetValue(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetValue(System.Object,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetVariables(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetVariable(System.Object,System.String,System.Object,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetVariable(System.Object,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.RemoveVariable(System.Object,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetModifiers(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.ReapplyModifiers(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetSlots(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetTags(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetTags(System.Object,System.String[])">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetConstants(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.SetConstant(System.Object,System.String,System.Object,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.GetConstant(System.Object,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemAdapter.RemoveConstant(System.Object,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovItemEventSource">
+            <summary>
+            物品事件源：提供两种模式。外部事件模式由 Publish* 显式推送并在合并窗口后触发；
+            回退轮询模式则按时间与预算扫描物品集合，检测新增/移除/变化。
+            </summary>
+        </member>
+        <member name="E:ItemModKit.Adapters.Duckov.DuckovItemEventSource.OnItemAdded">
+            <summary>物品新增事件。</summary>
+        </member>
+        <member name="E:ItemModKit.Adapters.Duckov.DuckovItemEventSource.OnItemRemoved">
+            <summary>物品移除事件。</summary>
+        </member>
+        <member name="E:ItemModKit.Adapters.Duckov.DuckovItemEventSource.OnItemChanged">
+            <summary>物品变化事件（属性/变量/标签等哈希变化）。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovItemEventSource.Enabled">
+            <summary>是否启用事件源。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovItemEventSource.ScanOnlyWhenUIActive">
+            <summary>是否仅在 UI 活跃时扫描（轮询模式下）。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovItemEventSource.ScanInterval">
+            <summary>轮询扫描的时间间隔（秒，非缩放时间）。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovItemEventSource.ChunkSize">
+            <summary>每次扫描尝试处理的最大物品条目（受预算限制后可能更少）。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovItemEventSource.CoalesceWindow">
+            <summary>外部事件合并窗口秒数：窗口内累积，结束后统一触发。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovItemEventSource.ExternalIdleTimeout">
+            <summary>外部模式空闲超时秒数：超过后转为轮询。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.#ctor(ItemModKit.Core.IItemQuery,ItemModKit.Core.IItemAdapter)">
+            <summary>
+            构造函数：创建一个物品事件源并关联查询与物品访问接口。
+            </summary>
+            <param name="query">查询接口（用于枚举物品集合）。</param>
+            <param name="item">物品适配器（用于读取核心字段与变量）。</param>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.BeginExternalMode">
+            <summary>进入外部事件模式（引用计数，可嵌套）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.EndExternalMode">
+            <summary>退出外部事件模式（引用计数减一）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.PublishAdded(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布“新增”事件（外部模式下进入合并窗口）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.PublishRemoved(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布“移除”事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.PublishChanged(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布“改变”事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.PublishMoved(System.Object,System.Int32,System.Int32,ItemModKit.Core.ItemEventContext)">
+            <summary>发布“移动”事件（归类为改变）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.PublishMerged(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布“合并”事件（归类为改变）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.PublishSplit(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布“拆分”事件（归类为改变）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.Publish(System.String,System.Object)">
+            <summary>
+            外部发布入口：记录待触发事件并更新脏标记。
+            </summary>
+            <param name="kind">事件类别：add/rem/chg。</param>
+            <param name="item">目标物品。</param>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.HintActive(System.Single)">
+            <summary>提示 UI 活跃：延长扫描资格窗口。</summary>
+            <param name="seconds">延长秒数。</param>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.Tick">
+            <summary>
+            主循环：外部模式下合并并触发事件；否则按预算轮询物品集合并检测变化。
+            未订阅任何事件时会直接返回以节省开销。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.EnsureEnumBuffer">
+            <summary>准备枚举缓冲：首次或一轮结束时重新填充。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.Hash(System.Object)">
+            <summary>计算物品变化哈希（质量/价值/类型/变量数/标签数）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.IsUIActive">
+            <summary>判断 UI 是否活跃（检测操作菜单与详情面板）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemEventSource.IsActive(System.Object)">
+            <summary>组件是否激活（GameObject 活跃或 enabled=true）。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovItemFactory">
+            <summary>
+            物品工厂：负责按 TypeId 实例化/生成、从预制体克隆、注册动态条目、复制与删除物品。
+            自动适配 Diablo2Totem 的唯一图腾与 Fallback 预制体解析。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemFactory.TryInstantiateByTypeId(System.Int32)">
+            <summary>通过 TypeId 实例化物品（优先同步 InstantiateSync）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemFactory.TryInstantiateFromPrefab(System.Object)">
+            <summary>从预制体克隆一个实例。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemFactory.TryGenerateByTypeId(System.Int32)">
+            <summary>
+            尝试按 TypeId 生成：
+            1) 先走 Unique 路径（若可用）
+            2) 若无预制体，尝试通过 Fallback 解析并注册动态条目
+            3) 最终调用实例化
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemFactory.TryRegisterDynamicEntry(System.Object)">
+            <summary>向 ItemAssetsCollection 注册一个动态条目（prefab）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemFactory.TryCloneItem(System.Object)">
+            <summary>克隆一个物品（复制 GameObject 并取同类型组件）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemFactory.TryDeleteItem(System.Object)">
+            <summary>
+            删除一个物品：销毁 GameObject 前先强制刷新持久化，避免最后修改丢失。
+            </summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovItemMover">
+            <summary>
+            物品移动服务：提供添加/移除/移动/跨背包转移、发送到玩家或仓库、丢到地面、拆分与合并堆叠等操作。
+            尽量使用引擎现有 API（反射获取），并在失败时返回明确的错误码。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.#ctor(ItemModKit.Core.IItemAdapter,ItemModKit.Core.IInventoryAdapter)">
+            <summary>构造函数：注入物品与背包适配器。</summary>
+            <param name="item">物品适配器。</param>
+            <param name="inv">背包适配器。</param>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.ResolveItemComponent(System.Object)">
+            <summary>
+            解析任意对象上的物品组件：支持 Component/GameObject 或包装器含 Item 字段/属性。
+            </summary>
+            <param name="obj">候选对象。</param>
+            <returns>解析出的组件或原对象。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryAddToInventory(System.Object,System.Object,System.Nullable{System.Int32},System.Boolean)">
+            <summary>添加到指定背包（可选索引/是否允许合并）。</summary>
+            <param name="item">待添加物品。</param>
+            <param name="inventory">目标背包。</param>
+            <param name="index">可选指定索引（null = 自动）。</param>
+            <param name="allowMerge">是否允许与现有堆叠合并。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryRemoveFromInventory(System.Object)">
+            <summary>从所在背包移除。</summary>
+            <param name="item">目标物品。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryMoveInInventory(System.Object,System.Int32,System.Int32)">
+            <summary>在同一背包中移动物品到新索引。</summary>
+            <param name="inventory">背包。</param>
+            <param name="fromIndex">源索引。</param>
+            <param name="toIndex">目标索引。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryTransferBetweenInventories(System.Object,System.Object,System.Object,System.Nullable{System.Int32},System.Boolean)">
+            <summary>跨背包转移（可选目标索引/允许合并）。</summary>
+            <param name="item">物品。</param>
+            <param name="fromInventory">源背包（可为 null）。</param>
+            <param name="toInventory">目标背包。</param>
+            <param name="toIndex">目标索引（null 自动）。</param>
+            <param name="allowMerge">是否允许合并。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TrySendToPlayer(System.Object,System.Boolean,System.Boolean)">
+            <summary>通过引擎的 ItemUtilities 发送到玩家（可选不合并/发往仓库）。</summary>
+            <param name="item">物品。</param>
+            <param name="dontMerge">是否禁止与已有堆叠合并。</param>
+            <param name="sendToStorage">是否同时送入仓库。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TrySendToPlayerInventory(System.Object,System.Boolean)">
+            <summary>仅发送到玩家背包（不含仓库）。</summary>
+            <param name="item">物品。</param>
+            <param name="dontMerge">是否禁止合并堆叠。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TrySendToWarehouse(System.Object,System.Boolean)">
+            <summary>发送到仓库（可选直接进入缓冲区）。</summary>
+            <param name="item">物品。</param>
+            <param name="directToBuffer">是否直接进入缓冲区。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryTakeFromWarehouseBuffer(System.Int32)">
+            <summary>从仓库缓冲区取出指定索引的物品。</summary>
+            <param name="index">缓冲区索引。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryDropToWorldNearPlayer(System.Object,System.Single)">
+            <summary>在玩家附近丢到地面（智能匹配多种 Drop 重载）。</summary>
+            <param name="item">物品。</param>
+            <param name="radius">随机偏移半径。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryDropToWorld(System.Object,System.Single,System.Single,System.Single,System.Boolean,System.Single,System.Single,System.Single)">
+            <summary>按坐标丢到地面（Drop(Vector3,bool,Vector3,float)）。</summary>
+            <param name="item">物品。</param>
+            <param name="x">X 坐标。</param>
+            <param name="y">Y 坐标。</param>
+            <param name="z">Z 坐标。</param>
+            <param name="usePhysics">是否使用物理。</param>
+            <param name="fx">附加力 X。</param>
+            <param name="fy">附加力 Y。</param>
+            <param name="fz">附加力 Z。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TrySplitStack(System.Object,System.Int32)">
+            <summary>拆分堆叠（返回新物品）。</summary>
+            <param name="item">堆叠物品。</param>
+            <param name="count">拆分数量。</param>
+            <returns>包含新堆叠或错误的结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryMergeStacks(System.Object,System.Object)">
+            <summary>合并两件堆叠。</summary>
+            <param name="a">堆叠 A。</param>
+            <param name="b">堆叠 B。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemMover.TryRepackStacks(System.Object[])">
+            <summary>对同类堆叠进行重新打包（尽量合并满堆）。</summary>
+            <param name="items">待重组的堆叠数组。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovItemQuery">
+            <summary>
+            物品查询适配器：提供按索引获取、遍历背包/仓库/所有玩家背包集合、读取武器槽等功能。
+            封装引擎反射访问，统一 Try* 语义。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovItemQuery.TryGetWeaponSlot(System.Int32,System.Object@)">
+            <summary>获取武器槽位内容（slotIndex 从 1 开始）。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovMigration">
+            <summary>
+            轻量迁移器：保证物品元数据完整（Owner/名称/类型/品质/价值等），必要时写回并提升版本号。
+            </summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovMutex">
+            <summary>
+            简易互斥：按物品的稳定 ID 进行互斥锁定，避免跨 Mod 同时操作同一物品。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovMutex.TryLock(System.Object,System.String)">
+            <summary>尝试以 ownerId 加锁（已被其他 owner 占有时返回 false）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovMutex.Unlock(System.Object,System.String)">
+            <summary>若当前 ownerId 持有锁，则释放。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovOwnership">
+            <summary>
+            归属标记（OwnerId）辅助：
+            - Use(ownerId) 作用域设置当前 OwnerId；
+            - CurrentOrInfer() 在未显式设置时，从调用栈/程序集名推断一个。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovOwnership.Use(System.String)">
+            <summary>临时覆盖当前 OwnerId，用于标记后续创建/修改。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovOwnership.CurrentOrInfer">
+            <summary>返回当前 OwnerId；若没有则从 ModBehaviour 所在程序集推断。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter">
+            <summary>
+            Duckov 物品的持久化适配器：记录/提取 IMK 元数据 ItemMeta。
+            - 变量写入：Owner/Name/Desc/TypeId/Quality/DisplayQuality/Value
+            - 嵌入 JSON：将 Meta 序列化后 Base64 -> VarMeta
+            - EnsureApplied：应用基本字段、重放修饰器、按需应用扩展块（一次性）
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.RecordMeta(System.Object,ItemModKit.Core.ItemMeta,System.Boolean)">
+            <summary>
+            记录元数据：设置版本、嵌入、写基本属性、可选写变量；必要时重新应用修饰器。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.TryExtractMeta(System.Object,ItemModKit.Core.ItemMeta@)">
+            <summary>
+            提取元数据：优先读取嵌入的 JSON；失败则回退读取变量键集合。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.EnsureApplied(System.Object)">
+            <summary>
+            确保应用元数据：若成功提取则写基本属性、重放修饰器，且扩展块只应用一次。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.ClearTemplateEffects(System.Object)">
+            <summary>
+            清理模板上的效果组件（统一禁用）。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.ShouldConsider(System.Object)">
+            <summary>
+            判断是否“应当考虑”为 IMK 管理对象：存在嵌入块或任意 IMK 变量。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.ApplyBasic(System.Object,ItemModKit.Core.ItemMeta)">
+            <summary>应用基本属性（名字/品质/价值等）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.WriteVars(System.Object,ItemModKit.Core.ItemMeta)">
+            <summary>写入变量形式的元数据（非嵌入 JSON）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.EmbedMeta(System.Object,ItemModKit.Core.ItemMeta)">
+            <summary>
+            将 ItemMeta 序列化为 JSON + Base64 并嵌入到专用变量 VarMeta。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.TryReadEmbedded(System.Object,ItemModKit.Core.ItemMeta@)">
+            <summary>
+            尝试读取嵌入块，支持标记前缀或直接 JSON；并验证可选校验和。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.GetOwnerId(System.Object,ItemModKit.Core.IItemAdapter)">
+            <summary>获取 OwnerId（变量优先，其次尝试提取 Meta）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovPersistenceAdapter.IsOwnedBy(System.Object,System.String,ItemModKit.Core.IItemAdapter)">
+            <summary>判断物品是否属于指定 OwnerId。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovRebirthService">
+            <summary>
+            重生服务：根据旧物品与元数据生成新物品，并尽量保持原位置（背包或角色槽位）。
+            - 若 keepLocation=true 且旧物品在背包：尝试原索引替换，否则合并放入，失败则发给玩家
+            - 若 keepLocation=false：尝试插入角色槽位，否则发给玩家
+            最后销毁旧物品，刷新相关背包，并立即持久化新物品的核心/变量/标签
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovRebirthService.#ctor(ItemModKit.Core.IItemAdapter,ItemModKit.Core.IInventoryAdapter,ItemModKit.Core.ISlotAdapter,ItemModKit.Core.IItemPersistence)">
+            <summary>构造函数：注入物品/背包/槽位/持久化适配器。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovRebirthService.ReplaceRebirth(System.Object,ItemModKit.Core.ItemMeta,System.Boolean)">
+            <summary>
+            用指定元数据替换旧物品并生成新物品（若 meta 为空则从旧物品推导）。
+            keepLocation 控制是否尝试保持原位置。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovRebirthService.SafeTypeId(System.Object)">
+            <summary>安全获取类型 ID（失败返回 0）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovRebirthService.EnsureMetaFromObject(ItemModKit.Core.ItemMeta,System.Object)">
+            <summary>若未提供 meta，则从旧物品（嵌入/变量/直接读取）推导一个。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovRebirthService.UnwrapToItem(System.Object)">
+            <summary>将任意包装对象解包为 Item 组件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovRebirthService.SendToPlayer(ItemStatsSystem.Item)">
+            <summary>将物品发送给玩家（根据可用重载匹配调用）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovRebirthService.TryRefreshInventories">
+            <summary>刷新主角背包与仓库的 UI。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovTreeDataService">
+            <summary>
+            TreeData 工具：提供 Duckov ItemTreeData 的导出、最小导入与基于引擎 API 的整树克隆能力。
+            注意：为实验性特性，未来可能调整或移除。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovTreeDataService.TryExport(System.Object,System.Int32)">
+            <summary>
+            导出指定物品的 TreeData 表示。
+            </summary>
+            <param name="item">源物品。</param>
+            <param name="maxEntries">最大导出条目数上限，超出返回失败。</param>
+            <returns>包含 version/rootTypeId/entries 的对象映射。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovTreeDataService.TryImportMinimal(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            最小导入：仅创建根类型并写入首条条目的变量，忽略层级结构。
+            </summary>
+            <param name="exportData">由 TryExport 产出的 JSON 对象。</param>
+            <returns>成功包含新物品实例。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovTreeDataService.TryCloneFromSource(System.Object)">
+            <summary>
+            基于引擎的 ItemTreeData.InstantiateAsync 重建整棵子树。
+            </summary>
+            <param name="source">源物品。</param>
+            <returns>成功返回新物品。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovTreeDataService.TryCloneIntoPlayerInventory(System.Object)">
+            <summary>
+            克隆并放入玩家背包。
+            </summary>
+            <param name="source">源物品。</param>
+            <returns>成功返回新物品；失败携带错误码。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovTreeDataService.TryCloneIntoInventoryAdvanced(System.Object,System.String)">
+            <summary>
+            高级克隆（过渡保留）：改为转发到总线化克隆管线。
+            </summary>
+            <param name="source">源物品。</param>
+            <param name="target">目标标识（character/storage/null）。</param>
+            <returns>成功返回新物品。</returns>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovTreeDataService.TryCloneIntoInventoryAdvancedWithDiag(System.Object,System.String,System.Int32)">
+            <summary>
+            高级克隆 + 诊断（过渡保留）：转发到总线化管线并附带诊断数据。
+            </summary>
+            <param name="source">源物品。</param>
+            <param name="target">目标标识。</param>
+            <param name="sampleLimit">样本限制（保留字段）。</param>
+            <returns>返回 (结果, 诊断字典)。</returns>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovUIRefreshService">
+            <summary>
+            UI 刷新服务：对指定背包触发一次 Refresh，并可选设置 NeedInspection=true 以让 UI 重新渲染。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovUIRefreshService.RefreshInventory(System.Object,System.Boolean)">
+            <summary>
+            刷新背包 UI。
+            </summary>
+            <param name="inventory">目标背包对象。</param>
+            <param name="markNeedInspection">是否设置 NeedInspection 为 true。</param>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovUISelection">
+            <summary>
+            UI 选中项访问器：尝试从“物品详情面板”和“操作菜单”解析当前选中的物品。
+            内部使用弱引用缓存实例，避免频繁查找。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovUISelection.TryGetDetailsItem(System.Object@)">
+            <summary>从详情面板获取选中物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovUISelection.TryGetOperationMenuItem(System.Object@)">
+            <summary>从操作菜单获取选中物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovUISelection.TryGetCurrentItem(System.Object@)">
+            <summary>优先菜单项，其次详情面板。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovVariableMergeService">
+            <summary>
+            变量合并服务：从源拷贝变量到目标。
+            模式说明：
+            - None：不执行合并
+            - OnlyMissing：仅拷贝目标缺失的键
+            - Overwrite：覆盖目标已有键
+            可通过 acceptKey 过滤参与合并的键。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovVariableMergeService.Merge(System.Object,System.Object,ItemModKit.Core.VariableMergeMode,System.Func{System.String,System.Boolean})">
+            <summary>
+            执行变量合并。
+            </summary>
+            <param name="source">源物品。</param>
+            <param name="target">目标物品。</param>
+            <param name="mode">合并模式。</param>
+            <param name="acceptKey">可选键过滤（null 接受全部）。</param>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource">
+            <summary>
+            世界掉落事件源：扫描场景中不在任何背包内的物品，触发“环境掉落”事件。
+            （当前无法精准区分敌人掉落与环境掉落，统一走 Environment 事件。）
+            </summary>
+        </member>
+        <member name="E:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.OnEnemyDrop">
+            <summary>敌人掉落（暂未区分，保留接口）。</summary>
+        </member>
+        <member name="E:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.OnEnvironmentDrop">
+            <summary>环境掉落。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.Enabled">
+            <summary>是否启用事件源。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.ScanInterval">
+            <summary>扫描间隔秒。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.ChunkSize">
+            <summary>单次扫描的最大处理数量。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.#ctor(ItemModKit.Core.IItemAdapter,ItemModKit.Core.IInventoryAdapter)">
+            <summary>
+            构造函数：创建一个世界掉落事件源。
+            </summary>
+            <param name="item">物品访问适配器。</param>
+            <param name="inv">背包/容器适配器。</param>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.Tick">
+            <summary>
+            每帧调用：按时间片扫描场景物品，不在任何背包内的视为“世界掉落”。
+            首次发现触发 OnEnvironmentDrop；进入背包后从跟踪集合移除。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.DuckovWorldDropEventSource.EnsureBuffer">
+            <summary>准备缓存：在新一轮扫描开始时填充所有 Item 对象。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.IMKDuckov">
+            <summary>
+            IMK 的 Duckov 统一门面/入口(Facade)。
+            Stage 1 API Freeze: Public static members listed here are considered stable entry points. See docs/API_FREEZE.md.
+            Do not change signatures in minor patches.
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.#cctor">
+            <summary>
+            静态构造：注册可选的贡献者/应用器 (Contributor + Applier)，用于扩展写入指令。
+            </summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Item">
+            <summary>物品适配器（读写核心字段、变量、修饰、插槽等）。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Inventory">
+            <summary>背包适配器。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Slot">
+            <summary>槽位适配器。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Query">
+            <summary>物品查询服务（背包/槽位）。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Persistence">
+            <summary>持久化适配器。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Rebirth">
+            <summary>重生/替换服务。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.UISelection">
+            <summary>当前 UI 选中项。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.ItemEvents">
+            <summary>物品事件源。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.WorldDrops">
+            <summary>世界掉落事件源。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Read">
+            <summary>只读聚合读取服务。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Write">
+            <summary>写入服务（事务式修改）。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Factory">
+            <summary>物品工厂。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Mover">
+            <summary>物品移动服务。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.Clone">
+            <summary>克隆流水线。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.VariableMerge">
+            <summary>变量合并服务。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.UIRefresh">
+            <summary>UI 刷新服务。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.InventoryResolver">
+            <summary>背包解析服务。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.InventoryPlacement">
+            <summary>背包放置服务。</summary>
+        </member>
+        <member name="F:ItemModKit.Adapters.Duckov.IMKDuckov.PersistenceScheduler">
+            <summary>持久化调度器。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.IMKDuckov.Version">
+            <summary>IMK 版本号。</summary>
+        </member>
+        <member name="P:ItemModKit.Adapters.Duckov.IMKDuckov.Capabilities">
+            <summary>当前功能集。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.Require(System.Version,System.String@)">
+            <summary>确保满足最低版本要求。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.GetOwnerId(System.Object)">
+            <summary>获取持有者 OwnerId。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.IsOwnedBy(System.Object,System.String)">
+            <summary>判断是否被指定 OwnerId 拥有。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.UseLogger(ItemModKit.Core.ILogger)">
+            <summary>替换内部日志记录器。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.TryLock(System.Object,System.String)">
+            <summary>尝试加锁（成功返回 true）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.Unlock(System.Object,System.String)">
+            <summary>释放锁。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.EnsureMigrated(System.Object)">
+            <summary>执行一次迁移：补全老版本缺失字段/常量。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.BeginExternalEvents">
+            <summary>进入“外部事件”模式，暂停自动轮询，改为手动发布。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.EndExternalEvents">
+            <summary>退出“外部事件”模式。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.PublishItemAdded(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布新增事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.PublishItemRemoved(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布移除事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.PublishItemChanged(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布变更事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.PublishItemMoved(System.Object,System.Int32,System.Int32,ItemModKit.Core.ItemEventContext)">
+            <summary>发布移动事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.PublishItemMerged(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布合并事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.PublishItemSplit(System.Object,ItemModKit.Core.ItemEventContext)">
+            <summary>发布拆分事件。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.AllowDirtyFromWriteService">
+            <summary>
+            授权 WriteService 内部标记脏（使用 using 范围控制）。
+            显式模式(ExplicitOnly)下，仅在该范围内的 MarkDirty 才生效。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.MarkDirty(System.Object,ItemModKit.Core.DirtyKind,System.Boolean)">
+            <summary>
+            标记某个物品为“脏”，需要持久化。immediate=true 可提示优先刷新。
+            在 ExplicitOnly 模式外部调用将被忽略。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.FlushDirty(System.Object,System.Boolean)">
+            <summary>刷新指定物品的脏写入（可选强制）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.IMKDuckov.FlushAllDirty(System.String)">
+            <summary>
+            刷新所有脏队列；reason="manual-deferred" 时为延迟/分片刷新。
+            </summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.ReadService">
+            <summary>
+            统一的“读取服务”：为上层提供稳定的只读接口，屏蔽底层反射/字段名差异。
+            - Core 字段：名称、TypeId、品质、显示品质、价值
+            - 集合：变量/常量/修饰器/标签/槽位
+            - 推导信息：堆叠、耐久、检查状态、排序、重量、关系、标志、声音键
+            - 高级：统计快照、子背包信息/枚举、效果列表、贴图/Agent 等
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadCoreFields(System.Object)">
+            <summary>读取核心字段。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadVariables(System.Object)">
+            <summary>读取变量表。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadConstants(System.Object)">
+            <summary>读取常量表。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadModifiers(System.Object)">
+            <summary>读取修饰器列表。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadTags(System.Object)">
+            <summary>读取标签列表。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadSlots(System.Object)">
+            <summary>读取槽位列表。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadStackInfo(System.Object)">
+            <summary>读取堆叠信息：最大堆叠与当前数量。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadDurabilityInfo(System.Object)">
+            <summary>读取耐久信息：最大/当前/损耗与是否需要检视。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadInspectionInfo(System.Object)">
+            <summary>读取检视信息：已检视/正在检视/是否需要检视。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadOrderingInfo(System.Object)">
+            <summary>读取排序信息（Order）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadWeightInfo(System.Object)">
+            <summary>读取重量信息：单件/自身/总重/基础重量。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadRelations(System.Object)">
+            <summary>读取父子关系与位置：父物品/是否在背包/是否在槽位。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadFlags(System.Object)">
+            <summary>读取标志位：粘性/可售/可丢弃/可修理/是否角色物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadSoundKey(System.Object)">
+            <summary>读取声音键（用于音效播放）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadStats(System.Object)">
+            <summary>读取数值统计快照（遍历 Stats 集合）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadChildInventoryInfo(System.Object)">
+            <summary>读取子背包的容量与数量。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryEnumerateChildInventoryItems(System.Object)">
+            <summary>枚举子背包内的所有物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadEffects(System.Object)">
+            <summary>读取效果组件（名称 + 是否启用）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadItemGraphic(System.Object)">
+            <summary>读取 ItemGraphic（是否存在、名称）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadAgentUtilities(System.Object)">
+            <summary>读取 AgentUtilities（是否存在激活 Agent、其名称）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.Snapshot(System.Object)">
+            <summary>捕获完整物品快照（委托 Snapshot 组件）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadModifierDescriptions(System.Object)">
+            <summary>读取修饰器描述信息（Key/Type/Value/Order/Display/Target）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.ReadService.TryReadEffectsDetailed(System.Object)">
+            <summary>读取效果组件的详细信息（显示/描述/触发/过滤/动作 类型）。</summary>
+        </member>
+        <member name="T:ItemModKit.Adapters.Duckov.WriteService">
+            <summary>
+            写服务（核心字段：Name/RawName/TypeId/Quality/DisplayQuality/Value）。
+            契约：若任一字段写入失败，必须将所有字段回滚至写入前状态，返回失败，不抛出给调用方。
+            </summary>
+            <summary>
+            写入服务（辅助）：槽位树通知与生成唯一槽位键。
+            </summary>
+            <summary>
+            写入服务（槽位 Slots）：提供插拔、移动、增删槽位等操作，并发出变更通知与脏标记。
+            </summary>
+            <summary>
+            写入服务（统计 Stat）：提供设置、确保存在、移除以及内部多重反射匹配逻辑。
+            </summary>
+            <summary>
+            写入服务（事务）：Begin/Commit/Rollback；提交时统一发出脏标记（显式模式）。
+            </summary>
+            <summary>
+            写入服务（变量/常量/标签）：支持批量写入、回滚保护以及合并策略。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryWriteCoreFields(System.Object,ItemModKit.Core.CoreFieldChanges)">
+            <summary>写核心字段；失败会回滚到写前的快照。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TrySetOrder(System.Object,System.Int32)">
+            <summary>设置排序序号。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TrySetSoundKey(System.Object,System.String)">
+            <summary>设置音效键。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TrySetWeight(System.Object,System.Single)">
+            <summary>设置基础重量。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TrySetIcon(System.Object,System.Object)">
+            <summary>设置图标 Sprite。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryPlugIntoSlot(System.Object,System.String,System.Object)">
+            <summary>向槽位插入子物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryUnplugFromSlot(System.Object,System.String)">
+            <summary>从槽位拔出子物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryMoveBetweenSlots(System.Object,System.String,System.String)">
+            <summary>在同一物品上从一个槽位移动到另一个槽位。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryAddSlot(System.Object,ItemModKit.Core.SlotCreateOptions)">
+            <summary>新增一个槽位（自动去重 Key）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryRemoveSlot(System.Object,System.String)">
+            <summary>移除一个槽位（如有内容先拔出）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TrySetStatValue(System.Object,System.String,System.Single)">
+            <summary>设置指定 Stat 的数值，尝试多种路径（属性/方法/字段）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryEnsureStat(System.Object,System.String,System.Nullable{System.Single})">
+            <summary>确保 Stat 存在（若不存在则实例化并加入集合，可选初始值）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryRemoveStat(System.Object,System.String)">
+            <summary>移除指定 Stat。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.BeginTransaction(System.Object)">
+            <summary>开始事务，返回令牌。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.CommitTransaction(System.Object,System.String)">
+            <summary>提交事务：允许集中触发持久化所需的脏标记。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.RollbackTransaction(System.Object,System.String)">
+            <summary>回滚事务。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryWriteVariables(System.Object,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Boolean)">
+            <summary>写变量集合（overwrite=false 时仅写缺失键）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryWriteConstants(System.Object,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Boolean)">
+            <summary>写常量集合（createIfMissing 控制是否创建缺失常量）。</summary>
+        </member>
+        <member name="M:ItemModKit.Adapters.Duckov.WriteService.TryWriteTags(System.Object,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>写标签集合（merge=true 时并集覆盖）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.CloneOptions">
+            <summary>
+            克隆选项：控制从源物品复制到目标物品的各域行为。
+            </summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.Core">
+            <summary>是否复制核心字段 (Name/RawName/Quality/DisplayQuality/Value/TypeId)。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.IncludeTypeId">
+            <summary>是否包含 TypeId（通常为 false，以保留目标原类型）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.Variables">
+            <summary>是否复制变量集合。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.Constants">
+            <summary>是否复制常量集合。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.Tags">
+            <summary>是否复制标签集合。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.CloneAffixes">
+            <summary>快捷启用 Stats + Modifiers 的聚合标记。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.Stats">
+            <summary>是否复制统计 (Stats)；可与 CloneAffixes 组合。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneOptions.Modifiers">
+            <summary>是否复制修饰 (Modifiers)；可与 CloneAffixes 组合。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.Cloner">
+            <summary>
+            克隆器：提供从模板源复制多域到目标物品的逻辑，支持扩展域（Stats/Modifiers）。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.Cloner.CloneFromTemplate(ItemModKit.Core.IItemAdapter,ItemModKit.Core.IWriteService,System.Object,System.Object,ItemModKit.Core.CloneOptions)">
+            <summary>
+            基础克隆（不含统计与修饰）。
+            </summary>
+            <param name="adapter">物品适配器。</param>
+            <param name="writer">写入服务。</param>
+            <param name="source">源物品。</param>
+            <param name="target">目标物品。</param>
+            <param name="options">克隆选项（可 null 使用默认）。</param>
+            <returns>操作结果。</returns>
+        </member>
+        <member name="M:ItemModKit.Core.Cloner.CloneFromTemplate(ItemModKit.Core.IItemAdapter,ItemModKit.Core.IWriteService,ItemModKit.Core.IReadService,System.Object,System.Object,ItemModKit.Core.CloneOptions)">
+            <summary>
+            扩展克隆：在提供 reader 时可复制 Stats 与 Modifier 描述。
+            </summary>
+            <param name="adapter">物品适配器。</param>
+            <param name="writer">写入服务。</param>
+            <param name="reader">读取服务（用于 Stats/Modifiers 描述）。</param>
+            <param name="source">源物品。</param>
+            <param name="target">目标物品。</param>
+            <param name="options">克隆选项。</param>
+            <returns>结果（成功或错误码）。</returns>
+        </member>
+        <member name="M:ItemModKit.Core.Cloner.AdapterOrArgsInvalid(ItemModKit.Core.IItemAdapter,ItemModKit.Core.IWriteService,System.Object,System.Object)">
+            <summary>检查适配器或输入对象是否为 null。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.CloneStrategy">
+            <summary>克隆策略。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneStrategy.Auto">
+            <summary>自动：先尝试 TreeData，失败再回退 Unity。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneStrategy.TreeData">
+            <summary>使用 TreeData 重建整棵子树（保真度高）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.CloneStrategy.Unity">
+            <summary>使用 Unity 直接克隆 GameObject（快速）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.VariableMergeMode">
+            <summary>变量合并策略。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.VariableMergeMode.None">
+            <summary>不合并变量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.VariableMergeMode.OnlyMissing">
+            <summary>仅向目标添加缺失键。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.VariableMergeMode.Overwrite">
+            <summary>覆盖目标已有键。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ClonePipelineOptions">
+            <summary>
+            克隆管线选项：控制克隆策略、变量合并、放置目标与诊断等。
+            </summary>
+        </member>
+        <member name="F:ItemModKit.Core.ClonePipelineOptions.Strategy">
+            <summary>克隆策略（Auto 会优先 TreeData 失败再 Unity）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ClonePipelineOptions.VariableMerge">
+            <summary>变量合并模式。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ClonePipelineOptions.CopyTags">
+            <summary>是否复制标签。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ClonePipelineOptions.Target">
+            <summary>放置目标：character/storage/null(auto)。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ClonePipelineOptions.RefreshUI">
+            <summary>放置后是否刷新 UI。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ClonePipelineOptions.Diagnostics">
+            <summary>是否收集诊断信息。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ClonePipelineOptions.AcceptVariableKey">
+            <summary>可选：变量键过滤（null 表示全部接受）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ClonePipelineResult">
+            <summary>
+            克隆管线返回结果：新物品、是否已添加、所在索引、使用的策略与诊断数据。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.ClonePipelineResult.NewItem">
+            <summary>新克隆出的物品实例。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ClonePipelineResult.Added">
+            <summary>是否已成功加入目标背包。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ClonePipelineResult.Index">
+            <summary>加入背包时的索引（1-based；未知为 -1）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ClonePipelineResult.StrategyUsed">
+            <summary>实际使用的克隆策略。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ClonePipelineResult.Diagnostics">
+            <summary>可选诊断字典。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IClonePipeline">
+            <summary>
+            克隆管线接口：根据选项克隆物品并尝试放入背包。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IClonePipeline.TryCloneToInventory(System.Object,ItemModKit.Core.ClonePipelineOptions)">
+            <summary>
+            尝试将源物品克隆后放入背包。
+            </summary>
+            <param name="source">源物品。</param>
+            <param name="options">管线选项。</param>
+            <returns>结果，包含新物品与放置信息。</returns>
+        </member>
+        <member name="T:ItemModKit.Core.EngineKeys">
+            <summary>
+            引擎关键名集中定义，避免魔法字符串与拼写错误。
+            </summary>
+        </member>
+        <member name="T:ItemModKit.Core.EngineKeys.Variable">
+            <summary>变量键常量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Variable.Count">
+            <summary>堆叠数量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Variable.Durability">
+            <summary>当前耐久。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Variable.DurabilityLoss">
+            <summary>耐久损耗。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Variable.Inspected">
+            <summary>是否已检查。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.EngineKeys.Constant">
+            <summary>常量键常量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Constant.MaxDurability">
+            <summary>最大耐久。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.EngineKeys.Property">
+            <summary>属性名常量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Property.MaxStackCount">
+            <summary>最大堆叠数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Property.Inspecting">
+            <summary>是否处于检查中。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Property.NeedInspection">
+            <summary>是否需要检查。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Property.Inspected">
+            <summary>是否已检查。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Property.Main">
+            <summary>主控实例。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Property.CharacterItem">
+            <summary>角色的物品组件。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Property.Inventory">
+            <summary>背包属性名。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.EngineKeys.Method">
+            <summary>方法名常量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Method.Refresh">
+            <summary>刷新方法名。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.EngineKeys.Method.SendToPlayer">
+            <summary>发送到玩家的方法名。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemEventSourceType">
+            <summary>事件来源类型。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventSourceType.Backpack">
+            <summary>来自背包。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventSourceType.Storage">
+            <summary>来自仓库。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventSourceType.Slot">
+            <summary>来自槽位。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventSourceType.World">
+            <summary>来自世界（地面）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventSourceType.Other">
+            <summary>其他来源。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemEventCause">
+            <summary>事件原因分类。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Craft">
+            <summary>合成/制造。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Loot">
+            <summary>拾取/战利品。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Move">
+            <summary>移动位置。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Merge">
+            <summary>堆叠合并。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Split">
+            <summary>堆叠拆分。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Buy">
+            <summary>购买。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Sell">
+            <summary>出售。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Equip">
+            <summary>装备。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Unequip">
+            <summary>卸下装备。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemEventCause.Other">
+            <summary>其他。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemEventContext">
+            <summary>
+            事件上下文：用于事件发布与诊断。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemEventContext.Source">
+            <summary>来源类型。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemEventContext.Cause">
+            <summary>事件原因。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemEventContext.Index">
+            <summary>可选索引（如背包位置）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemEventContext.OwnerId">
+            <summary>所属者标识。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemEventContext.Timestamp">
+            <summary>时间戳（unscaled 秒）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ContributorPhase">
+            <summary>贡献阶段标记。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ContributorPhase.None">
+            <summary>无。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ContributorPhase.Capture">
+            <summary>捕获阶段。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ContributorPhase.Enrich">
+            <summary>富集阶段。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ContributorPhase.Apply">
+            <summary>应用阶段。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemStateContributor">
+            <summary>状态贡献者：在捕获阶段输出附加片段。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.IItemStateContributor.Key">
+            <summary>贡献键（用于 JSON 片段命名）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.IItemStateContributor.KindMask">
+            <summary>生效的脏掩码。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemStateContributor.TryCapture(System.Object,ItemModKit.Core.ItemSnapshot)">
+            <summary>尝试捕获扩展片段。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IMetaEnricher">
+            <summary>元数据富集器：在富集阶段补充 ItemMeta。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IMetaEnricher.TryEnrich(System.Object,ItemModKit.Core.ItemMeta,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>尝试富集元数据。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemStateApplier">
+            <summary>状态应用器：从 JSON 片段恢复到物品。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.IItemStateApplier.Key">
+            <summary>片段键。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemStateApplier.TryApply(System.Object,ItemModKit.Core.ItemMeta,Newtonsoft.Json.Linq.JToken)">
+            <summary>尝试应用片段。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemStateExtensions">
+            <summary>扩展注册与分发工具。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemStateExtensions.RegisterContributor(ItemModKit.Core.IItemStateContributor)">
+            <summary>注册贡献者。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemStateExtensions.RegisterEnricher(ItemModKit.Core.IMetaEnricher)">
+            <summary>注册富集器。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemStateExtensions.RegisterApplier(ItemModKit.Core.IItemStateApplier)">
+            <summary>注册应用器。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemStateExtensions.Contribute(System.Object,ItemModKit.Core.ItemSnapshot,ItemModKit.Core.DirtyKind,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>分发捕获：收集扩展片段。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemStateExtensions.Enrich(System.Object,ItemModKit.Core.ItemMeta,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>分发富集：基于 extra 调整元数据。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemStateExtensions.TryApply(System.Object,ItemModKit.Core.ItemMeta)">
+            <summary>尝试应用扩展片段到物品。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemAdapter">
+            <summary>
+            Stage 1 API Freeze: This file defines stable interfaces and result contracts used by IMKDuckov.* facades and external consumers.
+            Do not change signatures/semantics in minor patches. See docs/API_FREEZE.md.
+            </summary>
+            <summary>
+            物品读写适配器接口：提供对名称、品质、价值、变量、常量、修饰、插槽与标签的读写。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetName(System.Object)">
+            <summary>获取物品显示名称。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetName(System.Object,System.String)">
+            <summary>设置物品显示名称。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetDisplayNameRaw(System.Object)">
+            <summary>获取原始显示名称（未本地化）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetDisplayNameRaw(System.Object,System.String)">
+            <summary>设置原始显示名称。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetTypeId(System.Object)">
+            <summary>获取类型 ID。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetTypeId(System.Object,System.Int32)">
+            <summary>设置类型 ID。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetQuality(System.Object)">
+            <summary>获取品质。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetQuality(System.Object,System.Int32)">
+            <summary>设置品质。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetDisplayQuality(System.Object)">
+            <summary>获取显示品质。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetDisplayQuality(System.Object,System.Int32)">
+            <summary>设置显示品质。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetValue(System.Object)">
+            <summary>获取价值。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetValue(System.Object,System.Int32)">
+            <summary>设置价值。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetVariables(System.Object)">
+            <summary>获取全部变量条目。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetVariable(System.Object,System.String,System.Object,System.Boolean)">
+            <summary>
+            设置变量键的值。
+            constant 标志指示是否常量；若为 true，应写入常量集合。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetVariable(System.Object,System.String)">
+            <summary>读取指定变量键的值。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.RemoveVariable(System.Object,System.String)">
+            <summary>移除指定变量。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetConstants(System.Object)">
+            <summary>获取全部常量条目。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetConstant(System.Object,System.String,System.Object,System.Boolean)">
+            <summary>
+            设置常量键（可选创建）。
+            当 createIfNotExist=true 且键不存在时，需要创建并写入。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetConstant(System.Object,System.String)">
+            <summary>读取指定常量键的值。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.RemoveConstant(System.Object,System.String)">
+            <summary>移除指定常量。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetModifiers(System.Object)">
+            <summary>获取全部修饰器条目。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.ReapplyModifiers(System.Object)">
+            <summary>
+            重新应用修饰器集合（应在修饰项、统计值等变更后调用以刷新缓存/派生状态）。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetSlots(System.Object)">
+            <summary>获取全部插槽条目。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.GetTags(System.Object)">
+            <summary>获取标签集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemAdapter.SetTags(System.Object,System.String[])">
+            <summary>
+            设置标签集合（覆盖或合并由实现决定；写服务会提供更精细的 TryWriteTags）。
+            </summary>
+        </member>
+        <member name="T:ItemModKit.Core.IInventoryAdapter">
+            <summary>
+            背包/容器适配器：判断物品是否在背包、获取容器容量、定位与添加/合并等。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.IsInInventory(System.Object)">
+            <summary>判断物品是否处于某背包中。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.GetInventory(System.Object)">
+            <summary>获取物品所属的背包对象。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.GetCapacity(System.Object)">
+            <summary>获取背包容量。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.GetItemAt(System.Object,System.Int32)">
+            <summary>按索引获取背包中的物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.IndexOf(System.Object,System.Object)">
+            <summary>获取指定物品在背包中的索引。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.AddAt(System.Object,System.Object,System.Int32)">
+            <summary>在指定索引处添加物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.AddAndMerge(System.Object,System.Object)">
+            <summary>添加物品并尝试与堆叠合并。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryAdapter.Detach(System.Object)">
+            <summary>将物品从其背包中分离。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ISlotAdapter">
+            <summary>
+            槽位适配器：用于将物品尝试插入到角色槽位。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.ISlotAdapter.TryPlugToCharacter(System.Object,System.Int32)">
+            <summary>尝试把物品插入到角色可用槽位（从 preferredFirstIndex 开始）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemPersistence">
+            <summary>
+            持久化接口：记录/提取/应用元数据，清理模板效果，以及是否应纳管。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemPersistence.RecordMeta(System.Object,ItemModKit.Core.ItemMeta,System.Boolean)">
+            <summary>记录物品元数据（可选写变量）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemPersistence.TryExtractMeta(System.Object,ItemModKit.Core.ItemMeta@)">
+            <summary>尝试提取元数据。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemPersistence.EnsureApplied(System.Object)">
+            <summary>确保元数据已应用到物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemPersistence.ClearTemplateEffects(System.Object)">
+            <summary>清理模板效果。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemPersistence.ShouldConsider(System.Object)">
+            <summary>判断物品是否需要纳入持久化管理。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemQuery">
+            <summary>
+            查询接口：从背包/仓库/任意背包定位物品，或枚举集合。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemQuery.TryGetFromBackpack(System.Int32,System.Object@)">
+            <summary>按 1-based 索引从角色背包获取物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemQuery.TryGetFromStorage(System.Int32,System.Object@)">
+            <summary>按 1-based 索引从仓库获取物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemQuery.TryGetFromAnyInventory(System.Int32,System.Object@)">
+            <summary>按 1-based 索引从任意背包获取物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemQuery.TryGetWeaponSlot(System.Int32,System.Object@)">
+            <summary>按 1-based 索引获取武器槽物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemQuery.EnumerateBackpack">
+            <summary>枚举角色背包全部物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemQuery.EnumerateStorage">
+            <summary>枚举仓库全部物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemQuery.EnumerateAllInventories">
+            <summary>枚举所有可发现的背包物品集合。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IUISelection">
+            <summary>
+            UI 选中项辅助：提供当前详情/操作菜单目标的读取。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IUISelection.TryGetDetailsItem(System.Object@)">
+            <summary>尝试获取详情面板当前物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IUISelection.TryGetOperationMenuItem(System.Object@)">
+            <summary>尝试获取操作菜单当前物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IUISelection.TryGetCurrentItem(System.Object@)">
+            <summary>获取当前物品：优先操作菜单，其次详情面板。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemEventSource">
+            <summary>
+            物品事件源：新增/移除/变化事件。
+            </summary>
+        </member>
+        <member name="E:ItemModKit.Core.IItemEventSource.OnItemAdded">
+            <summary>物品新增事件。</summary>
+        </member>
+        <member name="E:ItemModKit.Core.IItemEventSource.OnItemRemoved">
+            <summary>物品移除事件。</summary>
+        </member>
+        <member name="E:ItemModKit.Core.IItemEventSource.OnItemChanged">
+            <summary>物品变化事件。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IWorldDropEventSource">
+            <summary>
+            世界掉落事件源：敌人/环境掉落。
+            </summary>
+        </member>
+        <member name="E:ItemModKit.Core.IWorldDropEventSource.OnEnemyDrop">
+            <summary>敌人掉落事件。</summary>
+        </member>
+        <member name="E:ItemModKit.Core.IWorldDropEventSource.OnEnvironmentDrop">
+            <summary>环境掉落事件。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IRebirthService">
+            <summary>
+            重生/替换服务：用新物品替换旧物品，必要时保持位置。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IRebirthService.ReplaceRebirth(System.Object,ItemModKit.Core.ItemMeta,System.Boolean)">
+            <summary>替换旧物品并应用元数据。</summary>
+            <param name="oldItem">原物品。</param>
+            <param name="meta">元数据。</param>
+            <param name="keepLocation">是否保持位置。</param>
+            <returns>结果，包含新物品。</returns>
+        </member>
+        <member name="T:ItemModKit.Core.VariableEntry">
+            <summary>变量条目。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.VariableEntry.Key">
+            <summary>变量键。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.VariableEntry.Value">
+            <summary>变量值。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.VariableEntry.Constant">
+            <summary>是否常量（不可变）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ModifierEntry">
+            <summary>修饰条目。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ModifierEntry.Key">
+            <summary>统计键。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ModifierEntry.Value">
+            <summary>数值。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ModifierEntry.Modifier">
+            <summary>修饰类型名（如 Add/Multiply）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ModifierEntry.IsPercent">
+            <summary>是否为百分比。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.SlotEntry">
+            <summary>插槽条目。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.SlotEntry.Key">
+            <summary>槽位键。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.SlotEntry.Occupied">
+            <summary>是否已占用。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.SlotEntry.PlugType">
+            <summary>可插入类型。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemHandle">
+            <summary>物品定位结果句柄。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemHandle.Item">
+            <summary>定位到的物品实例。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemHandle.Inventory">
+            <summary>所在背包实例（可为空）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemHandle.Index1Based">
+            <summary>在背包中的 1-based 索引（无则 0 或负）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemHandle.SlotKey">
+            <summary>所在槽位键（可为空）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemHandle.#ctor(System.Object,System.Object,System.Int32,System.String)">
+            <summary>构造句柄。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemHandle.HasInventory">
+            <summary>是否携带背包信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemHandle.HasSlot">
+            <summary>是否携带槽位信息。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ErrorCode">
+            <summary>通用错误码。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.None">
+            <summary>无错误。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.NotFound">
+            <summary>未找到目标。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.InvalidArgument">
+            <summary>参数无效。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.OutOfRange">
+            <summary>索引越界。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.DependencyMissing">
+            <summary>依赖缺失。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.OperationFailed">
+            <summary>操作失败。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.NotSupported">
+            <summary>不支持的操作。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.Unauthorized">
+            <summary>未授权。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ErrorCode.Conflict">
+            <summary>冲突（状态不一致）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.RichResult">
+            <summary>
+            统一返回结果（不含值）。
+            约定：Ok=true 表示操作完整成功（无部分成功），失败时不应该产生持久副作用（除非另有文档说明）。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.RichResult.Ok">
+            <summary>是否成功。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RichResult.Error">
+            <summary>错误信息（成功时为空）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RichResult.Code">
+            <summary>错误码。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.RichResult.Success">
+            <summary>创建成功结果。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.RichResult.Fail(ItemModKit.Core.ErrorCode,System.String)">
+            <summary>创建失败结果。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.RichResult`1">
+            <summary>
+            携带值的统一返回结果。
+            约定：Ok=true 表示数据成功返回且完整有效；失败时 Value 为 default。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.RichResult`1.Ok">
+            <summary>是否成功。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RichResult`1.Error">
+            <summary>错误信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RichResult`1.Code">
+            <summary>错误码。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RichResult`1.Value">
+            <summary>返回值。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.RichResult`1.Success(`0)">
+            <summary>创建成功结果。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.RichResult`1.Fail(ItemModKit.Core.ErrorCode,System.String)">
+            <summary>创建失败结果。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemFactory">
+            <summary>
+            物品工厂接口：实例化/生成/克隆/删除等操作。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemFactory.TryInstantiateByTypeId(System.Int32)">
+            <summary>按类型 ID 实例化（原始方式）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemFactory.TryInstantiateFromPrefab(System.Object)">
+            <summary>从预制对象实例化。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemFactory.TryGenerateByTypeId(System.Int32)">
+            <summary>按类型 ID 生成（可带适配器级回退）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemFactory.TryRegisterDynamicEntry(System.Object)">
+            <summary>注册动态条目以便后续快速生成。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemFactory.TryCloneItem(System.Object)">
+            <summary>克隆现有物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemFactory.TryDeleteItem(System.Object)">
+            <summary>删除物品实例。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IItemMover">
+            <summary>
+            物品移动接口：跨背包/仓库/世界以及堆叠操作。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryAddToInventory(System.Object,System.Object,System.Nullable{System.Int32},System.Boolean)">
+            <summary>添加到背包（可选索引与合并）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryRemoveFromInventory(System.Object)">
+            <summary>从背包移除物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryMoveInInventory(System.Object,System.Int32,System.Int32)">
+            <summary>在同一背包移动物品位置。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryTransferBetweenInventories(System.Object,System.Object,System.Object,System.Nullable{System.Int32},System.Boolean)">
+            <summary>跨背包转移物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TrySendToPlayer(System.Object,System.Boolean,System.Boolean)">
+            <summary>发送到玩家（可选不合并与送到仓库）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TrySendToPlayerInventory(System.Object,System.Boolean)">
+            <summary>仅发送到玩家角色背包。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TrySendToWarehouse(System.Object,System.Boolean)">
+            <summary>发送到仓库（可选进入缓冲区）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryTakeFromWarehouseBuffer(System.Int32)">
+            <summary>从仓库缓冲区取出指定索引物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryDropToWorldNearPlayer(System.Object,System.Single)">
+            <summary>在玩家附近丢到世界地面。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryDropToWorld(System.Object,System.Single,System.Single,System.Single,System.Boolean,System.Single,System.Single,System.Single)">
+            <summary>按坐标丢到世界地面。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TrySplitStack(System.Object,System.Int32)">
+            <summary>拆分堆叠。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryMergeStacks(System.Object,System.Object)">
+            <summary>合并两个堆叠。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IItemMover.TryRepackStacks(System.Object[])">
+            <summary>重新打包多个堆叠。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IVariableMergeService">
+            <summary>
+            变量合并服务：按模式合并 source->target 的变量集合（可选筛选键）。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IVariableMergeService.Merge(System.Object,System.Object,ItemModKit.Core.VariableMergeMode,System.Func{System.String,System.Boolean})">
+            <summary>执行变量合并。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IUIRefreshService">
+            <summary>
+            UI 刷新服务：触发背包刷新与需要检查状态变更。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IUIRefreshService.RefreshInventory(System.Object,System.Boolean)">
+            <summary>刷新背包 UI。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IInventoryResolver">
+            <summary>
+            背包解析服务：解析字符串目标到具体背包（如 character/storage）。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryResolver.Resolve(System.String)">
+            <summary>解析指定标识到背包。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryResolver.ResolveFallback">
+            <summary>解析默认背包（通常为角色背包）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IInventoryPlacementService">
+            <summary>
+            背包放置服务：尝试放置并在必要时安排延迟重试。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IInventoryPlacementService.TryPlace(System.Object,System.Object,System.Boolean,System.Boolean)">
+            <summary>尝试将物品放入背包（返回添加结果、索引与是否安排延迟）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.KeyHelper">
+            <summary>
+            键辅助工具：构造带所有者前缀的变量键，生成不重复的自增键。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.KeyHelper.BuildOwnedKey(System.String,System.String)">
+            <summary>
+            构造带命名空间/所有者前缀的键，如 Owner_MyVar。
+            </summary>
+            <param name="ownerId">所有者标识。</param>
+            <param name="key">原始键。</param>
+            <returns>合成键。</returns>
+        </member>
+        <member name="M:ItemModKit.Core.KeyHelper.NextIncrementalKey(System.Collections.Generic.ISet{System.String},System.String)">
+            <summary>
+            生成不重复的自增键：desired, desired1, desired2 ...。
+            </summary>
+            <param name="existingKeys">已有键集合。</param>
+            <param name="desired">期望键名。</param>
+            <returns>最终键名。</returns>
+        </member>
+        <member name="T:ItemModKit.Core.LogLevel">
+            <summary>日志级别。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.LogLevel.Debug">
+            <summary>调试信息。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.LogLevel.Info">
+            <summary>一般信息。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.LogLevel.Warn">
+            <summary>警告。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.LogLevel.Error">
+            <summary>错误。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ILogger">
+            <summary>日志接口。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ILogger.Log(ItemModKit.Core.LogLevel,System.String,System.Exception)">
+            <summary>记录一条日志。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.UnityLogger">
+            <summary>
+            Unity 输出后端（默认）：桥接到 UnityEngine.Debug。
+            </summary>
+        </member>
+        <member name="T:ItemModKit.Core.Log">
+            <summary>
+            日志门面：可替换输出后端，提供简单的 Debug/Info/Warn/Error 方法。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.Log.Current">
+            <summary>当前日志实现。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.Log.Use(ItemModKit.Core.ILogger)">
+            <summary>替换当前日志实现。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.Log.Debug(System.String)">
+            <summary>输出 Debug 级日志。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.Log.Info(System.String)">
+            <summary>输出 Info 级日志。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.Log.Warn(System.String)">
+            <summary>输出 Warn 级日志。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.Log.Error(System.String,System.Exception)">
+            <summary>输出 Error 级日志（可带异常）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.PerfCounters">
+            <summary>
+            性能计数器：统计写入与调度关键指标（写次数/失败次数/调度 Tick/Flush 数与耗时）。
+            </summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfCounters.CoreWrites">
+            <summary>核心写入次数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfCounters.CoreWriteFailures">
+            <summary>核心写入失败次数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfCounters.SchedulerTicks">
+            <summary>调度器 Tick 次数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfCounters.SchedulerTickTotalMs">
+            <summary>调度器 Tick 累计耗时（毫秒）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfCounters.SchedulerFlushes">
+            <summary>调度器 Flush 次数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfCounters.SchedulerFlushTotalMs">
+            <summary>调度器 Flush 累计耗时（毫秒）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.PerfCounters.ResetWindow">
+            <summary>清零当前窗口内的计数与耗时。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.PerfFlushMetrics">
+            <summary>
+            刷新指标：记录每个物品写入耗时、累计 JSON 字节数等，用于诊断调优。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.PerfFlushMetrics.Reset">
+            <summary>重置统计。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.PerfFlushMetrics.RecordItem(System.Int32,System.Double)">
+            <summary>记录单个物品写入样本。</summary>
+            <param name="jsonBytes">嵌入 JSON 的字节数。</param>
+            <param name="ms">写入耗时（毫秒）。</param>
+        </member>
+        <member name="M:ItemModKit.Core.PerfFlushMetrics.RecordFlushOp">
+            <summary>记录一次 Flush 操作发生。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.PerfFlushMetrics.Snapshot">
+            <summary>生成当前统计快照。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfFlushMetrics.PerfSnapshot.Items">
+            <summary>记录的物品样本数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfFlushMetrics.PerfSnapshot.JsonBytes">
+            <summary>累计 JSON 字节数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfFlushMetrics.PerfSnapshot.FlushOps">
+            <summary>累计 Flush 操作数。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfFlushMetrics.PerfSnapshot.LastItemMs">
+            <summary>最近一次物品写入耗时。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfFlushMetrics.PerfSnapshot.MaxItemMs">
+            <summary>单个物品写入最大耗时。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.PerfFlushMetrics.PerfSnapshot.AvgItemMs">
+            <summary>平均每个物品写入耗时。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.Persistence">
+            <summary>
+            持久化辅助：从快照构造最小化元数据。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.Persistence.BuildMetaFromSnapshot(ItemModKit.Core.ItemSnapshot)">
+            <summary>根据快照构造基本元数据。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemMeta">
+            <summary>
+            物品元数据：保存核心属性、嵌入扩展 JSON 与校验。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.MetaVersion">
+            <summary>元数据版本（用于迁移）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.FormatVersion">
+            <summary>扩展 JSON 模式版本。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.NameKey">
+            <summary>名称键（优先使用 Raw）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.RemarkKey">
+            <summary>描述键（可选）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.TypeId">
+            <summary>类型 ID。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.Quality">
+            <summary>品质。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.DisplayQuality">
+            <summary>显示品质。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.Value">
+            <summary>价值。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.OwnerId">
+            <summary>所属者 ID（哪个 Mod 拥有该元数据）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.EmbeddedJson">
+            <summary>嵌入的扩展 JSON 或 Base64。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemMeta.ExtraChecksum">
+            <summary>扩展块校验和。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.PersistenceConfig">
+            <summary>
+            持久化配置：控制延迟、节流、编码与嵌入等策略。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.DelaySeconds">
+            <summary>最后一次变更到写入的延迟秒数。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.MaxDelaySeconds">
+            <summary>自首次变更起的最大延迟秒数（超出强制写入）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.MaxPerTick">
+            <summary>每帧最大写入条目。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.UseBase64Encoding">
+            <summary>是否对嵌入 JSON 使用 Base64 编码。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.EnableChecksum">
+            <summary>是否为嵌入 JSON 写入校验和。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.MaxBlobBytes">
+            <summary>单个物品嵌入 JSON 最大字节数。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.WriteRedundantVariables">
+            <summary>是否冗余写入变量到引擎变量集合。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.ReapplyAfterWrite">
+            <summary>写入后是否重新应用修饰器（较重）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.EmbedExtra">
+            <summary>是否嵌入扩展块（变量/标签/修饰/槽位等）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceConfig.ExplicitOnly">
+            <summary>是否仅接受显式的 MarkDirty/Flush 调用。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.PersistenceSettings">
+            <summary>
+            持久化设置入口：获取当前配置或通过回调修改。
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceSettings.Current">
+            <summary>当前配置实例。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.PersistenceSettings.Configure(System.Action{ItemModKit.Core.PersistenceConfig})">
+            <summary>通过回调修改当前配置。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.DirtyKind">
+            <summary>
+            脏数据类别（位标志，可组合）。
+            </summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.None">
+            <summary>无。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Core">
+            <summary>核心字段。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Variables">
+            <summary>变量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Constants">
+            <summary>常量。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Tags">
+            <summary>标签。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Modifiers">
+            <summary>修饰。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Stats">
+            <summary>统计。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Effects">
+            <summary>效果。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.Slots">
+            <summary>槽位。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.DirtyKind.All">
+            <summary>全部。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IPersistenceScheduler">
+            <summary>
+            持久化调度接口：管理入队、刷新与按帧节流。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.IPersistenceScheduler.EnqueueDirty(System.Object,ItemModKit.Core.DirtyKind,System.Boolean)">
+            <summary>入队标记某物品为脏。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IPersistenceScheduler.Flush(System.Object,System.Boolean)">
+            <summary>强制刷新单个物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IPersistenceScheduler.FlushAll(System.String)">
+            <summary>立即刷新所有物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IPersistenceScheduler.Tick(System.Nullable{System.Single})">
+            <summary>按节流策略处理刷新。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.IPersistenceScheduler.DelaySeconds">
+            <summary>延迟窗口（最后一次变更后等待时间）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.IPersistenceScheduler.MaxPerTick">
+            <summary>每帧最大刷新数。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.IPersistenceScheduler.PendingCount">
+            <summary>当前队列长度。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.IPersistenceScheduler.ProcessedTotal">
+            <summary>累计处理总数。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.PersistenceScheduler">
+            <summary>
+            持久化调度器：收集物品“脏”变更，按延迟与节流策略批量写回。
+            - EnqueueDirty：入队标记（Immediate 可跳过延迟）
+            - Tick：按时间窗口与 MaxPerTick 控制刷新节奏
+            - Flush/FlushAll：立即刷新单个或全部
+            - RequestFlushAllDeferred：将所有标记置为立即，由 Tick 分帧处理
+            额外：记录刷新耗时与 JSON 体积，支持嵌入扩展块的校验和与 Base64 编码
+            </summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceScheduler.DelaySeconds">
+            <summary>同一物品最后一次变更后的延迟秒数，超过则触发写回。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceScheduler.MaxPerTick">
+            <summary>每次 Tick 最多处理的物品数。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceScheduler.MaxDelaySeconds">
+            <summary>自第一次标脏起的最大延迟，超过则强制写回。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceScheduler.PendingCount">
+            <summary>当前队列中的物品数量。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.PersistenceScheduler.ProcessedTotal">
+            <summary>启动以来累计处理的物品数量。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.PersistenceScheduler.EnqueueDirty(System.Object,ItemModKit.Core.DirtyKind,System.Boolean)">
+            <summary>
+            入队一个“脏”标记；若同一物品已在队列中则合并 DirtyKind 并刷新时间戳。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.PersistenceScheduler.Flush(System.Object,System.Boolean)">
+            <summary>立即刷新某个物品（如果在队列中）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.PersistenceScheduler.FlushAll(System.String)">
+            <summary>立即刷新所有队列中的物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.PersistenceScheduler.RequestFlushAllDeferred">
+            <summary>
+            将所有入队项标记为 Immediate，后续由 Tick 在每帧中分批处理，避免一次性卡顿。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.PersistenceScheduler.Tick(System.Nullable{System.Single})">
+            <summary>
+            每帧调用：根据时间窗口与 Immediate 标记，按 MaxPerTick 的上限处理刷新。
+            </summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemQueryExtensions">
+            <summary>
+            查询扩展：为 <see cref="T:ItemModKit.Core.IItemQuery"/> 提供空安全的包装与集合遍历辅助方法。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemQueryExtensions.Backpack(ItemModKit.Core.IItemQuery,System.Int32,System.Object@)">
+            <summary>从背包按 1-based 索引获取物品（空安全）。</summary>
+            <param name="q">查询接口。</param>
+            <param name="index1Based">1-based 索引。</param>
+            <param name="item">输出物品。</param>
+            <returns>是否成功。</returns>
+        </member>
+        <member name="M:ItemModKit.Core.ItemQueryExtensions.Storage(ItemModKit.Core.IItemQuery,System.Int32,System.Object@)">
+            <summary>从仓库按 1-based 索引获取物品（空安全）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemQueryExtensions.AnyInventory(ItemModKit.Core.IItemQuery,System.Int32,System.Object@)">
+            <summary>从任意背包按 1-based 索引获取物品（空安全）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemQueryExtensions.WeaponSlot(ItemModKit.Core.IItemQuery,System.Int32,System.Object@)">
+            <summary>从武器槽按 1-based 索引获取物品（空安全）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemQueryExtensions.All(ItemModKit.Core.IItemQuery)">
+            <summary>枚举所有背包中的物品集合（空安全）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.CoreFields">
+            <summary>核心字段快照。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFields.Name">
+            <summary>显示名称（已本地化）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFields.RawName">
+            <summary>原始名称（未本地化）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFields.TypeId">
+            <summary>类型 ID。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFields.Quality">
+            <summary>品质。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFields.DisplayQuality">
+            <summary>显示用品质。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFields.Value">
+            <summary>价值。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.CoreFieldChanges">
+            <summary>核心字段修改描述（null 表示忽略该字段）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFieldChanges.Name">
+            <summary>显示名称（null 不修改）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFieldChanges.RawName">
+            <summary>原始名称（null 不修改）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFieldChanges.TypeId">
+            <summary>类型 ID（null 不修改）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFieldChanges.Quality">
+            <summary>品质（null 不修改）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFieldChanges.DisplayQuality">
+            <summary>显示品质（null 不修改）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.CoreFieldChanges.Value">
+            <summary>价值（null 不修改）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.StackInfo">
+            <summary>堆叠信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.StackInfo.Max">
+            <summary>最大堆叠数。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.StackInfo.Count">
+            <summary>当前数量。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.StackInfo.Stackable">
+            <summary>是否可堆叠（Max &gt; 1）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.DurabilityInfo">
+            <summary>耐久信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.DurabilityInfo.Max">
+            <summary>最大耐久。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.DurabilityInfo.Current">
+            <summary>当前耐久。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.DurabilityInfo.Loss">
+            <summary>耐久损耗。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.DurabilityInfo.NeedInspection">
+            <summary>是否需要检查。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.InspectionInfo">
+            <summary>检查状态信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.InspectionInfo.Inspected">
+            <summary>是否已检查。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.InspectionInfo.Inspecting">
+            <summary>是否正在检查。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.InspectionInfo.NeedInspection">
+            <summary>是否需要检查。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.OrderingInfo">
+            <summary>排序信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.OrderingInfo.Order">
+            <summary>排序序号。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.WeightInfo">
+            <summary>重量信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.WeightInfo.UnitSelfWeight">
+            <summary>单件自重。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.WeightInfo.SelfWeight">
+            <summary>自身重量。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.WeightInfo.TotalWeight">
+            <summary>总重量（含子树）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.WeightInfo.BaseWeight">
+            <summary>基础重量（可手工设定）。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.RelationInfo">
+            <summary>关系信息（父物品/所属状态）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RelationInfo.ParentItem">
+            <summary>父物品实例。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RelationInfo.InInventory">
+            <summary>是否在背包中。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.RelationInfo.InSlot">
+            <summary>是否在槽位中。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.FlagsInfo">
+            <summary>标志信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.FlagsInfo.Sticky">
+            <summary>是否粘性（不随动）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.FlagsInfo.CanBeSold">
+            <summary>是否可出售。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.FlagsInfo.CanDrop">
+            <summary>是否可丢弃。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.FlagsInfo.Repairable">
+            <summary>是否可修理。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.FlagsInfo.IsCharacter">
+            <summary>是否角色物品。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.StatValueEntry">
+            <summary>单个统计值条目。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.StatValueEntry.Key">
+            <summary>统计键。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.StatValueEntry.Value">
+            <summary>统计值。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.StatsSnapshot">
+            <summary>统计快照。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.StatsSnapshot.Entries">
+            <summary>统计条目集合。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.InventorySnapshot">
+            <summary>子背包快照。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.InventorySnapshot.Capacity">
+            <summary>容量。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.InventorySnapshot.Count">
+            <summary>当前数量。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.EffectEntry">
+            <summary>效果条目（基础）。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectEntry.Name">
+            <summary>效果类型名。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectEntry.Enabled">
+            <summary>是否启用。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ItemGraphicSnapshot">
+            <summary>图形快照。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemGraphicSnapshot.HasGraphic">
+            <summary>是否存在图形。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ItemGraphicSnapshot.GraphicName">
+            <summary>图形名称。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.AgentUtilitiesSnapshot">
+            <summary>Agent 工具集快照。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.AgentUtilitiesSnapshot.HasActiveAgent">
+            <summary>是否有激活的 Agent。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.AgentUtilitiesSnapshot.ActiveAgentName">
+            <summary>激活的 Agent 名称。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.ModifierDescriptionInfo">
+            <summary>修饰描述信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ModifierDescriptionInfo.Key">
+            <summary>键。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ModifierDescriptionInfo.Type">
+            <summary>类型。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ModifierDescriptionInfo.Value">
+            <summary>数值。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ModifierDescriptionInfo.Order">
+            <summary>排序。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ModifierDescriptionInfo.Display">
+            <summary>显示与否。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.ModifierDescriptionInfo.Target">
+            <summary>目标标识。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.EffectInfo">
+            <summary>效果详细信息。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectInfo.Name">
+            <summary>名称。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectInfo.Enabled">
+            <summary>是否启用。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectInfo.Display">
+            <summary>是否在 UI 显示。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectInfo.Description">
+            <summary>描述。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectInfo.TriggerTypes">
+            <summary>Trigger 组件类型名列表。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectInfo.ActionTypes">
+            <summary>Action 组件类型名列表。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectInfo.FilterTypes">
+            <summary>Filter 组件类型名列表。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.EffectCreateOptions">
+            <summary>效果创建选项。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectCreateOptions.Name">
+            <summary>可选：新建效果对象名称。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectCreateOptions.Enabled">
+            <summary>可选：是否启用。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectCreateOptions.Display">
+            <summary>可选：是否显示。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.EffectCreateOptions.Description">
+            <summary>可选：描述。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.SlotCreateOptions">
+            <summary>插槽创建选项。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotCreateOptions.Key">
+            <summary>槽位键。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotCreateOptions.DisplayName">
+            <summary>显示名。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotCreateOptions.SlotIcon">
+            <summary>图标/精灵。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotCreateOptions.RequireTags">
+            <summary>需要包含标签。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotCreateOptions.ExcludeTags">
+            <summary>需要排除标签。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotCreateOptions.ForbidItemsWithSameID">
+            <summary>是否禁止同 ID 物品。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.SlotUpdateOptions">
+            <summary>插槽更新选项。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotUpdateOptions.DisplayName">
+            <summary>显示名。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotUpdateOptions.SlotIcon">
+            <summary>图标/精灵。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotUpdateOptions.RequireTags">
+            <summary>需要包含标签。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotUpdateOptions.ExcludeTags">
+            <summary>需要排除标签。</summary>
+        </member>
+        <member name="P:ItemModKit.Core.SlotUpdateOptions.ForbidItemsWithSameID">
+            <summary>是否禁止同 ID 物品。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IReadService">
+            <summary>读取服务：统一读取物品核心字段、集合与扩展信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadCoreFields(System.Object)">
+            <summary>读取核心字段快照。</summary>
+            <param name="item">目标物品。</param>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadVariables(System.Object)">
+            <summary>读取变量集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadConstants(System.Object)">
+            <summary>读取常量集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadModifiers(System.Object)">
+            <summary>读取修饰集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadTags(System.Object)">
+            <summary>读取标签集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadSlots(System.Object)">
+            <summary>读取插槽集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadStackInfo(System.Object)">
+            <summary>读取堆叠信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadDurabilityInfo(System.Object)">
+            <summary>读取耐久信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadInspectionInfo(System.Object)">
+            <summary>读取检查状态信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadOrderingInfo(System.Object)">
+            <summary>读取排序信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadWeightInfo(System.Object)">
+            <summary>读取重量信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadRelations(System.Object)">
+            <summary>读取关系信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadFlags(System.Object)">
+            <summary>读取标志信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadSoundKey(System.Object)">
+            <summary>读取音效键。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadStats(System.Object)">
+            <summary>读取统计快照。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadChildInventoryInfo(System.Object)">
+            <summary>读取子背包信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryEnumerateChildInventoryItems(System.Object)">
+            <summary>枚举子背包物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadEffects(System.Object)">
+            <summary>读取基础效果条目。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadItemGraphic(System.Object)">
+            <summary>读取图形快照。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadAgentUtilities(System.Object)">
+            <summary>读取 Agent 工具集快照。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadEffectsDetailed(System.Object)">
+            <summary>读取详细效果信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.TryReadModifierDescriptions(System.Object)">
+            <summary>读取修饰描述集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IReadService.Snapshot(System.Object)">
+            <summary>捕获完整快照。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IWriteService">
+            <summary>写入服务：统一修改核心字段、集合与扩展信息。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryWriteCoreFields(System.Object,ItemModKit.Core.CoreFieldChanges)">
+            <summary>写入核心字段集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryWriteVariables(System.Object,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Boolean)">
+            <summary>写入变量集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryWriteConstants(System.Object,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Boolean)">
+            <summary>写入常量集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryWriteTags(System.Object,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>写入标签集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetStackCount(System.Object,System.Int32)">
+            <summary>设置堆叠数量。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetMaxStack(System.Object,System.Int32)">
+            <summary>设置最大堆叠数。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetDurability(System.Object,System.Single)">
+            <summary>设置当前耐久。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetMaxDurability(System.Object,System.Single)">
+            <summary>设置最大耐久。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetDurabilityLoss(System.Object,System.Single)">
+            <summary>设置耐久损耗。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetInspected(System.Object,System.Boolean)">
+            <summary>设置已检查状态。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetInspecting(System.Object,System.Boolean)">
+            <summary>设置检查中状态。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetOrder(System.Object,System.Int32)">
+            <summary>设置排序序号。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetSoundKey(System.Object,System.String)">
+            <summary>设置音效键。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetWeight(System.Object,System.Single)">
+            <summary>设置基础重量。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetIcon(System.Object,System.Object)">
+            <summary>设置图标。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryAddToChildInventory(System.Object,System.Object,System.Nullable{System.Int32},System.Boolean)">
+            <summary>添加到子背包。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryRemoveFromChildInventory(System.Object,System.Object)">
+            <summary>从子背包移除。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryMoveInChildInventory(System.Object,System.Int32,System.Int32)">
+            <summary>在子背包移动位置。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryClearChildInventory(System.Object)">
+            <summary>清空子背包。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryAddModifier(System.Object,System.String,System.Single,System.Boolean,System.String,System.Object)">
+            <summary>添加修饰器。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryRemoveAllModifiersFromSource(System.Object,System.Object)">
+            <summary>移除来源修饰器。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryAddModifierDescription(System.Object,System.String,System.String,System.Single,System.Nullable{System.Boolean},System.Nullable{System.Int32},System.String)">
+            <summary>添加修饰描述项。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryRemoveModifierDescription(System.Object,System.String)">
+            <summary>移除修饰描述项。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetModifierDescriptionValue(System.Object,System.String,System.Single)">
+            <summary>设置修饰描述值。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetModifierDescriptionType(System.Object,System.String,System.String)">
+            <summary>设置修饰描述类型。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetModifierDescriptionOrder(System.Object,System.String,System.Int32)">
+            <summary>设置修饰描述顺序。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetModifierDescriptionDisplay(System.Object,System.String,System.Boolean)">
+            <summary>设置修饰描述显示。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryClearModifierDescriptions(System.Object)">
+            <summary>清空修饰描述集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryReapplyModifiers(System.Object)">
+            <summary>重新应用修饰。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySanitizeModifierDescriptions(System.Object)">
+            <summary>清理无效修饰描述。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryAddEffect(System.Object,System.String,ItemModKit.Core.EffectCreateOptions)">
+            <summary>添加效果组件。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryAddEffect(System.Object,System.String)">
+            <summary>添加效果组件（简化）。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryRemoveEffect(System.Object,System.Int32)">
+            <summary>移除指定索引效果。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryEnableEffect(System.Object,System.Int32,System.Boolean)">
+            <summary>启用/禁用效果。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetEffectProperty(System.Object,System.Int32,System.String,System.Object)">
+            <summary>设置效果属性。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryAddEffectComponent(System.Object,System.Int32,System.String,System.String)">
+            <summary>添加效果子组件。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryRemoveEffectComponent(System.Object,System.Int32,System.String,System.Int32)">
+            <summary>移除效果子组件。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetEffectComponentProperty(System.Object,System.Int32,System.String,System.Int32,System.String,System.Object)">
+            <summary>设置效果子组件属性。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryPlugIntoSlot(System.Object,System.String,System.Object)">
+            <summary>插入到槽位。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryUnplugFromSlot(System.Object,System.String)">
+            <summary>从槽位拔出。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryMoveBetweenSlots(System.Object,System.String,System.String)">
+            <summary>移动槽位物品。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryAddSlot(System.Object,ItemModKit.Core.SlotCreateOptions)">
+            <summary>添加槽位。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryRemoveSlot(System.Object,System.String)">
+            <summary>移除槽位。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetStatValue(System.Object,System.String,System.Single)">
+            <summary>设置统计值。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryEnsureStat(System.Object,System.String,System.Nullable{System.Single})">
+            <summary>确保统计存在。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TryRemoveStat(System.Object,System.String)">
+            <summary>移除统计。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetVariableMeta(System.Object,System.String,System.Nullable{System.Boolean},System.String,System.String)">
+            <summary>设置变量元数据。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.TrySetConstantMeta(System.Object,System.String,System.Nullable{System.Boolean},System.String,System.String)">
+            <summary>设置常量元数据。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.BeginTransaction(System.Object)">
+            <summary>开始批事务。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.CommitTransaction(System.Object,System.String)">
+            <summary>提交批事务。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IWriteService.RollbackTransaction(System.Object,System.String)">
+            <summary>回滚批事务。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.Rebirth">
+            <summary>
+            重生辅助：统一包装 IRebirthService.ReplaceRebirth 调用，处理入参校验与异常捕获。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.Rebirth.Replace(ItemModKit.Core.IRebirthService,System.Object,ItemModKit.Core.ItemMeta,System.Boolean)">
+            <summary>
+            用指定元数据替换旧物品，支持 keepLocation 控制是否保持原位置。
+            </summary>
+            <param name="svc">重生服务实现。</param>
+            <param name="oldItem">旧物品。</param>
+            <param name="meta">元数据。</param>
+            <param name="keepLocation">是否保持位置。</param>
+            <returns>结果，包含新物品。</returns>
+        </member>
+        <member name="T:ItemModKit.Core.ItemSnapshot">
+            <summary>
+            物品快照：捕获核心字段、变量、修饰、插槽与标签用于持久化或诊断。
+            </summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.Name">
+            <summary>显示名称。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.NameRaw">
+            <summary>原始名称。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.TypeId">
+            <summary>类型 ID。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.Quality">
+            <summary>品质。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.DisplayQuality">
+            <summary>显示品质。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.Value">
+            <summary>价值。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.Tags">
+            <summary>标签集合。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.Variables">
+            <summary>变量集合。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.Modifiers">
+            <summary>修饰集合。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.ItemSnapshot.Slots">
+            <summary>插槽集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemSnapshot.Capture(ItemModKit.Core.IItemAdapter,System.Object)">
+            <summary>
+            捕获当前物品的核心状态（不含 Effects）。
+            </summary>
+            <param name="adapter">物品适配器。</param>
+            <param name="item">目标物品。</param>
+            <returns>快照实例。</returns>
+        </member>
+        <member name="T:ItemModKit.Core.ItemSnapshotExtensions">
+            <summary>
+            快照扩展：辅助格式化输出内容便于诊断。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.ItemSnapshotExtensions.ToPrettyString(ItemModKit.Core.ItemSnapshot)">
+            <summary>格式化输出快照内容，便于诊断。</summary>
+            <param name="s">目标快照。</param>
+            <returns>多行字符串。</returns>
+        </member>
+        <member name="T:ItemModKit.Core.SnapshotHelper">
+            <summary>
+            Stage 1 contract helper: core snapshot / rollback utilities without altering public service interfaces.
+            Provides minimal wrappers so UI layers do not duplicate reflection logic.
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Core.SnapshotHelper.CaptureCore(ItemModKit.Core.IReadService,System.Object)">
+            <summary>Capture current core fields via IReadService (Name/RawName/TypeId/Quality/DisplayQuality/Value).</summary>
+        </member>
+        <member name="M:ItemModKit.Core.SnapshotHelper.RollbackCore(ItemModKit.Core.IWriteService,System.Object,ItemModKit.Core.CoreFields)">
+            <summary>Rollback core fields to a previous snapshot using IWriteService (transaction-safe if caller wraps).</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IMKCapabilities">
+            <summary>IMK 能力标记（按位组合）。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.None">
+            <summary>无。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.ItemAdapter">
+            <summary>物品适配器。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.InventoryAdapter">
+            <summary>背包适配器。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.SlotAdapter">
+            <summary>槽位适配器。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.Query">
+            <summary>查询。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.Persistence">
+            <summary>持久化。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.Rebirth">
+            <summary>重生。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.UISelection">
+            <summary>UI 选中。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.InventoryEvents">
+            <summary>背包事件。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.WorldDrops">
+            <summary>世界掉落事件。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.Ownership">
+            <summary>归属与所有权。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.ExternalEventPublishing">
+            <summary>外部事件发布。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.Mutex">
+            <summary>互斥。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.Logging">
+            <summary>日志。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKCapabilities.RichResults">
+            <summary>统一结果类型。</summary>
+        </member>
+        <member name="T:ItemModKit.Core.IMKVersion">
+            <summary>IMK 版本与能力。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKVersion.Version">
+            <summary>当前版本。</summary>
+        </member>
+        <member name="F:ItemModKit.Core.IMKVersion.Capabilities">
+            <summary>当前能力集合。</summary>
+        </member>
+        <member name="M:ItemModKit.Core.IMKVersion.Require(System.Version,System.String@)">
+            <summary>确保满足最低版本要求，不满足时输出错误。</summary>
+        </member>
+        <member name="T:ItemModKit.Diagnostics.IMKPerf">
+            <summary>
+            轻量性能探针：提供 Scope 包裹与日志输出，便于在开发期采样热点。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Diagnostics.IMKPerf.Enable(System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Double})">
+            <summary>
+            启用/禁用采样并可调整采样率与最小阈值。
+            </summary>
+            <param name="enabled">是否启用。</param>
+            <param name="sample">采样间隔（每 N 次记录一次）。</param>
+            <param name="minMs">最小记录阈值（毫秒）。</param>
+        </member>
+        <member name="M:ItemModKit.Diagnostics.IMKPerf.Scope(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            创建一个性能作用域，满足采样与阈值条件时在 Dispose 时输出日志。
+            </summary>
+            <param name="name">区段名称。</param>
+            <param name="area">区域/模块名。</param>
+            <param name="member">调用成员（自动填写）。</param>
+            <param name="file">调用文件（自动填写）。</param>
+            <param name="line">调用行号（自动填写）。</param>
+        </member>
+        <member name="T:ItemModKit.Diagnostics.IMKPerf.ScopeToken">
+            <summary>
+            性能作用域令牌：在 Dispose 时根据阈值输出 JSON 行与可读行。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Diagnostics.IMKPerf.ScopeToken.#ctor(System.String,System.String,System.String,System.String,System.Int32,System.Double)">
+            <summary>
+            构造作用域令牌（内部使用）。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.Diagnostics.IMKPerf.ScopeToken.Dispose">
+            <summary>结束作用域并按需输出日志。</summary>
+        </member>
+        <member name="T:ItemModKit.ModBehaviour">
+            <summary>
+            IMK 入口脚本。加载后负责：初始化事件桥、生命周期落盘。
+            核心不再尝试启动任何 Samples 侧的 UI/工具。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.ModBehaviour.Awake">
+            <summary>
+            Unity Awake：初始化事件桥。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.ModBehaviour.OnDestroy">
+            <summary>
+            Unity OnDestroy：场景卸载时落盘并释放事件桥。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.ModBehaviour.OnApplicationQuit">
+            <summary>
+            程序退出前的最终落盘。
+            </summary>
+        </member>
+        <member name="M:ItemModKit.ModBehaviour.Update">
+            <summary>
+            每帧更新：轻量轮询事件源；大部分逻辑依靠事件桥而无需频繁扫描。
+            每 300 帧对 UI 选中物品发一次激活提示，避免上下文超时。
+            </summary>
+        </member>
+    </members>
+</doc>

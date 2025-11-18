@@ -1,0 +1,12 @@
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\bin\Debug\netstandard2.1\IMK.SettingsUI.deps.json
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\bin\Debug\netstandard2.1\IMK.SettingsUI.dll
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\bin\Debug\netstandard2.1\IMK.SettingsUI.pdb
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\bin\Debug\netstandard2.1\ItemModKit.dll
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\bin\Debug\netstandard2.1\ItemModKit.pdb
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\bin\Debug\netstandard2.1\ItemModKit.xml
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.Sett.F096AACB.Up2Date
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.dll
+C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\obj\Debug\netstandard2.1\IMK.SettingsUI.pdb
