@@ -105,8 +105,5 @@ IMK.SettingsUI.App.SettingsShell.Toggle();
 - 多窗口 / 模态对话框体系
 - DirtyIndicator 扩展到表格单元格级别
 
-## 贡献 / 许可
-当前尚未添加 License (发布前请补充)。欢迎提交 PR 改进文档与示例。
-
 ---
 在自己的模组中建议建立一个初始化入口 (如 ModBehaviour.Awake) 注册 Provider；复杂功能可分拆多个 Provider。
