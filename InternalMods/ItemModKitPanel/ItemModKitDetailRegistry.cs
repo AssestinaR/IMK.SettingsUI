@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using IMK.SettingsUI.InternalMods.ItemModKitPanel;
-using IMK.SettingsUI.Table;
 
 namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
 {
@@ -20,7 +18,7 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
             public Func<object> Get;
             public Action<object> Set;
         }
-        private static readonly Dictionary<string, Func<int,List<FieldDescriptor>>> _builders = new Dictionary<string, Func<int,List<FieldDescriptor>>>(StringComparer.OrdinalIgnoreCase);
+        private static readonly Dictionary<string, Func<int, List<FieldDescriptor>>> _builders = new Dictionary<string, Func<int, List<FieldDescriptor>>>(StringComparer.OrdinalIgnoreCase);
         static ItemModKitDetailRegistry()
         {
             // variables (vars) use dataset adapter columns; fallback handles it, so no custom builder yet
@@ -31,7 +29,7 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
             Register("modifiers", index => BuildFromActive("modifiers", index));
             Register("slots", index => BuildFromActive("slots", index));
         }
-        internal static void Register(string kind, Func<int,List<FieldDescriptor>> builder){ if(string.IsNullOrEmpty(kind)||builder==null) return; _builders[kind]=builder; }
+        internal static void Register(string kind, Func<int, List<FieldDescriptor>> builder) { if (string.IsNullOrEmpty(kind) || builder == null) return; _builders[kind] = builder; }
         internal static List<FieldDescriptor> BuildDescriptors(string kind, int index)
         {
             if (_builders.TryGetValue(kind, out var b))
@@ -59,8 +57,8 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                     Options = col.Options,
                     Min = col.Min,
                     Max = col.Max,
-                    Get = ()=> adapter.Get(col.Id),
-                    Set = v=> { if(!col.ReadOnly) adapter.Set(col.Id, v); }
+                    Get = () => adapter.Get(col.Id),
+                    Set = v => { if (!col.ReadOnly) adapter.Set(col.Id, v); }
                 });
             }
             return list;

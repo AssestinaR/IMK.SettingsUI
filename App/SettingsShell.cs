@@ -44,7 +44,7 @@ namespace IMK.SettingsUI.App
             _rootGo.AddComponent<UnityEngine.UI.CanvasScaler>(); _rootGo.AddComponent<UnityEngine.UI.GraphicRaycaster>();
 
             _window = new GameObject("Window").AddComponent<RectTransform>(); _window.SetParent(_rootGo.transform, false);
-            _window.anchorMin = new Vector2(0f,1f); _window.anchorMax = new Vector2(0f,1f); _window.pivot = new Vector2(0f,1f);
+            _window.anchorMin = new Vector2(0f, 1f); _window.anchorMax = new Vector2(0f, 1f); _window.pivot = new Vector2(0f, 1f);
             _window.sizeDelta = new Vector2(Theme.ThemeMetrics.WindowWidth, Theme.ThemeMetrics.WindowHeight);
             var screenW = Screen.width; var screenH = Screen.height; var posX = (screenW - Theme.ThemeMetrics.WindowWidth) * 0.5f; var posY = -(screenH - Theme.ThemeMetrics.WindowHeight) * 0.5f; _window.anchoredPosition = new Vector2(posX, posY);
             var bg = _window.gameObject.AddComponent<UnityEngine.UI.Image>(); bg.color = Theme.ThemeColors.WindowBg;
@@ -54,42 +54,44 @@ namespace IMK.SettingsUI.App
             var topChild = _top.AddComponent<Layout.DockPanelChild>(); topChild.Side = Layout.DockSide.Top; topChild.Size = 36f;
             var topRt = _top.AddComponent<RectTransform>(); var topImg = _top.AddComponent<UnityEngine.UI.Image>(); topImg.color = Theme.ThemeColors.TopBarBg;
             // Right-aligned Apply button on the top bar
-            var applyBtnGo = new GameObject("ApplyButton"); applyBtnGo.transform.SetParent(_top.transform,false);
-            var applyRt = applyBtnGo.AddComponent<RectTransform>(); applyRt.anchorMin = new Vector2(1f,0.5f); applyRt.anchorMax = new Vector2(1f,0.5f); applyRt.pivot = new Vector2(1f,0.5f); applyRt.sizeDelta = new Vector2(90f,24f); applyRt.anchoredPosition = new Vector2(-8f,0f);
+            var applyBtnGo = new GameObject("ApplyButton"); applyBtnGo.transform.SetParent(_top.transform, false);
+            var applyRt = applyBtnGo.AddComponent<RectTransform>(); applyRt.anchorMin = new Vector2(1f, 0.5f); applyRt.anchorMax = new Vector2(1f, 0.5f); applyRt.pivot = new Vector2(1f, 0.5f); applyRt.sizeDelta = new Vector2(90f, 24f); applyRt.anchoredPosition = new Vector2(-8f, 0f);
             var applyImg = applyBtnGo.AddComponent<UnityEngine.UI.Image>(); applyImg.color = Theme.ThemeColors.NavItem;
             var applyBtn = applyBtnGo.AddComponent<UnityEngine.UI.Button>(); var ac = applyBtn.colors; ac.highlightedColor = Theme.ThemeColors.NavItemHover; ac.pressedColor = Theme.ThemeColors.Accent; applyBtn.colors = ac;
-            var applyTxt = new GameObject("Text").AddComponent<UnityEngine.UI.Text>(); applyTxt.transform.SetParent(applyBtnGo.transform,false); applyTxt.font = Theme.ThemeColors.DefaultFont; applyTxt.color = Color.white; applyTxt.alignment = TextAnchor.MiddleCenter; applyTxt.text = "Apply"; var atr = applyTxt.GetComponent<RectTransform>(); atr.anchorMin = Vector2.zero; atr.anchorMax = Vector2.one; atr.offsetMin = Vector2.zero; atr.offsetMax = Vector2.zero;
-            applyBtn.onClick.AddListener(()=>{
+            var applyTxt = new GameObject("Text").AddComponent<UnityEngine.UI.Text>(); applyTxt.transform.SetParent(applyBtnGo.transform, false); applyTxt.font = Theme.ThemeColors.DefaultFont; applyTxt.color = Color.white; applyTxt.alignment = TextAnchor.MiddleCenter; applyTxt.text = "Apply"; var atr = applyTxt.GetComponent<RectTransform>(); atr.anchorMin = Vector2.zero; atr.anchorMax = Vector2.one; atr.offsetMin = Vector2.zero; atr.offsetMax = Vector2.zero;
+            applyBtn.onClick.AddListener(() =>
+            {
                 var presenterRef = GameObject.Find("IMK.SettingsUI.Canvas/Window/Content/ContentInset")?.GetComponent<Navigation.ContentPresenter>();
                 if (presenterRef != null)
                 {
                     var models = presenterRef.GetModels();
                     var changed = IMK.SettingsUI.Settings.SettingsApplyService.Apply(models);
-                    if (changed) { var imgApply = applyBtnGo.GetComponent<UnityEngine.UI.Image>(); if (imgApply!=null) imgApply.color = Theme.ThemeColors.NavItem; }
+                    if (changed) { var imgApply = applyBtnGo.GetComponent<UnityEngine.UI.Image>(); if (imgApply != null) imgApply.color = Theme.ThemeColors.NavItem; }
                 }
             });
             // dirty indicator coroutine
-            applyBtnGo.AddComponent<DirtyIndicator>().Init(applyBtnGo.GetComponent<UnityEngine.UI.Image>(), ()=>{
+            applyBtnGo.AddComponent<DirtyIndicator>().Init(applyBtnGo.GetComponent<UnityEngine.UI.Image>(), () =>
+            {
                 var presenterRef = GameObject.Find("IMK.SettingsUI.Canvas/Window/Content/ContentInset")?.GetComponent<Navigation.ContentPresenter>();
                 if (presenterRef == null) return false;
                 foreach (var m in presenterRef.GetModels())
                 {
-                    if (m is Cards.BoundSettingCardModel b && b.Pending!=null && !Equals(b.Pending, b.OriginalValue)) return true;
-                    if (m is Cards.SettingCardModel s && s.Pending!=null && !Equals(s.Pending, s.Initial)) return true;
-                    if (m is Cards.ListSettingCardModel ls && ls.PendingValues!=null)
+                    if (m is Cards.BoundSettingCardModel b && b.Pending != null && !Equals(b.Pending, b.OriginalValue)) return true;
+                    if (m is Cards.SettingCardModel s && s.Pending != null && !Equals(s.Pending, s.Initial)) return true;
+                    if (m is Cards.ListSettingCardModel ls && ls.PendingValues != null)
                     {
-                        if (ls.InitialValues==null || ls.PendingValues.Length!=ls.InitialValues.Length) return true;
-                        bool diff=false; for(int i=0;i<ls.PendingValues.Length;i++){ if (!System.String.Equals(ls.PendingValues[i], ls.InitialValues[i])) { diff=true; break; } }
+                        if (ls.InitialValues == null || ls.PendingValues.Length != ls.InitialValues.Length) return true;
+                        bool diff = false; for (int i = 0; i < ls.PendingValues.Length; i++) { if (!System.String.Equals(ls.PendingValues[i], ls.InitialValues[i])) { diff = true; break; } }
                         if (diff) return true;
                     }
-                    if (m is IMK.SettingsUI.Cards.ToggleSliderSettingCardModel ts && ts.Pending!=ts.Initial) return true;
+                    if (m is IMK.SettingsUI.Cards.ToggleSliderSettingCardModel ts && ts.Pending != ts.Initial) return true;
                 }
                 return false;
             });
             // Breadcrumb content area that leaves space for the right button
-            var bcHost = new GameObject("Content"); bcHost.transform.SetParent(_top.transform,false);
-            var bcRt = bcHost.AddComponent<RectTransform>(); bcRt.anchorMin = new Vector2(0f,0f); bcRt.anchorMax = new Vector2(1f,1f); bcRt.offsetMin = new Vector2(0f,0f); bcRt.offsetMax = new Vector2(-(applyRt.sizeDelta.x+16f),0f);
-            var bc = bcHost.AddComponent<Navigation.BreadcrumbBar>(); var list = new System.Collections.Generic.List<(string id,string title)>(); list.Add(("HOME","Home")); bc.SetSegments(list);
+            var bcHost = new GameObject("Content"); bcHost.transform.SetParent(_top.transform, false);
+            var bcRt = bcHost.AddComponent<RectTransform>(); bcRt.anchorMin = new Vector2(0f, 0f); bcRt.anchorMax = new Vector2(1f, 1f); bcRt.offsetMin = new Vector2(0f, 0f); bcRt.offsetMax = new Vector2(-(applyRt.sizeDelta.x + 16f), 0f);
+            var bc = bcHost.AddComponent<Navigation.BreadcrumbBar>(); var list = new System.Collections.Generic.List<(string id, string title)>(); list.Add(("HOME", "Home")); bc.SetSegments(list);
             var drag = _top.AddComponent<Navigation.DragWindowOnBar>(); drag.Window = _window;
 
             _left = new GameObject("Nav"); _left.transform.SetParent(_window, false);
@@ -98,9 +100,10 @@ namespace IMK.SettingsUI.App
             var navPane = _left.AddComponent<Navigation.NavPane>(); navPane.BuildFromProviders(Providers.ProviderRegistry.All);
 
             // subscribe to providers changed to refresh nav list
-            Providers.ProviderRegistry.ProvidersChanged += ()=>{
+            Providers.ProviderRegistry.ProvidersChanged += () =>
+            {
                 var np = _left != null ? _left.GetComponent<Navigation.NavPane>() : null;
-                if (np!=null) np.BuildFromProviders(Providers.ProviderRegistry.All);
+                if (np != null) np.BuildFromProviders(Providers.ProviderRegistry.All);
             };
 
             _content = new GameObject("Content"); _content.transform.SetParent(_window, false);
@@ -108,7 +111,7 @@ namespace IMK.SettingsUI.App
             var contentRT = _content.AddComponent<RectTransform>(); var contentBg = _content.AddComponent<UnityEngine.UI.Image>(); contentBg.color = Theme.ThemeColors.ContentBg;
             // create inset to apply padding for inner cards only
             var insetGo = new GameObject("ContentInset"); insetGo.transform.SetParent(_content.transform, false);
-            _contentInset = insetGo.AddComponent<RectTransform>(); _contentInset.anchorMin = Vector2.zero; _contentInset.anchorMax = Vector2.one; _contentInset.pivot = new Vector2(0.5f,0.5f);
+            _contentInset = insetGo.AddComponent<RectTransform>(); _contentInset.anchorMin = Vector2.zero; _contentInset.anchorMax = Vector2.one; _contentInset.pivot = new Vector2(0.5f, 0.5f);
             _contentInset.offsetMin = new Vector2(Theme.ThemeMetrics.ContentPaddingX, Theme.ThemeMetrics.ContentPaddingY);
             _contentInset.offsetMax = new Vector2(-Theme.ThemeMetrics.ContentPaddingX, -Theme.ThemeMetrics.ContentPaddingY);
             var presenter = insetGo.AddComponent<Navigation.ContentPresenter>();
@@ -132,6 +135,6 @@ namespace IMK.SettingsUI.App
         }
 
         /// <summary>Ensures initialized without changing current visibility. Does not force show.</summary>
-        public static void ShowHome(){ if (!_inited) Init(); }
+        public static void ShowHome() { if (!_inited) Init(); }
     }
 }

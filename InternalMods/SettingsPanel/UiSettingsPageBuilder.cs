@@ -10,27 +10,27 @@ namespace IMK.SettingsUI.InternalMods.SettingsPanel
         public static List<ICardModel> Build()
         {
             var list = new List<ICardModel>();
-            list.Add(new MarkdownCardModel{ Id="ui.window.header", Title="Window", Markdown="## Window\n´°¿Ú³ß´ç" });
-            list.Add(new SettingCardModel{ Id="ui.window.width", Title="Width", Desc="´°¿Ú¿í¶È", Initial=ThemeMetrics.WindowWidth, Pending=ThemeMetrics.WindowWidth });
-            list.Add(new SettingCardModel{ Id="ui.window.height", Title="Height", Desc="´°¿Ú¸ß¶È", Initial=ThemeMetrics.WindowHeight, Pending=ThemeMetrics.WindowHeight });
-            list.Add(new MarkdownCardModel{ Id="ui.nav.header", Title="Navigation", Markdown="## Navigation\nµ¼º½ÇøÓò" });
-            list.Add(new SettingCardModel{ Id="ui.nav.width", Title="Nav Width", Desc="µ¼º½¿í¶È", Initial=ThemeMetrics.NavWidth, Pending=ThemeMetrics.NavWidth });
-            list.Add(new SettingCardModel{ Id="ui.nav.itemHeight", Title="Item Height", Desc="°´Å¥¸ß¶È", Initial=ThemeMetrics.NavItemHeight, Pending=ThemeMetrics.NavItemHeight, Min=16, Max=72 });
-            list.Add(new SettingCardModel{ Id="ui.nav.itemSpacing", Title="Item Spacing", Desc="°´Å¥¼ä¾à", Initial=ThemeMetrics.NavItemSpacing, Pending=ThemeMetrics.NavItemSpacing, Min=0, Max=32 });
-            list.Add(new MarkdownCardModel{ Id="ui.content.header", Title="Content", Markdown="## Content\nÖ÷ÄÚÈİÇø±ß¾à" });
-            list.Add(new SettingCardModel{ Id="ui.content.padX", Title="Padding X", Desc="Ë®Æ½ÄÚ±ß¾à", Initial=ThemeMetrics.ContentPaddingX, Pending=ThemeMetrics.ContentPaddingX, Min=0, Max=64 });
-            list.Add(new SettingCardModel{ Id="ui.content.padY", Title="Padding Y", Desc="´¹Ö±ÄÚ±ß¾à", Initial=ThemeMetrics.ContentPaddingY, Pending=ThemeMetrics.ContentPaddingY, Min=0, Max=64 });
-            list.Add(new MarkdownCardModel{ Id="ui.card.header", Title="Cards", Markdown="## Cards\n¿¨Æ¬³ß´ç" });
-            list.Add(new SettingCardModel{ Id="ui.card.h.small", Title="Small Height", Desc="Ğ¡¿¨¸ß¶È", Initial=ThemeMetrics.CardHeightSmall, Pending=ThemeMetrics.CardHeightSmall });
-            list.Add(new SettingCardModel{ Id="ui.card.h.medium", Title="Medium Height", Desc="ÖĞ¿¨¸ß¶È", Initial=ThemeMetrics.CardHeightMedium, Pending=ThemeMetrics.CardHeightMedium });
-            list.Add(new SettingCardModel{ Id="ui.card.h.large", Title="Large Height", Desc="´ó¿¨¸ß¶È", Initial=ThemeMetrics.CardHeightLarge, Pending=ThemeMetrics.CardHeightLarge });
-            list.Add(new SettingCardModel{ Id="ui.card.h.markdown", Title="Markdown Height", Desc="Markdown ¿¨¸ß¶È", Initial=ThemeMetrics.CardHeightMarkdown, Pending=ThemeMetrics.CardHeightMarkdown });
-            list.Add(new SettingCardModel{ Id="ui.card.padX", Title="Card Pad X", Desc="¿¨Ë®Æ½ÄÚ±ß¾à", Initial=ThemeMetrics.CardPaddingX, Pending=ThemeMetrics.CardPaddingX });
-            list.Add(new SettingCardModel{ Id="ui.card.padY", Title="Card Pad Y", Desc="¿¨´¹Ö±ÄÚ±ß¾à", Initial=ThemeMetrics.CardPaddingY, Pending=ThemeMetrics.CardPaddingY });
-            list.Add(new SettingCardModel{ Id="ui.card.font.title", Title="Title Font", Desc="±êÌâ×ÖºÅ", Initial=ThemeMetrics.CardTitleFontSize, Pending=ThemeMetrics.CardTitleFontSize, Min=10, Max=32 });
-            list.Add(new SettingCardModel{ Id="ui.card.font.desc", Title="Desc Font", Desc="ËµÃ÷×ÖºÅ", Initial=ThemeMetrics.CardDescFontSize, Pending=ThemeMetrics.CardDescFontSize, Min=8, Max=28 });
-            list.Add(new SettingCardModel{ Id="ui.scroll.sensitivity", Title="Scroll Speed", Desc="¹ö¶¯ËÙ¶È", Initial=ThemeMetrics.ScrollSensitivity, Pending=ThemeMetrics.ScrollSensitivity, Min=0.2f, Max=10f });
-            list.Add(new SettingCardModel{ Id="ui.slider.fixedW", Title="Slider Width", Desc="»¬Ìõ¿í¶È", Initial=ThemeMetrics.SliderFixedWidth, Pending=ThemeMetrics.SliderFixedWidth, Min=100, Max=600 });
+            list.Add(new MarkdownCardModel { Id = "ui.window.header", Title = "Window", Markdown = "## Window\nçª—å£å°ºå¯¸" });
+            list.Add(new SettingCardModel { Id = "ui.window.width", Title = "Width", Desc = "çª—å£å®½åº¦", Initial = ThemeMetrics.WindowWidth, Pending = ThemeMetrics.WindowWidth });
+            list.Add(new SettingCardModel { Id = "ui.window.height", Title = "Height", Desc = "çª—å£é«˜åº¦", Initial = ThemeMetrics.WindowHeight, Pending = ThemeMetrics.WindowHeight });
+            list.Add(new MarkdownCardModel { Id = "ui.nav.header", Title = "Navigation", Markdown = "## Navigation\nå¯¼èˆªåŒºåŸŸ" });
+            list.Add(new SettingCardModel { Id = "ui.nav.width", Title = "Nav Width", Desc = "å¯¼èˆªå®½åº¦", Initial = ThemeMetrics.NavWidth, Pending = ThemeMetrics.NavWidth });
+            list.Add(new SettingCardModel { Id = "ui.nav.itemHeight", Title = "Item Height", Desc = "æŒ‰é’®é«˜åº¦", Initial = ThemeMetrics.NavItemHeight, Pending = ThemeMetrics.NavItemHeight, Min = 16, Max = 72 });
+            list.Add(new SettingCardModel { Id = "ui.nav.itemSpacing", Title = "Item Spacing", Desc = "æŒ‰é’®é—´è·", Initial = ThemeMetrics.NavItemSpacing, Pending = ThemeMetrics.NavItemSpacing, Min = 0, Max = 32 });
+            list.Add(new MarkdownCardModel { Id = "ui.content.header", Title = "Content", Markdown = "## Content\nä¸»å†…å®¹åŒºè¾¹è·" });
+            list.Add(new SettingCardModel { Id = "ui.content.padX", Title = "Padding X", Desc = "æ°´å¹³å†…è¾¹è·", Initial = ThemeMetrics.ContentPaddingX, Pending = ThemeMetrics.ContentPaddingX, Min = 0, Max = 64 });
+            list.Add(new SettingCardModel { Id = "ui.content.padY", Title = "Padding Y", Desc = "å‚ç›´å†…è¾¹è·", Initial = ThemeMetrics.ContentPaddingY, Pending = ThemeMetrics.ContentPaddingY, Min = 0, Max = 64 });
+            list.Add(new MarkdownCardModel { Id = "ui.card.header", Title = "Cards", Markdown = "## Cards\nå¡ç‰‡å°ºå¯¸" });
+            list.Add(new SettingCardModel { Id = "ui.card.h.small", Title = "Small Height", Desc = "å°å¡é«˜åº¦", Initial = ThemeMetrics.CardHeightSmall, Pending = ThemeMetrics.CardHeightSmall });
+            list.Add(new SettingCardModel { Id = "ui.card.h.medium", Title = "Medium Height", Desc = "ä¸­å¡é«˜åº¦", Initial = ThemeMetrics.CardHeightMedium, Pending = ThemeMetrics.CardHeightMedium });
+            list.Add(new SettingCardModel { Id = "ui.card.h.large", Title = "Large Height", Desc = "å¤§å¡é«˜åº¦", Initial = ThemeMetrics.CardHeightLarge, Pending = ThemeMetrics.CardHeightLarge });
+            list.Add(new SettingCardModel { Id = "ui.card.h.markdown", Title = "Markdown Height", Desc = "Markdown å¡é«˜åº¦", Initial = ThemeMetrics.CardHeightMarkdown, Pending = ThemeMetrics.CardHeightMarkdown });
+            list.Add(new SettingCardModel { Id = "ui.card.padX", Title = "Card Pad X", Desc = "å¡æ°´å¹³å†…è¾¹è·", Initial = ThemeMetrics.CardPaddingX, Pending = ThemeMetrics.CardPaddingX });
+            list.Add(new SettingCardModel { Id = "ui.card.padY", Title = "Card Pad Y", Desc = "å¡å‚ç›´å†…è¾¹è·", Initial = ThemeMetrics.CardPaddingY, Pending = ThemeMetrics.CardPaddingY });
+            list.Add(new SettingCardModel { Id = "ui.card.font.title", Title = "Title Font", Desc = "æ ‡é¢˜å­—å·", Initial = ThemeMetrics.CardTitleFontSize, Pending = ThemeMetrics.CardTitleFontSize, Min = 10, Max = 32 });
+            list.Add(new SettingCardModel { Id = "ui.card.font.desc", Title = "Desc Font", Desc = "è¯´æ˜å­—å·", Initial = ThemeMetrics.CardDescFontSize, Pending = ThemeMetrics.CardDescFontSize, Min = 8, Max = 28 });
+            list.Add(new SettingCardModel { Id = "ui.scroll.sensitivity", Title = "Scroll Speed", Desc = "æ»šåŠ¨é€Ÿåº¦", Initial = ThemeMetrics.ScrollSensitivity, Pending = ThemeMetrics.ScrollSensitivity, Min = 0.2f, Max = 10f });
+            list.Add(new SettingCardModel { Id = "ui.slider.fixedW", Title = "Slider Width", Desc = "æ»‘æ¡å®½åº¦", Initial = ThemeMetrics.SliderFixedWidth, Pending = ThemeMetrics.SliderFixedWidth, Min = 100, Max = 600 });
             return list;
         }
     }

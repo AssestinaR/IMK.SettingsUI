@@ -13,7 +13,7 @@ namespace IMK.SettingsUI.Settings
         private static string ModsDir => Path.Combine(Application.persistentDataPath, "Mods");
         private static string GetGroupDir(string group) => Path.Combine(ModsDir, Sanitize(group));
         private static string GetFile(string group) => Path.Combine(GetGroupDir(group), "config.json");
-        private static string Sanitize(string s){ if (string.IsNullOrEmpty(s)) return "Default"; foreach (var c in Path.GetInvalidFileNameChars()) s = s.Replace(c, '_'); return s; }
+        private static string Sanitize(string s) { if (string.IsNullOrEmpty(s)) return "Default"; foreach (var c in Path.GetInvalidFileNameChars()) s = s.Replace(c, '_'); return s; }
         public static IDictionary<string, object> GetGroup(string group)
         {
             if (_cache.TryGetValue(group, out var map)) return map;
@@ -31,7 +31,7 @@ namespace IMK.SettingsUI.Settings
                     }
                 }
             }
-            catch (Exception ex){ Debug.LogWarning($"[SettingsUI.Persistence] Load group '{group}' failed: {ex.Message}"); }
+            catch (Exception ex) { Debug.LogWarning($"[SettingsUI.Persistence] Load group '{group}' failed: {ex.Message}"); }
             _cache[group] = map; return map;
         }
         public static T Get<T>(string group, string key, T def = default(T))
@@ -53,7 +53,7 @@ namespace IMK.SettingsUI.Settings
                 var json = JsonConvert.SerializeObject(g, Formatting.Indented);
                 File.WriteAllText(GetFile(group), json);
             }
-            catch (Exception ex){ Debug.LogWarning($"[SettingsUI.Persistence] Save group '{group}' failed: {ex.Message}"); }
+            catch (Exception ex) { Debug.LogWarning($"[SettingsUI.Persistence] Save group '{group}' failed: {ex.Message}"); }
         }
     }
 }

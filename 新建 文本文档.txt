@@ -1,0 +1,381 @@
+严重性	代码	说明	项目	文件	行	抑制状态
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	1	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\App\DirtyIndicator.cs	3	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	3	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\PageFactory.cs	2	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\CoreShellProvider.cs	5	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	1	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	3	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitDetailRegistry.cs	3	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	5	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavPane.cs	4	
+警告(活动)	IDE0005	Using 指令是不需要的。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\TableCardModel.cs	1	
+消息(活动)	IDE0059	请避免在代码中使用不必要的值赋值，因为这些值极有可能指示冗余的值计算。如果值计算不是冗余的，并且打算保留该赋值，请将分配目标更改为名称以下划线开头或在下划线后面跟一个整数的局部变量(如 "_"、"_1"、"_2" 等)。这些被视为特殊丢弃符号名。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	57	
+消息(活动)	IDE0059	请避免在代码中使用不必要的值赋值，因为这些值极有可能指示冗余的值计算。如果值计算不是冗余的，并且打算保留该赋值，请将分配目标更改为名称以下划线开头或在下划线后面跟一个整数的局部变量(如 "_"、"_1"、"_2" 等)。这些被视为特殊丢弃符号名。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	109	
+消息(活动)	IDE0059	请避免在代码中使用不必要的值赋值，因为这些值极有可能指示冗余的值计算。如果值计算不是冗余的，并且打算保留该赋值，请将分配目标更改为名称以下划线开头或在下划线后面跟一个整数的局部变量(如 "_"、"_1"、"_2" 等)。这些被视为特殊丢弃符号名。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	111	
+消息(活动)	IDE0059	请避免在代码中使用不必要的值赋值，因为这些值极有可能指示冗余的值计算。如果值计算不是冗余的，并且打算保留该赋值，请将分配目标更改为名称以下划线开头或在下划线后面跟一个整数的局部变量(如 "_"、"_1"、"_2" 等)。这些被视为特殊丢弃符号名。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	302	
+警告(活动)	CS0649	从未对字段“SchemaTableController.Cell.Dropdown”赋值，字段将一直保持其默认值 null	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	33	
+消息(活动)	IDE0066	使用 "switch" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	82	
+消息(活动)	IDE0066	使用 "switch" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	26	
+消息(活动)	IDE0066	使用 "switch" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	118	
+消息(活动)	IDE0066	使用 "switch" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	132	
+消息(活动)	IDE0066	使用 "switch" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	296	
+消息(活动)	IDE0066	使用 "switch" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	321	
+消息(活动)	IDE0074	使用复合分配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	148	
+消息(活动)	IDE0039	使用本地函数	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	170	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	179	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	229	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	155	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	219	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	290	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	315	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	340	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	160	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	193	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	195	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	203	
+消息(活动)	IDE0019	使用模式匹配	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	215	
+消息(活动)	IDE0060	请避免在代码中使用未使用的参数。如果无法删除该参数，请更改其名称，使其以下划线开头，也可在下划线后面跟一个整数(如 "_"、"_1"、"_2" 等)。这些被视为特殊丢弃符号名。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	95	
+消息(活动)	IDE0060	请避免在代码中使用未使用的参数。如果无法删除该参数，请更改其名称，使其以下划线开头，也可在下划线后面跟一个整数(如 "_"、"_1"、"_2" 等)。这些被视为特殊丢弃符号名。	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	290	
+消息(活动)	IDE0062	可以使本地函数成为静态函数	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	105	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	329	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	341	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	362	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelPages.cs	162	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	307	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	309	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	182	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	330	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	331	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	332	
+消息(活动)	IDE0018	可以内联变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	333	
+消息(活动)	IDE0042	可以析构变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	62	
+消息(活动)	IDE0042	可以析构变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	288	
+消息(活动)	IDE0042	可以析构变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	296	
+消息(活动)	IDE0042	可以析构变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	313	
+消息(活动)	IDE0042	可以析构变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	321	
+消息(活动)	IDE0042	可以析构变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\PublicApi.cs	22	
+消息(活动)	IDE0042	可以析构变量声明	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\PublicApi.cs	23	
+消息(活动)	IDE0034	可以简化 "default" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsPersistence.cs	37	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\App\SettingsShell.cs	68	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\App\SettingsShell.cs	102	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\App\SettingsShell.cs	103	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\App\SettingsShell.cs	117	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	64	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	65	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	129	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	155	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	178	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	204	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	205	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	211	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	273	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	277	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	315	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	330	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	337	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelPages.cs	16	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelPages.cs	25	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	140	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	380	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	418	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	172	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	53	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	61	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	66	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	72	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	96	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	167	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	62	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\SettingsPanel\SettingsPanelProvider.cs	39	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ConfirmModal.cs	35	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	126	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	151	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	23	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	24	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsRefreshUtil.cs	12	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsRefreshUtil.cs	15	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsRefreshUtil.cs	19	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsRefreshUtil.cs	22	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	57	
+消息(活动)	IDE0031	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	294	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	299	
+消息(活动)	IDE0270	可以简化 Null 检查	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	311	
+消息(活动)	IDE0017	可以简化对象初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelPages.cs	139	
+消息(活动)	IDE0017	可以简化对象初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	209	
+消息(活动)	IDE0017	可以简化对象初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	224	
+消息(活动)	IDE0075	可以简化条件表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	50	
+消息(活动)	IDE0075	可以简化条件表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	64	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\App\SettingsShell.cs	92	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardBindingRegistry.cs	13	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardBindingRegistry.cs	14	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardTemplates.cs	230	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\PageFactory.cs	18	
+消息(活动)	IDE0306	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\PageFactory.cs	18	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\PageFactory.cs	18	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\CoreShellProvider.cs	41	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	11	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	22	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelPages.cs	42	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	30	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	43	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	68	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	79	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	80	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	81	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	82	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	83	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	84	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	85	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	86	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelProvider.cs	87	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	15	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	16	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	47	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	67	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	70	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	86	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	217	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	218	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	227	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	271	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	273	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	284	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	324	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	325	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitPanelState.cs	352	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	14	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	30	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	31	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	80	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	89	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	101	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	110	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	114	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	123	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	127	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	135	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	165	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	167	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	182	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	218	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	230	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	230	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	230	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	230	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	230	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	244	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	253	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	254	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	255	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	256	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	257	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	258	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	265	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	272	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	274	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	275	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	15	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	27	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	48	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	52	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	71	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	119	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	122	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	126	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	127	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	179	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	199	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	216	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	222	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	223	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	224	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	14	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	26	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	53	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	61	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	66	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	72	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	77	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	78	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	92	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	107	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	108	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	80	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	82	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	84	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	94	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	97	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	105	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	108	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	116	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	125	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	126	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	165	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	166	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	167	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	171	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	174	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	175	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	190	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	191	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	192	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	210	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	211	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	279	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	280	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	288	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	289	
+消息(活动)	IDE0305	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	289	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	290	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	290	
+消息(活动)	IDE0305	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	291	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	304	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	305	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	313	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	314	
+消息(活动)	IDE0305	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	314	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	315	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	315	
+消息(活动)	IDE0305	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	316	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	329	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	330	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	338	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	339	
+消息(活动)	IDE0305	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	339	
+消息(活动)	IDE0305	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	341	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	67	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	90	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	93	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	149	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	155	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	160	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	160	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	160	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	164	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	168	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	174	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	176	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	182	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	188	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	193	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	193	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	193	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	193	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	195	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	195	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	195	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	195	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	202	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	205	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	208	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	214	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	216	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\Sample\SampleProvider.cs	224	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\SettingsPanel\SettingsPanelProvider.cs	43	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\SettingsPanel\SettingsPanelProvider.cs	51	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\SettingsPanel\SettingsPanelProvider.cs	62	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\SettingsPanel\UiSettingsPageBuilder.cs	12	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Layout\ItemsControl.cs	10	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	14	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	65	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	77	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	113	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	181	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	116	
+消息(活动)	IDE0306	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	116	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	116	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	117	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	121	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	121	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	126	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	126	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	148	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	153	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	158	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	162	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	208	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\NavController.cs	209	
+消息(活动)	IDE0300	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\PublicApi.cs	36	
+消息(活动)	IDE0301	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsApplyService.cs	38	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\Adapters\JsonFileDataSet.cs	16	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\Adapters\JsonFileDataSet.cs	20	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	17	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	45	
+消息(活动)	IDE0028	可以简化集合初始化	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	216	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardBindingRegistry.cs	12	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardBindingRegistry.cs	13	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\CardBindingRegistry.cs	14	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\MarkdownParser.cs	9	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\MarkdownParser.cs	10	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Cards\MarkdownParser.cs	11	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	11	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	13	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	14	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	15	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	16	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ItemModKitDetailRegistry.cs	23	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	16	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	17	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	18	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	19	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	20	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	21	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	22	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	17	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	18	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	19	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	16	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	17	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	18	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	82	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	83	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	84	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	85	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	94	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	96	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	97	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	98	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	105	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	107	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	108	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	109	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	116	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	118	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	242	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Layout\ItemsControl.cs	10	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Navigation\ContentPresenter.cs	14	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsApplyRegistry.cs	13	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsPersistence.cs	12	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsStore.cs	12	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsStore.cs	77	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsStore.cs	78	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsStore.cs	79	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsStore.cs	80	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Settings\SettingsStore.cs	81	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\Adapters\JsonFileDataSet.cs	16	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	17	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Table\SchemaTableController.cs	45	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	7	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	8	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	9	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	10	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	11	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	12	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	13	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	14	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	15	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	16	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	19	
+消息(活动)	IDE0090	可简化 "new" 表达式	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\Theme\ThemeColors.cs	20	
+消息(活动)	IDE1006	命名规则冲突: 前缀“_”不是预期的	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\ModifiersTable.cs	33	
+消息(活动)	IDE1006	命名规则冲突: 前缀“_”不是预期的	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\SlotsTable.cs	29	
+消息(活动)	IDE1006	命名规则冲突: 前缀“_”不是预期的	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\StatsTable.cs	29	
+消息(活动)	IDE1006	命名规则冲突: 前缀“_”不是预期的	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	128	
+消息(活动)	IDE1006	命名规则冲突: 前缀“_”不是预期的	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	282	
+消息(活动)	IDE1006	命名规则冲突: 前缀“_”不是预期的	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	307	
+消息(活动)	IDE1006	命名规则冲突: 前缀“_”不是预期的	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	332	
+消息(活动)	IDE0044	将字段设置为只读	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\CoreShell\ProviderManagerPage.cs	80	
+消息(活动)	IDE0044	将字段设置为只读	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	295	
+消息(活动)	IDE0044	将字段设置为只读	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	320	
+消息(活动)	IDE0044	将字段设置为只读	IMK.SettingsUI	C:\Users\Administrator\source\repos\Diablo2Totem\IMK.SettingsUI\InternalMods\ItemModKitPanel\VarsTable.cs	345	

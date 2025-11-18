@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using IMK.SettingsUI.Cards;
 
 namespace IMK.SettingsUI.Table
 {
     /// <summary>
-    /// Í¨ÓÃ±í¸ñ¿¨Æ¬Ä£ĞÍ£¨¹«¹²Èë¿Ú£©¡£ÈÎºÎ Mod Ìá¹© Schema + DataSet ¼´¿ÉÊ¹ÓÃ¡£
-    /// ²»ÒÀÀµÍâ²¿¿â£¬äÖÈ¾ÓÉÄÚ²¿¿ØÖÆÆ÷¸ºÔğ¡£
+    /// é€šç”¨è¡¨æ ¼å¡ç‰‡æ¨¡å‹ï¼ˆå…¬å…±å…¥å£ï¼‰ã€‚ä»»ä½• Mod æä¾› Schema + DataSet å³å¯ä½¿ç”¨ã€‚
+    /// ä¸ä¾èµ–å¤–éƒ¨åº“ï¼Œæ¸²æŸ“ç”±å†…éƒ¨æ§åˆ¶å™¨è´Ÿè´£ã€‚
     /// </summary>
     public sealed class TableCardModel : CardModelBase
     {
@@ -14,6 +13,6 @@ namespace IMK.SettingsUI.Table
         public bool ShowAddButton { get; set; } = true;
         public bool ShowImportExport { get; set; } = true;
         public bool ShowMoveButtons { get; set; } = true;
-        public TableCardModel(){ Kind = CardKind.Setting; Size = CardSize.XLarge; }
+        public TableCardModel() { Kind = CardKind.Setting; Size = CardSize.XLarge; }
     }
 }

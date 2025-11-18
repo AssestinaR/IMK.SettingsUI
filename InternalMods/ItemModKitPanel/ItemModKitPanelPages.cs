@@ -31,25 +31,25 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
         }
 
         // Registry for active datasets per kind (variables/constants/tags/stats/slots/modifiers)
-        private static readonly Dictionary<string,(ITableSchema schema, ITableDataSet data)> _activeDataSets = new Dictionary<string,(ITableSchema, ITableDataSet)>(StringComparer.OrdinalIgnoreCase);
-        internal static void RegisterActive(string kind, ITableSchema schema, ITableDataSet data){ if (string.IsNullOrEmpty(kind) || schema==null || data==null) return; _activeDataSets[kind]= (schema,data); }
+        private static readonly Dictionary<string, (ITableSchema schema, ITableDataSet data)> _activeDataSets = new(StringComparer.OrdinalIgnoreCase);
+        internal static void RegisterActive(string kind, ITableSchema schema, ITableDataSet data) { if (string.IsNullOrEmpty(kind) || schema == null || data == null) return; _activeDataSets[kind] = (schema, data); }
         internal static bool TryGetActive(string kind, out ITableSchema schema, out ITableDataSet data)
-        { if(_activeDataSets.TryGetValue(kind, out var tup)){ schema=tup.schema; data=tup.data; return true;} schema=null; data=null; return false; }
+        { if (_activeDataSets.TryGetValue(kind, out var tup)) { schema = tup.schema; data = tup.data; return true; } schema = null; data = null; return false; }
 
         // Editing context storage (row snapshots prior to entering detail page)
         private sealed class EditContext
         {
-            public string Kind; public int Index; public Dictionary<string,object> Values = new Dictionary<string,object>();
+            public string Kind; public int Index; public Dictionary<string, object> Values = new();
         }
-        private static readonly Dictionary<string, EditContext> _editContexts = new Dictionary<string, EditContext>(StringComparer.OrdinalIgnoreCase);
-        private static string MakeEditContextKey(string kind, int index)=> kind+":"+index;
+        private static readonly Dictionary<string, EditContext> _editContexts = new(StringComparer.OrdinalIgnoreCase);
+        private static string MakeEditContextKey(string kind, int index) => kind + ":" + index;
         private static void CaptureEditContext(string kind, int index)
         {
             if (!_activeDataSets.TryGetValue(kind, out var tuple)) return; if (index < 0 || index >= tuple.data.Count) return;
             var adapter = tuple.data.GetRow(index);
-            var ctx = new EditContext{ Kind=kind, Index=index };
+            var ctx = new EditContext { Kind = kind, Index = index };
             foreach (var col in tuple.schema.Columns) ctx.Values[col.Id] = adapter.Get(col.Id);
-            _editContexts[MakeEditContextKey(kind,index)] = ctx;
+            _editContexts[MakeEditContextKey(kind, index)] = ctx;
         }
 
         private static List<ICardModel> BuildDetailPage(string kind, int index)
@@ -57,13 +57,13 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
             var list = new List<ICardModel>();
             if (!TryGetActive(kind, out var schema, out var data) || index < 0 || index >= data.Count)
             {
-                list.Add(new MarkdownCardModel{ Id="imk.edit.invalid", Title="Edit", Markdown="ÎÞ·¨ÕÒµ½Òª±à¼­µÄ¶ÔÏó (¿ÉÄÜÒÑÉ¾³ý)¡£" });
-                list.Add(new NavigationCardModel{ Id="ItemModKit:BackTo"+kind, Title="Back", Desc="·µ»Ø", OnClick = ()=> Navigate("ItemModKit:"+KindToPage(kind)) });
+                list.Add(new MarkdownCardModel { Id = "imk.edit.invalid", Title = "Edit", Markdown = "æ— æ³•æ‰¾åˆ°è¦ç¼–è¾‘çš„å¯¹è±¡ (å¯èƒ½å·²åˆ é™¤)ã€‚" });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:BackTo" + kind, Title = "Back", Desc = "è¿”å›ž", OnClick = () => Navigate("ItemModKit:" + KindToPage(kind)) });
                 return list;
             }
-            var ctxKey = MakeEditContextKey(kind,index); _editContexts.TryGetValue(ctxKey, out var ctx);
-            string headerInfo = ctx==null? "(no snapshot)" : string.Join("; ", ctx.Values);
-            list.Add(new MarkdownCardModel{ Id=$"imk.edit.{kind}.header", Title="Detail", Markdown=$"### Editing {kind} Row {index}\n{headerInfo}" });
+            var ctxKey = MakeEditContextKey(kind, index); _editContexts.TryGetValue(ctxKey, out var ctx);
+            string headerInfo = ctx == null ? "(no snapshot)" : string.Join("; ", ctx.Values);
+            list.Add(new MarkdownCardModel { Id = $"imk.edit.{kind}.header", Title = "Detail", Markdown = $"### Editing {kind} Row {index}\n{headerInfo}" });
 
             // descriptor registry integration
             var descriptors = ItemModKitDetailRegistry.BuildDescriptors(kind, index);
@@ -73,10 +73,10 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                 {
                     if (!d.Editable)
                     {
-                        list.Add(new MarkdownCardModel{ Id=$"imk.edit.{kind}.ro.{d.Id}", Title=d.Title, Markdown=$"`{d.Id}`: {FormatVal(d.Get())}" });
+                        list.Add(new MarkdownCardModel { Id = $"imk.edit.{kind}.ro.{d.Id}", Title = d.Title, Markdown = $"`{d.Id}`: {FormatVal(d.Get())}" });
                         continue;
                     }
-                    list.Add(new SettingCardModel{ Id=$"imk.edit.{kind}.{d.Id}", Title=d.Title, Desc=d.Id, Initial=d.Get(), Pending=d.Get(), Options=d.Options, Min=d.Min, Max=d.Max });
+                    list.Add(new SettingCardModel { Id = $"imk.edit.{kind}.{d.Id}", Title = d.Title, Desc = d.Id, Initial = d.Get(), Pending = d.Get(), Options = d.Options, Min = d.Min, Max = d.Max });
                 }
             }
             else
@@ -86,81 +86,96 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                     var current = (ctx != null && ctx.Values.ContainsKey(col.Id)) ? ctx.Values[col.Id] : data.GetRow(index).Get(col.Id);
                     if (col.ReadOnly)
                     {
-                        list.Add(new MarkdownCardModel{ Id=$"imk.edit.{kind}.ro.{col.Id}", Title=col.Title, Markdown=$"`{col.Id}`: {FormatVal(current)}" });
+                        list.Add(new MarkdownCardModel { Id = $"imk.edit.{kind}.ro.{col.Id}", Title = col.Title, Markdown = $"`{col.Id}`: {FormatVal(current)}" });
                         continue;
                     }
-                    list.Add(new SettingCardModel{ Id=$"imk.edit.{kind}.{col.Id}", Title=col.Title, Desc=col.Id, Initial=current, Pending=current, Options=col.Options, Min=col.Min, Max=col.Max });
+                    list.Add(new SettingCardModel { Id = $"imk.edit.{kind}.{col.Id}", Title = col.Title, Desc = col.Id, Initial = current, Pending = current, Options = col.Options, Min = col.Min, Max = col.Max });
                 }
             }
-            list.Add(new ActionCardModel{ Id=$"imk.edit.{kind}.save", Title="Save Changes", Desc="Ó¦ÓÃµ±Ç°ÐÞ¸Ä²¢·µ»Ø", OnInvoke = ()=> {
-                // apply changes
-                if (descriptors != null && descriptors.Count > 0)
+            list.Add(new ActionCardModel
+            {
+                Id = $"imk.edit.{kind}.save",
+                Title = "Save Changes",
+                Desc = "åº”ç”¨å½“å‰ä¿®æ”¹å¹¶è¿”å›ž",
+                OnInvoke = () =>
                 {
-                    foreach (var m in list)
-                        if (m is SettingCardModel sc && sc.Pending != null)
-                        {
-                            var d = descriptors.Find(x=> x.Id==sc.Desc); if (d!=null && !Equals(sc.Pending, d.Get())) d.Set(sc.Pending);
-                        }
+                    // apply changes
+                    if (descriptors != null && descriptors.Count > 0)
+                    {
+                        foreach (var m in list)
+                            if (m is SettingCardModel sc && sc.Pending != null)
+                            {
+                                var d = descriptors.Find(x => x.Id == sc.Desc); if (d != null && !Equals(sc.Pending, d.Get())) d.Set(sc.Pending);
+                            }
+                    }
+                    else
+                    {
+                        var adapter = data.GetRow(index);
+                        foreach (var m in list)
+                            if (m is SettingCardModel sc && sc.Pending != null) adapter.Set(sc.Desc, sc.Pending);
+                    }
+                    try { data.Commit(); } catch { }
+                    Navigate("ItemModKit:" + KindToPage(kind));
                 }
-                else
-                {
-                    var adapter = data.GetRow(index);
-                    foreach (var m in list)
-                        if (m is SettingCardModel sc && sc.Pending != null) adapter.Set(sc.Desc, sc.Pending);
-                }
-                try { data.Commit(); } catch { }
-                Navigate("ItemModKit:"+KindToPage(kind));
-            }});
-            list.Add(new ActionCardModel{ Id=$"imk.edit.{kind}.revert", Title="Revert", Desc="¶ªÆúÐÞ¸Ä²¢·µ»Ø", OnInvoke = ()=> Navigate("ItemModKit:"+KindToPage(kind)) });
-            list.Add(new ActionCardModel{ Id=$"imk.edit.{kind}.delete", Title="Delete Row", Desc="É¾³ý±¾ÐÐ²¢·µ»Ø", OnInvoke = ()=> { try { data.RemoveAt(index); data.Commit(); } catch { } Navigate("ItemModKit:"+KindToPage(kind)); } });
-            list.Add(new ActionCardModel{ Id=$"imk.edit.{kind}.back", Title="Back", Desc="·µ»Ø", OnInvoke = ()=> Navigate("ItemModKit:"+KindToPage(kind)) });
+            });
+            list.Add(new ActionCardModel { Id = $"imk.edit.{kind}.revert", Title = "Revert", Desc = "ä¸¢å¼ƒä¿®æ”¹å¹¶è¿”å›ž", OnInvoke = () => Navigate("ItemModKit:" + KindToPage(kind)) });
+            list.Add(new ActionCardModel { Id = $"imk.edit.{kind}.delete", Title = "Delete Row", Desc = "åˆ é™¤æœ¬è¡Œå¹¶è¿”å›ž", OnInvoke = () => { try { data.RemoveAt(index); data.Commit(); } catch { } Navigate("ItemModKit:" + KindToPage(kind)); } });
+            list.Add(new ActionCardModel { Id = $"imk.edit.{kind}.back", Title = "Back", Desc = "è¿”å›ž", OnInvoke = () => Navigate("ItemModKit:" + KindToPage(kind)) });
             return list;
         }
-        private static string FormatVal(object v){ return v==null? "<null>" : v.ToString(); }
-        private static string KindToPage(string kind)
-        { switch(kind){ case "vars": return "VariablesOnly"; case "consts": return "Constants"; case "tags": return "Tags"; case "modifiers": return "Modifiers"; case "stats": return "Stats"; case "slots": return "Slots"; default: return "VariablesOnly"; } }
+        private static string FormatVal(object v) { return v == null ? "<null>" : v.ToString(); }
+        private static string KindToPage(string kind) => kind switch
+        {
+            "vars" => "VariablesOnly",
+            "consts" => "Constants",
+            "tags" => "Tags",
+            "modifiers" => "Modifiers",
+            "stats" => "Stats",
+            "slots" => "Slots",
+            _ => "VariablesOnly"
+        };
 
         private static List<ICardModel> BuildStandardTablePage(string idPrefix, string title, string headerMarkdown,
             Func<ITableSchema> schemaFactory, Func<ITableDataSet> dataFactory, string kind)
         {
             var list = new List<ICardModel>();
             if (ItemModKitPanelState.CapturedItem == null)
-            { list.Add(new MarkdownCardModel{ Id=$"{idPrefix}.none", Title="No Item", Markdown="ÇëÔÚ Inspector Ò³Ãæ²¶»ñÒ»¸öÎïÆ·¡£" }); return list; }
-            list.Add(new MarkdownCardModel{ Id=$"{idPrefix}.header", Title=title, Markdown=headerMarkdown });
+            { list.Add(new MarkdownCardModel { Id = $"{idPrefix}.none", Title = "No Item", Markdown = "è¯·åœ¨ Inspector é¡µé¢æ•èŽ·ä¸€ä¸ªç‰©å“ã€‚" }); return list; }
+            list.Add(new MarkdownCardModel { Id = $"{idPrefix}.header", Title = title, Markdown = headerMarkdown });
             var schema = schemaFactory(); var data = dataFactory(); RegisterActive(kind, schema, data);
-            var table = new TableCardModel{ Id=$"{idPrefix}.table", Title=title, Schema = schema, DataSet = data, ShowAddButton = false, ShowImportExport = false }; table.Size = CardSize.XLarge; list.Add(table);
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.edit", Title="Edit Selected", Desc="½øÈëÏêÇé±à¼­Ò³", OnInvoke = ()=> { var t=FindCurrentTable(); if (t==null || t.SelectedIndex<0){ UnityEngine.Debug.LogWarning("[ItemModKitPanel] ÎÞÑ¡ÖÐÐÐ"); return; } CaptureEditContext(kind, t.SelectedIndex); Navigate($"ItemModKit:Edit:{kind}:{t.SelectedIndex}"); } });
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.add", Title="Add", Desc="ÐÂÔö", OnInvoke = ()=> { var t=FindCurrentTable(); t?.AddNew(); } });
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.remove", Title="Remove", Desc="ÒÆ³ýÑ¡ÖÐ", OnInvoke = ()=> { var t=FindCurrentTable(); t?.RemoveSelected(); } });
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.up", Title="Up", Desc="ÉÏÒÆÑ¡ÖÐ", OnInvoke = ()=> { var t=FindCurrentTable(); t?.MoveSelectedUp(); } });
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.down", Title="Down", Desc="ÏÂÒÆÑ¡ÖÐ", OnInvoke = ()=> { var t=FindCurrentTable(); t?.MoveSelectedDown(); } });
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.save", Title="Save", Desc="±£´æ", OnInvoke = ()=> { var t=FindCurrentTable(); t?.Save(); } });
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.reload", Title="Reload", Desc="ÖØÐÂ¶ÁÈ¡", OnInvoke = ()=> { var t=FindCurrentTable(); t?.Reload(); } });
-            list.Add(new ActionCardModel{ Id=$"{idPrefix}.back", Title="Back", Desc="·µ»ØÏêÇé", OnInvoke = ()=> Navigate("ItemModKit:Detail") });
+            var table = new TableCardModel { Id = $"{idPrefix}.table", Title = title, Schema = schema, DataSet = data, ShowAddButton = false, ShowImportExport = false }; table.Size = CardSize.XLarge; list.Add(table);
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.edit", Title = "Edit Selected", Desc = "è¿›å…¥è¯¦æƒ…ç¼–è¾‘é¡µ", OnInvoke = () => { var t = FindCurrentTable(); if (t == null || t.SelectedIndex < 0) { UnityEngine.Debug.LogWarning("[ItemModKitPanel] æ— é€‰ä¸­è¡Œ"); return; } CaptureEditContext(kind, t.SelectedIndex); Navigate($"ItemModKit:Edit:{kind}:{t.SelectedIndex}"); } });
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.add", Title = "Add", Desc = "æ–°å¢ž", OnInvoke = () => { var t = FindCurrentTable(); t?.AddNew(); } });
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.remove", Title = "Remove", Desc = "ç§»é™¤é€‰ä¸­", OnInvoke = () => { var t = FindCurrentTable(); t?.RemoveSelected(); } });
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.up", Title = "Up", Desc = "ä¸Šç§»é€‰ä¸­", OnInvoke = () => { var t = FindCurrentTable(); t?.MoveSelectedUp(); } });
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.down", Title = "Down", Desc = "ä¸‹ç§»é€‰ä¸­", OnInvoke = () => { var t = FindCurrentTable(); t?.MoveSelectedDown(); } });
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.save", Title = "Save", Desc = "ä¿å­˜", OnInvoke = () => { var t = FindCurrentTable(); t?.Save(); } });
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.reload", Title = "Reload", Desc = "é‡æ–°è¯»å–", OnInvoke = () => { var t = FindCurrentTable(); t?.Reload(); } });
+            list.Add(new ActionCardModel { Id = $"{idPrefix}.back", Title = "Back", Desc = "è¿”å›žè¯¦æƒ…", OnInvoke = () => Navigate("ItemModKit:Detail") });
             return list;
         }
 
-        public static List<ICardModel> BuildVariablesOnlyPage(){ return BuildStandardTablePage("imk.varsonly", "Variables", "±à¼­±äÁ¿", () => new VariablesOnlySchema(), () => new VariablesOnlyDataSet(), "vars"); }
-        public static List<ICardModel> BuildConstantsPage(){ return BuildStandardTablePage("imk.consts", "Constants", "±à¼­³£Á¿", () => new ConstantsSchema(), () => new ConstantsOnlyDataSet(), "consts"); }
-        public static List<ICardModel> BuildTagsPage(){ return BuildStandardTablePage("imk.tags", "Tags", "±à¼­±êÇ©", () => new TagsSchema(), () => new TagsOnlyDataSet(), "tags"); }
-        public static List<ICardModel> BuildStatsPage(){ return BuildStandardTablePage("imk.stats", "Stats", "²é¿´²¢±à¼­µ±Ç°ÎïÆ·µÄ Stats", () => new StatsSchema(), () => new StatsDataSet(), "stats"); }
-        public static List<ICardModel> BuildSlotsPage(){ return BuildStandardTablePage("imk.slots", "Slots", "²é¿´²¢±à¼­µ±Ç°ÎïÆ·µÄ²å²Û", () => new SlotsSchema(), () => new SlotsDataSet(), "slots"); }
-        public static List<ICardModel> BuildModifiersPage(){ return BuildStandardTablePage("imk.mods", "Modifiers", "²é¿´²¢±à¼­µ±Ç°ÎïÆ·µÄ Modifiers£¨ModifierDescription£©", () => new ModifiersSchema(), () => new ModifiersDataSet(), "modifiers"); }
+        public static List<ICardModel> BuildVariablesOnlyPage() => BuildStandardTablePage("imk.varsonly", "Variables", "ç¼–è¾‘å˜é‡", () => new VariablesOnlySchema(), () => new VariablesOnlyDataSet(), "vars");
+        public static List<ICardModel> BuildConstantsPage() => BuildStandardTablePage("imk.consts", "Constants", "ç¼–è¾‘å¸¸é‡", () => new ConstantsSchema(), () => new ConstantsOnlyDataSet(), "consts");
+        public static List<ICardModel> BuildTagsPage() => BuildStandardTablePage("imk.tags", "Tags", "ç¼–è¾‘æ ‡ç­¾", () => new TagsSchema(), () => new TagsOnlyDataSet(), "tags");
+        public static List<ICardModel> BuildStatsPage() => BuildStandardTablePage("imk.stats", "Stats", "æŸ¥çœ‹å¹¶ç¼–è¾‘å½“å‰ç‰©å“çš„ Stats", () => new StatsSchema(), () => new StatsDataSet(), "stats");
+        public static List<ICardModel> BuildSlotsPage() => BuildStandardTablePage("imk.slots", "Slots", "æŸ¥çœ‹å¹¶ç¼–è¾‘å½“å‰ç‰©å“çš„æ’æ§½", () => new SlotsSchema(), () => new SlotsDataSet(), "slots");
+        public static List<ICardModel> BuildModifiersPage() => BuildStandardTablePage("imk.mods", "Modifiers", "æŸ¥çœ‹å¹¶ç¼–è¾‘å½“å‰ç‰©å“çš„ Modifiersï¼ˆModifierDescriptionï¼‰", () => new ModifiersSchema(), () => new ModifiersDataSet(), "modifiers");
 
         public static List<ICardModel> BuildInspectorPage()
         {
             var list = new List<ICardModel>(); string capturedTitle = ItemModKitPanelState.CapturedItemTitle ?? "<none>";
-            list.Add(new MarkdownCardModel{ Id="imk.inspector.header", Title="Inspector", Markdown=$"### Inspector\nµ±Ç°²¶»ñÎïÆ·: **{capturedTitle}**\n\nÊ¹ÓÃÏÂ·½°´Å¥²¶»ñµ±Ç°Ñ¡ÖÐÎïÆ·¡£" });
-            list.Add(new ActionCardModel{ Id="imk.inspector.capture", Title="Capture Selected Item", Desc="³¢ÊÔ²¶»ñµ±Ç°Ñ¡ÖÐÎïÆ·", OnInvoke = ()=> { string err; if (ItemModKitPanelState.TryCaptureSelected(out err)) { UnityEngine.Debug.Log("[ItemModKitPanel] Captured item: "+ ItemModKitPanelState.CapturedItemTitle); Navigate("ItemModKit:Inspector"); } else { UnityEngine.Debug.LogWarning("[ItemModKitPanel] Capture failed: "+err); } } });
+            list.Add(new MarkdownCardModel { Id = "imk.inspector.header", Title = "Inspector", Markdown = $"### Inspector\nå½“å‰æ•èŽ·ç‰©å“: **{capturedTitle}**\n\nä½¿ç”¨ä¸‹æ–¹æŒ‰é’®æ•èŽ·å½“å‰é€‰ä¸­ç‰©å“ã€‚" });
+            list.Add(new ActionCardModel { Id = "imk.inspector.capture", Title = "Capture Selected Item", Desc = "å°è¯•æ•èŽ·å½“å‰é€‰ä¸­ç‰©å“", OnInvoke = () => { string err; if (ItemModKitPanelState.TryCaptureSelected(out err)) { UnityEngine.Debug.Log("[ItemModKitPanel] Captured item: " + ItemModKitPanelState.CapturedItemTitle); Navigate("ItemModKit:Inspector"); } else { UnityEngine.Debug.LogWarning("[ItemModKitPanel] Capture failed: " + err); } } });
             if (ItemModKitPanelState.CapturedItem != null)
             {
-                list.Add(new NavigationCardModel{ Id="ItemModKit:Detail", Title="Detail", Desc="ÎïÆ·ÏêÏ¸ÊÓÍ¼", OnClick = ()=> Navigate("ItemModKit:Detail") });
-                list.Add(new NavigationCardModel{ Id="ItemModKit:VariablesOnly", Title="Variables", Desc="±äÁ¿±à¼­", OnClick = ()=> Navigate("ItemModKit:VariablesOnly") });
-                list.Add(new NavigationCardModel{ Id="ItemModKit:Constants", Title="Constants", Desc="³£Á¿±à¼­", OnClick = ()=> Navigate("ItemModKit:Constants") });
-                list.Add(new NavigationCardModel{ Id="ItemModKit:Tags", Title="Tags", Desc="±êÇ©±à¼­", OnClick = ()=> Navigate("ItemModKit:Tags") });
-                list.Add(new NavigationCardModel{ Id="ItemModKit:Modifiers", Title="Modifiers", Desc="ÐÞÊÎÆ÷±à¼­", OnClick = ()=> Navigate("ItemModKit:Modifiers") });
-                list.Add(new NavigationCardModel{ Id="ItemModKit:Stats", Title="Stats", Desc="Í³¼Æ²é¿´", OnClick = ()=> Navigate("ItemModKit:Stats") });
-                list.Add(new NavigationCardModel{ Id="ItemModKit:Slots", Title="Slots", Desc="²å²Û²é¿´", OnClick = ()=> Navigate("ItemModKit:Slots") });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:Detail", Title = "Detail", Desc = "ç‰©å“è¯¦ç»†è§†å›¾", OnClick = () => Navigate("ItemModKit:Detail") });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:VariablesOnly", Title = "Variables", Desc = "å˜é‡ç¼–è¾‘", OnClick = () => Navigate("ItemModKit:VariablesOnly") });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:Constants", Title = "Constants", Desc = "å¸¸é‡ç¼–è¾‘", OnClick = () => Navigate("ItemModKit:Constants") });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:Tags", Title = "Tags", Desc = "æ ‡ç­¾ç¼–è¾‘", OnClick = () => Navigate("ItemModKit:Tags") });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:Modifiers", Title = "Modifiers", Desc = "ä¿®é¥°å™¨ç¼–è¾‘", OnClick = () => Navigate("ItemModKit:Modifiers") });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:Stats", Title = "Stats", Desc = "ç»Ÿè®¡æŸ¥çœ‹", OnClick = () => Navigate("ItemModKit:Stats") });
+                list.Add(new NavigationCardModel { Id = "ItemModKit:Slots", Title = "Slots", Desc = "æ’æ§½æŸ¥çœ‹", OnClick = () => Navigate("ItemModKit:Slots") });
             }
             return list;
         }

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using IMK.SettingsUI.Theme;
-using IMK.SettingsUI.Providers;
 
 namespace IMK.SettingsUI.Cards
 {

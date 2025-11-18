@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using UnityEngine;
-using IMK.SettingsUI.Cards;
-using IMK.SettingsUI.Providers;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using IMK.SettingsUI.Cards;
 using IMK.SettingsUI.InternalMods.ItemModKitPanel; // for ItemModKitPanelState captured item
+using IMK.SettingsUI.Providers;
+using UnityEngine;
 
 namespace IMK.SettingsUI.InternalMods.Sample
 {
@@ -16,42 +16,36 @@ namespace IMK.SettingsUI.InternalMods.Sample
         public IEnumerable<NavItem> GetNavItems()
         {
             // Keep minimal: Modifiers Test + Markdown Demo
-            yield return new NavItem{ Id="Sample:ModifiersTest", Title="Modifiers Test"};
-            yield return new NavItem{ Id="Sample:RichMarkdownDemo", Title="Markdown Demo"};
+            yield return new NavItem { Id = "Sample:ModifiersTest", Title = "Modifiers Test" };
+            yield return new NavItem { Id = "Sample:RichMarkdownDemo", Title = "Markdown Demo" };
         }
         public void BuildPage(string pageId, Transform parent)
         {
             Debug.Log("[SampleProvider] BuildPage " + pageId);
-            for (int i=parent.childCount-1;i>=0;i--) UnityEngine.Object.DestroyImmediate(parent.GetChild(i).gameObject);
-            string pureId = pageId; int colon = pageId.IndexOf(':'); if (colon >= 0 && colon < pageId.Length-1) pureId = pageId.Substring(colon+1);
-            if (pureId == "Root")
+            for (int i = parent.childCount - 1; i >= 0; i--) UnityEngine.Object.DestroyImmediate(parent.GetChild(i).gameObject);
+            string pureId = pageId; int colon = pageId.IndexOf(':'); if (colon >= 0 && colon < pageId.Length - 1) pureId = pageId[(colon + 1)..];
+            void Render(IEnumerable<ICardModel> models)
             {
-                var models = BuildRootModels();
-                float yOffset = 0f; const float gap = 8f; foreach (var m in models){ var go = CardTemplates.Bind(m, null); go.transform.SetParent(parent,false); var rt2 = go.GetComponent<RectTransform>(); rt2.anchoredPosition = new Vector2(0f, -yOffset); yOffset += rt2.sizeDelta.y + gap; }
-                return;
+                float yOffset = 0f; const float gap = 8f;
+                foreach (var m in models)
+                {
+                    var go = CardTemplates.Bind(m, null); go.transform.SetParent(parent, false);
+                    var rt2 = go.GetComponent<RectTransform>(); rt2.anchoredPosition = new Vector2(0f, -yOffset);
+                    yOffset += rt2.sizeDelta.y + gap;
+                }
             }
-            if (pureId == "ModifiersTest")
-            {
-                // When framework calls BuildPage instead of INavPageModelProvider (legacy), render via templates
-                var models = BuildModifiersTestModels();
-                float yOffset = 0f; const float gap = 8f; foreach (var m in models){ var go = CardTemplates.Bind(m, null); go.transform.SetParent(parent,false); var rt2 = go.GetComponent<RectTransform>(); rt2.anchoredPosition = new Vector2(0f, -yOffset); yOffset += rt2.sizeDelta.y + gap; }
-                return;
-            }
-            if (pureId == "RichMarkdownDemo")
-            {
-                var models = BuildMarkdownDemo();
-                float yOffset = 0f; const float gap = 8f; foreach (var m in models){ var go = CardTemplates.Bind(m, null); go.transform.SetParent(parent,false); var rt2 = go.GetComponent<RectTransform>(); rt2.anchoredPosition = new Vector2(0f, -yOffset); yOffset += rt2.sizeDelta.y + gap; }
-                return;
-            }
-            var lbl = new GameObject("Label").AddComponent<UnityEngine.UI.Text>(); lbl.transform.SetParent(parent,false); lbl.font = Theme.ThemeColors.DefaultFont; lbl.color = Color.white; lbl.alignment = TextAnchor.UpperLeft; lbl.text = $"Sample Provider Page: {pureId}"; var rt = lbl.GetComponent<RectTransform>(); rt.anchorMin=new Vector2(0f,1f); rt.anchorMax=new Vector2(1f,1f); rt.pivot=new Vector2(0.5f,1f); rt.sizeDelta=new Vector2(0f,40f);
+            if (pureId == "Root") { Render(BuildRootModels()); return; }
+            if (pureId == "ModifiersTest") { Render(BuildModifiersTestModels()); return; }
+            if (pureId == "RichMarkdownDemo") { Render(BuildMarkdownDemo()); return; }
+            var lbl = new GameObject("Label").AddComponent<UnityEngine.UI.Text>(); lbl.transform.SetParent(parent, false); lbl.font = Theme.ThemeColors.DefaultFont; lbl.color = Color.white; lbl.alignment = TextAnchor.UpperLeft; lbl.text = $"Sample Provider Page: {pureId}"; var rt = lbl.GetComponent<RectTransform>(); rt.anchorMin = new Vector2(0f, 1f); rt.anchorMax = new Vector2(1f, 1f); rt.pivot = new Vector2(0.5f, 1f); rt.sizeDelta = new Vector2(0f, 40f);
         }
 
         // INavPageModelProvider implementation used by NavController
         public IEnumerable<ICardModel> BuildPageModels(string pageId)
         {
             // Normalize page id (strip provider prefix before colon)
-            string pureId = pageId; int colon = pageId.IndexOf(':'); if (colon >= 0 && colon < pageId.Length-1) pureId = pageId.Substring(colon+1);
-            Debug.Log("[SampleProvider] BuildPageModels pageId="+pageId+" pure="+pureId);
+            string pureId = pageId; int colon = pageId.IndexOf(':'); if (colon >= 0 && colon < pageId.Length - 1) pureId = pageId[(colon + 1)..];
+            Debug.Log("[SampleProvider] BuildPageModels pageId=" + pageId + " pure=" + pureId);
             if (string.Equals(pureId, "Root", StringComparison.Ordinal)) return BuildRootModels();
             if (string.Equals(pureId, "ModifiersTest", StringComparison.Ordinal)) return BuildModifiersTestModels();
             if (string.Equals(pureId, "RichMarkdownDemo", StringComparison.Ordinal)) return BuildMarkdownDemo();
@@ -70,178 +64,181 @@ namespace IMK.SettingsUI.InternalMods.Sample
             catch { }
         }
 
-        private List<ICardModel> BuildRootModels()
+        private List<ICardModel> BuildRootModels() => new()
         {
-            var list = new List<ICardModel>();
-            list.Add(new MarkdownCardModel{ Id="sample.root.header", Title="Sample", MarkdownText="### Sample Provider\n—› æ»Îø⁄°£" });
-            list.Add(new NavigationCardModel{ Id="Sample:ModifiersTest", Title="Modifiers Test", Desc="∑¥…‰–¥»Î—› æ", OnClick = ()=> Navigate("Sample:ModifiersTest") });
-            list.Add(new NavigationCardModel{ Id="Sample:RichMarkdownDemo", Title="Markdown Demo", Desc="ª˘¥° Markdown  æ¿˝", OnClick = ()=> Navigate("Sample:RichMarkdownDemo") });
-            return list;
-        }
+            new MarkdownCardModel{ Id="sample.root.header", Title="Sample", MarkdownText="### Sample Provider\nÊºîÁ§∫ÂÖ•Âè£„ÄÇ" },
+            new NavigationCardModel{ Id="Sample:ModifiersTest", Title="Modifiers Test", Desc="ÂèçÂ∞ÑÂÜôÂÖ•ÊºîÁ§∫", OnClick = ()=> Navigate("Sample:ModifiersTest") },
+            new NavigationCardModel{ Id="Sample:RichMarkdownDemo", Title="Markdown Demo", Desc="Âü∫Á°Ä Markdown Á§∫‰æã", OnClick = ()=> Navigate("Sample:RichMarkdownDemo") },
+        };
 
         private List<ICardModel> BuildMarkdownDemo()
         {
-            var list = new List<ICardModel>();
             // Use normal string with real newlines (plain markdown only)
             string md = "# Markdown Demo\n\n" +
-                        "±æ“≥’π æºÚªØ∞Ê Markdown ‰÷»æ°£∏ﬂº∂π¶ƒ‹(Õº∆¨/±Ì∏Ò/∂‡º∂«∂Ã◊/¡¥Ω”µ„ª˜)“—πÿ±’°£\n\n" +
-                        "## ÷ß≥÷µƒ”Ô∑®\n" +
-                        "- ±ÍÃ‚ (#, ##)\n" +
-                        "- ∆’Õ®∂Œ¬‰\n" +
-                        "- ––ƒ⁄ `code`\n" +
-                        "- **º”¥÷** ”Î *–±ÃÂ*\n" +
-                        "- ºÚµ•¡–±Ì:\n" +
-                        "  - œÓƒø A\n" +
-                        "  - œÓƒø B\n\n" +
-                        "##  æ¿˝\n" +
-                        "**¥÷ÃÂ** *–±ÃÂ* `¥˙¬Î`\n\n" +
-                        "¡¥Ω”Œƒ±æ æ¿˝: [Example](https://example.com) (œ‘ æŒ™∆’Õ®◊≈…´Œƒ±æ)°£\n";
-            list.Add(new MarkdownCardModel{ Id="sample.markdown.demo", Title="Markdown Demo", MarkdownText=md, HeightOverride = -1 });
-            return list;
+                        "Êú¨È°µÂ±ïÁ§∫ÁÆÄÂåñÁâà Markdown Ê∏≤Êüì„ÄÇÈ´òÁ∫ßÂäüËÉΩ(ÂõæÁâá/Ë°®Ê†º/Â§öÁ∫ßÂµåÂ•ó/ÈìæÊé•ÁÇπÂáª)Â∑≤ÂÖ≥Èó≠„ÄÇ\n\n" +
+                        "## ÊîØÊåÅÁöÑËØ≠Ê≥ï\n" +
+                        "- Ê†áÈ¢ò (#, ##)\n" +
+                        "- ÊôÆÈÄöÊÆµËêΩ\n" +
+                        "- Ë°åÂÜÖ `code`\n" +
+                        "- **Âä†Á≤ó** ‰∏é *Êñú‰Ωì*\n" +
+                        "- ÁÆÄÂçïÂàóË°®:\n" +
+                        "  - È°πÁõÆ A\n" +
+                        "  - È°πÁõÆ B\n\n" +
+                        "## Á§∫‰æã\n" +
+                        "**Á≤ó‰Ωì** *Êñú‰Ωì* `‰ª£Á†Å`\n\n" +
+                        "ÈìæÊé•ÊñáÊú¨Á§∫‰æã: [Example](https://example.com) (ÊòæÁ§∫‰∏∫ÊôÆÈÄöÁùÄËâ≤ÊñáÊú¨)„ÄÇ\n";
+            return new List<ICardModel> { new MarkdownCardModel { Id = "sample.markdown.demo", Title = "Markdown Demo", MarkdownText = md, HeightOverride = -1 } };
         }
 
-        private List<ICardModel> BuildModifiersTestModels()
+        private List<ICardModel> BuildModifiersTestModels() => new()
         {
-            var models = new List<ICardModel>();
-            models.Add(new MarkdownCardModel{ Id="mods.test.header", Title="Modifier Write Tests", MarkdownText="### Modifier Write Diagnostics\n∂‘µ±«∞≤∂ªÒµƒŒÔ∆∑÷¥––≤ªÕ¨–¥»Î∑Ω Ω£¨∞Ô÷˙»∑»œƒƒ–©¬∑æ∂”––ß°£«Îœ»‘⁄ ItemModKit √Ê∞Â≤∂ªÒ“ª∏ˆŒÔ∆∑°£" });
-            models.Add(new ActionCardModel{ Id="mods.test.addDesc", Title="Add Description", Desc="TryAddModifierDescription(TestModDesc, Add, value=1)", OnInvoke = ()=> Run(()=> TryAddModifierDescription("TestModDesc","Add",1f,true,0,null)) });
-            models.Add(new ActionCardModel{ Id="mods.test.addRaw", Title="Add Raw Modifier", Desc="TryAddModifier(TestModRaw, value=2)", OnInvoke = ()=> Run(()=> TryAddModifierRaw("TestModRaw",2f,false,"Add")) });
-            models.Add(new ActionCardModel{ Id="mods.test.updateVal", Title="Update Desc Value", Desc="TrySetModifierDescriptionValue(TestModDesc, +0.5)", OnInvoke = ()=> Run(UpdateTestModDescValue) });
-            models.Add(new ActionCardModel{ Id="mods.test.updateType", Title="Update Desc Type", Desc="TrySetModifierDescriptionType(TestModDesc, PercentageAdd)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","PercentageAdd")) });
-            models.Add(new ActionCardModel{ Id="mods.test.type.add", Title="Set Type: Add", Desc="TrySetModifierDescriptionType(TestModDesc, Add)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","Add")) });
-            models.Add(new ActionCardModel{ Id="mods.test.type.padd", Title="Set Type: PercentageAdd", Desc="TrySetModifierDescriptionType(TestModDesc, PercentageAdd)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","PercentageAdd")) });
-            models.Add(new ActionCardModel{ Id="mods.test.type.pmul", Title="Set Type: PercentageMultiply", Desc="TrySetModifierDescriptionType(TestModDesc, PercentageMultiply)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","PercentageMultiply")) });
-            models.Add(new ActionCardModel{ Id="mods.test.removeDesc", Title="Remove Description", Desc="TryRemoveModifierDescription(TestModDesc)", OnInvoke = ()=> Run(()=> TryRemoveModifierDescription("TestModDesc")) });
-            models.Add(new ActionCardModel{ Id="mods.test.dedup", Title="Deduplicate", Desc="TrySanitizeModifierDescriptions()", OnInvoke = ()=> Run(TryDedup) });
-            models.Add(new ActionCardModel{ Id="mods.test.dump", Title="Dump Read", Desc="Read descriptors & raw modifiers", OnInvoke = ()=> Run(DumpRead) });
-            models.Add(new ActionCardModel{ Id="mods.test.dumpMembers", Title="Dump Desc Members", Desc="List members of TestModDesc", OnInvoke = ()=> Run(()=> DumpDescMembers("TestModDesc")) });
-            models.Add(new ActionCardModel{ Id="mods.test.setTypeDirect", Title="Set Type (Direct String)", Desc="Set Type/type='PercentageAdd' via reflection", OnInvoke = ()=> Run(()=> DirectSetTypeString("TestModDesc","PercentageAdd")) });
-            return models;
-        }
+            new MarkdownCardModel{ Id="mods.test.header", Title="Modifier Write Tests", MarkdownText="### Modifier Write Diagnostics\nÂØπÂΩìÂâçÊçïËé∑ÁöÑÁâ©ÂìÅÊâßË°å‰∏çÂêåÂÜôÂÖ•ÊñπÂºèÔºåÂ∏ÆÂä©Á°ÆËÆ§Âì™‰∫õË∑ØÂæÑÊúâÊïà„ÄÇËØ∑ÂÖàÂú® ItemModKit Èù¢ÊùøÊçïËé∑‰∏Ä‰∏™Áâ©ÂìÅ„ÄÇ" },
+            new ActionCardModel{ Id="mods.test.addDesc", Title="Add Description", Desc="TryAddModifierDescription(TestModDesc, Add, value=1)", OnInvoke = ()=> Run(()=> TryAddModifierDescription("TestModDesc","Add",1f,true,0,null)) },
+            new ActionCardModel{ Id="mods.test.addRaw", Title="Add Raw Modifier", Desc="TryAddModifier(TestModRaw, value=2)", OnInvoke = ()=> Run(()=> TryAddModifierRaw("TestModRaw",2f,false,"Add")) },
+            new ActionCardModel{ Id="mods.test.updateVal", Title="Update Desc Value", Desc="TrySetModifierDescriptionValue(TestModDesc, +0.5)", OnInvoke = ()=> Run(UpdateTestModDescValue) },
+            new ActionCardModel{ Id="mods.test.updateType", Title="Update Desc Type", Desc="TrySetModifierDescriptionType(TestModDesc, PercentageAdd)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","PercentageAdd")) },
+            new ActionCardModel{ Id="mods.test.type.add", Title="Set Type: Add", Desc="TrySetModifierDescriptionType(TestModDesc, Add)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","Add")) },
+            new ActionCardModel{ Id="mods.test.type.padd", Title="Set Type: PercentageAdd", Desc="TrySetModifierDescriptionType(TestModDesc, PercentageAdd)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","PercentageAdd")) },
+            new ActionCardModel{ Id="mods.test.type.pmul", Title="Set Type: PercentageMultiply", Desc="TrySetModifierDescriptionType(TestModDesc, PercentageMultiply)", OnInvoke = ()=> Run(()=> TrySetModifierDescriptionType("TestModDesc","PercentageMultiply")) },
+            new ActionCardModel{ Id="mods.test.removeDesc", Title="Remove Description", Desc="TryRemoveModifierDescription(TestModDesc)", OnInvoke = ()=> Run(()=> TryRemoveModifierDescription("TestModDesc")) },
+            new ActionCardModel{ Id="mods.test.dedup", Title="Deduplicate", Desc="TrySanitizeModifierDescriptions()", OnInvoke = ()=> Run(TryDedup) },
+            new ActionCardModel{ Id="mods.test.dump", Title="Dump Read", Desc="Read descriptors & raw modifiers", OnInvoke = ()=> Run(DumpRead) },
+            new ActionCardModel{ Id="mods.test.dumpMembers", Title="Dump Desc Members", Desc="List members of TestModDesc", OnInvoke = ()=> Run(()=> DumpDescMembers("TestModDesc")) },
+            new ActionCardModel{ Id="mods.test.setTypeDirect", Title="Set Type (Direct String)", Desc="Set Type/type='PercentageAdd' via reflection", OnInvoke = ()=> Run(()=> DirectSetTypeString("TestModDesc","PercentageAdd")) },
+        };
 
         private object AcquireWrite()
         {
             try
             {
                 var duck = FindType("ItemModKit.Adapters.Duckov.IMKDuckov"); if (duck == null) { Log("IMKDuckov type not found"); return null; }
-                var prop = duck.GetProperty("Write", BindingFlags.Public|BindingFlags.Static);
+                var prop = duck.GetProperty("Write", BindingFlags.Public | BindingFlags.Static);
                 if (prop != null) return prop.GetValue(null);
-                var fld = duck.GetField("Write", BindingFlags.Public|BindingFlags.Static);
+                var fld = duck.GetField("Write", BindingFlags.Public | BindingFlags.Static);
                 if (fld != null) return fld.GetValue(null);
                 Log("IMKDuckov.Write not found");
                 return null;
             }
-            catch (Exception ex) { Log("AcquireWrite exception: "+ex.Message); return null; }
+            catch (Exception ex) { Log("AcquireWrite exception: " + ex.Message); return null; }
         }
         private object AcquireRead()
         {
             try
             {
                 var duck = FindType("ItemModKit.Adapters.Duckov.IMKDuckov"); if (duck == null) { Log("IMKDuckov type not found"); return null; }
-                var prop = duck.GetProperty("Read", BindingFlags.Public|BindingFlags.Static);
+                var prop = duck.GetProperty("Read", BindingFlags.Public | BindingFlags.Static);
                 if (prop != null) return prop.GetValue(null);
-                var fld = duck.GetField("Read", BindingFlags.Public|BindingFlags.Static);
+                var fld = duck.GetField("Read", BindingFlags.Public | BindingFlags.Static);
                 if (fld != null) return fld.GetValue(null);
                 Log("IMKDuckov.Read not found");
                 return null;
             }
-            catch (Exception ex) { Log("AcquireRead exception: "+ex.Message); return null; }
+            catch (Exception ex) { Log("AcquireRead exception: " + ex.Message); return null; }
         }
-        private static Type FindType(string fullName){ var t=Type.GetType(fullName); if(t!=null) return t; foreach(var asm in AppDomain.CurrentDomain.GetAssemblies()){ try { t=asm.GetType(fullName); if(t!=null) return t; } catch { } } return null; }
-        private void Log(string msg){ Debug.Log("[SampleModifiersTest] "+msg); }
-        private bool HasItem(out object item){ item = ItemModKitPanelState.CapturedItem; if (item==null){ Log("No captured item. Capture first in ItemModKit panel."); return false; } return true; }
+        private static Type FindType(string fullName) { var t = Type.GetType(fullName); if (t != null) return t; foreach (var asm in AppDomain.CurrentDomain.GetAssemblies()) { try { t = asm.GetType(fullName); if (t != null) return t; } catch { } } return null; }
+        private void Log(string msg) { Debug.Log("[SampleModifiersTest] " + msg); }
+        private bool HasItem(out object item) { item = ItemModKitPanelState.CapturedItem; if (item == null) { Log("No captured item. Capture first in ItemModKit panel."); return false; } return true; }
 
-        private void Run(Action act){ try { act?.Invoke(); } catch(Exception ex){ Log("Exception: "+ex.Message); } }
+        private void Run(Action act) { try { act?.Invoke(); } catch (Exception ex) { Log("Exception: " + ex.Message); } }
 
         // Test operations
-        private void TryAddModifierDescription(string key,string type,float value,bool display,int order,string target)
+        private void TryAddModifierDescription(string key, string type, float value, bool display, int order, string target)
         {
-            if(!HasItem(out var item)) return; var write = AcquireWrite(); if(write==null){ Log("Write service null"); return; }
-            var m = write.GetType().GetMethod("TryAddModifierDescription"); if(m==null){ Log("Method TryAddModifierDescription not found"); return; }
-            var rr = m.Invoke(write,new object[]{ item,key,type,value,display,order,target }); LogResult("AddDesc", key, rr);
+            if (!HasItem(out var item)) return; var write = AcquireWrite(); if (write == null) { Log("Write service null"); return; }
+            var m = write.GetType().GetMethod("TryAddModifierDescription"); if (m == null) { Log("Method TryAddModifierDescription not found"); return; }
+            var rr = m.Invoke(write, new object[] { item, key, type, value, display, order, target }); LogResult("AddDesc", key, rr);
         }
-        private void TryAddModifierRaw(string key,float value,bool isPercent,string type)
+        private void TryAddModifierRaw(string key, float value, bool isPercent, string type)
         {
-            if(!HasItem(out var item)) return; var write = AcquireWrite(); if(write==null){ Log("Write service null"); return; }
-            var m = write.GetType().GetMethod("TryAddModifier"); if(m==null){ Log("Method TryAddModifier not found"); return; }
-            var rr = m.Invoke(write,new object[]{ item,key,value,isPercent,type,null }); LogResult("AddRaw", key, rr);
+            if (!HasItem(out var item)) return; var write = AcquireWrite(); if (write == null) { Log("Write service null"); return; }
+            var m = write.GetType().GetMethod("TryAddModifier"); if (m == null) { Log("Method TryAddModifier not found"); return; }
+            var rr = m.Invoke(write, new object[] { item, key, value, isPercent, type, null }); LogResult("AddRaw", key, rr);
         }
         private void UpdateTestModDescValue()
         {
-            if(!HasItem(out var item)) return; var write = AcquireWrite(); if(write==null){ Log("Write service null"); return; }
-            bool found=false; float cur = 0f; var read = AcquireRead(); if(read!=null){ var mRead = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mRead?.Invoke(read,new object[]{ item }); bool ok = rr!=null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); if(ok){ var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if(list!=null){ foreach(var d in list){ if(d==null) continue; string k = Convert.ToString(GetMaybe(d,new[]{"Key","key"})); if(k=="TestModDesc"){ cur = ConvertToFloat(GetMaybe(d,new[]{"Value","value"})); found=true; break; } } } } }
+            if (!HasItem(out var item)) return; var write = AcquireWrite(); if (write == null) { Log("Write service null"); return; }
+            bool found = false; float cur = 0f; var read = AcquireRead(); if (read != null) { var mRead = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mRead?.Invoke(read, new object[] { item }); bool ok = rr != null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); if (ok) { var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if (list != null) { foreach (var d in list) { if (d == null) continue; string k = Convert.ToString(GetMaybe(d, new[] { "Key", "key" })); if (k == "TestModDesc") { cur = ConvertToFloat(GetMaybe(d, new[] { "Value", "value" })); found = true; break; } } } } }
             if (!found)
             {
                 // upsert ensure descriptor exists
-                var mAdd = write.GetType().GetMethod("TryAddModifierDescription"); var rrAdd = mAdd?.Invoke(write,new object[]{ item, "TestModDesc", "Add", 0f, true, 0, null }); LogResult("EnsureDesc(Add)", "TestModDesc", rrAdd);
+                var mAdd = write.GetType().GetMethod("TryAddModifierDescription"); var rrAdd = mAdd?.Invoke(write, new object[] { item, "TestModDesc", "Add", 0f, true, 0, null }); LogResult("EnsureDesc(Add)", "TestModDesc", rrAdd);
             }
             float next = cur + 0.5f;
-            var mSet = write.GetType().GetMethod("TrySetModifierDescriptionValue"); if(mSet==null){ Log("Method TrySetModifierDescriptionValue not found"); return; }
-            var rr2 = mSet.Invoke(write,new object[]{ item,"TestModDesc", next }); LogResult("SetVal", "TestModDesc", rr2);
+            var mSet = write.GetType().GetMethod("TrySetModifierDescriptionValue"); if (mSet == null) { Log("Method TrySetModifierDescriptionValue not found"); return; }
+            var rr2 = mSet.Invoke(write, new object[] { item, "TestModDesc", next }); LogResult("SetVal", "TestModDesc", rr2);
         }
-        private void TrySetModifierDescriptionType(string key,string type)
+        private void TrySetModifierDescriptionType(string key, string type)
         {
-            if(!HasItem(out var item)) return; var write = AcquireWrite(); if(write==null){ Log("Write service null"); return; }
+            if (!HasItem(out var item)) return; var write = AcquireWrite(); if (write == null) { Log("Write service null"); return; }
             // ensure descriptor exists (idempotent add)
-            var mAdd = write.GetType().GetMethod("TryAddModifierDescription"); var rrAdd = mAdd?.Invoke(write,new object[]{ item, key, type, 0f, true, 0, null }); LogResult("EnsureDesc(Add)", key, rrAdd);
-            var m = write.GetType().GetMethod("TrySetModifierDescriptionType"); if(m==null){ Log("Method TrySetModifierDescriptionType not found"); return; }
-            var rr = m.Invoke(write,new object[]{ item,key,type }); LogResult("SetType", key, rr);
+            var mAdd = write.GetType().GetMethod("TryAddModifierDescription"); var rrAdd = mAdd?.Invoke(write, new object[] { item, key, type, 0f, true, 0, null }); LogResult("EnsureDesc(Add)", key, rrAdd);
+            var m = write.GetType().GetMethod("TrySetModifierDescriptionType"); if (m == null) { Log("Method TrySetModifierDescriptionType not found"); return; }
+            var rr = m.Invoke(write, new object[] { item, key, type }); LogResult("SetType", key, rr);
         }
         private void TryRemoveModifierDescription(string key)
         {
-            if(!HasItem(out var item)) return; var write = AcquireWrite(); if(write==null){ Log("Write service null"); return; }
-            var m = write.GetType().GetMethod("TryRemoveModifierDescription"); if(m==null){ Log("Method TryRemoveModifierDescription not found"); return; }
-            var rr = m.Invoke(write,new object[]{ item,key }); LogResult("RemoveDesc", key, rr);
+            if (!HasItem(out var item)) return; var write = AcquireWrite(); if (write == null) { Log("Write service null"); return; }
+            var m = write.GetType().GetMethod("TryRemoveModifierDescription"); if (m == null) { Log("Method TryRemoveModifierDescription not found"); return; }
+            var rr = m.Invoke(write, new object[] { item, key }); LogResult("RemoveDesc", key, rr);
         }
         private void TryDedup()
         {
-            if(!HasItem(out var item)) return; var write = AcquireWrite(); if(write==null){ Log("Write service null"); return; }
-            var m = write.GetType().GetMethod("TrySanitizeModifierDescriptions"); if(m==null){ Log("Method TrySanitizeModifierDescriptions not found"); return; }
-            var rr = m.Invoke(write,new object[]{ item }); LogResult("Dedup", "*", rr);
+            if (!HasItem(out var item)) return; var write = AcquireWrite(); if (write == null) { Log("Write service null"); return; }
+            var m = write.GetType().GetMethod("TrySanitizeModifierDescriptions"); if (m == null) { Log("Method TrySanitizeModifierDescriptions not found"); return; }
+            var rr = m.Invoke(write, new object[] { item }); LogResult("Dedup", "*", rr);
         }
         private void DumpRead()
         {
-            if(!HasItem(out var item)) return; var read = AcquireRead(); if(read==null){ Log("Read service null"); return; }
-            var mDesc = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mDesc?.Invoke(read,new object[]{ item }); bool ok = rr!=null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); int count=0; if(ok){ var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if(list!=null){ foreach(var d in list){ if(d==null) continue; string k = Convert.ToString(GetMaybe(d,new[]{"Key","key"})) ?? ""; float v = ConvertToFloat(GetMaybe(d,new[]{"Value","value"})); string t = Convert.ToString(GetMaybe(d,new[]{"Type","type"})) ?? ""; Log($"Desc[{count}] key={k} val={v} type={t}"); count++; } } }
+            if (!HasItem(out var item)) return; var read = AcquireRead(); if (read == null) { Log("Read service null"); return; }
+            var mDesc = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mDesc?.Invoke(read, new object[] { item }); bool ok = rr != null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); int count = 0; if (ok) { var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if (list != null) { foreach (var d in list) { if (d == null) continue; string k = Convert.ToString(GetMaybe(d, new[] { "Key", "key" })) ?? ""; float v = ConvertToFloat(GetMaybe(d, new[] { "Value", "value" })); string t = Convert.ToString(GetMaybe(d, new[] { "Type", "type" })) ?? ""; Log($"Desc[{count}] key={k} val={v} type={t}"); count++; } } }
             Log($"DumpRead descriptors total={count}");
-            var mRaw = read.GetType().GetMethod("TryReadModifiers"); var rrRaw = mRaw?.Invoke(read,new object[]{ item }); bool okRaw = rrRaw!=null && (bool)(rrRaw.GetType().GetProperty("Ok")?.GetValue(rrRaw) ?? false); int countRaw=0; if(okRaw){ var list2 = rrRaw.GetType().GetProperty("Value")?.GetValue(rrRaw) as System.Collections.IEnumerable; if(list2!=null){ foreach(var d in list2){ if(d==null) continue; string k = Convert.ToString(GetMaybe(d,new[]{"Key","key"})) ?? ""; float v = ConvertToFloat(GetMaybe(d,new[]{"Value","value"})); string t = Convert.ToString(GetMaybe(d,new[]{"Type","type"})) ?? ""; Log($"Raw[{countRaw}] key={k} val={v} type={t}"); countRaw++; } } }
+            var mRaw = read.GetType().GetMethod("TryReadModifiers"); var rrRaw = mRaw?.Invoke(read, new object[] { item }); bool okRaw = rrRaw != null && (bool)(rrRaw.GetType().GetProperty("Ok")?.GetValue(rrRaw) ?? false); int countRaw = 0; if (okRaw) { var list2 = rrRaw.GetType().GetProperty("Value")?.GetValue(rrRaw) as System.Collections.IEnumerable; if (list2 != null) { foreach (var d in list2) { if (d == null) continue; string k = Convert.ToString(GetMaybe(d, new[] { "Key", "key" })) ?? ""; float v = ConvertToFloat(GetMaybe(d, new[] { "Value", "value" })); string t = Convert.ToString(GetMaybe(d, new[] { "Type", "type" })) ?? ""; Log($"Raw[{countRaw}] key={k} val={v} type={t}"); countRaw++; } } }
             Log($"DumpRead raw total={countRaw}");
         }
 
         private void DumpDescMembers(string key)
         {
-            if(!HasItem(out var item)) return; var read = AcquireRead(); if(read==null){ Log("Read service null"); return; }
-            var mRead = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mRead?.Invoke(read,new object[]{ item }); bool ok = rr!=null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); if(!ok){ Log("Read descriptions failed"); return; }
-            var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if(list==null){ Log("Descriptions null"); return; }
-            foreach(var d in list){
-                if(d==null) continue; string k = Convert.ToString(GetMaybe(d,new[]{"Key","key","Name","name"})); if(k!=key) continue; var dt = d.GetType(); Log($"DescType={dt.FullName}");
-                try{ foreach(var p in dt.GetProperties(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance)) { Log($" prop {p.Name}:{p.PropertyType.Name}"); } }catch{}
-                try{ foreach(var f in dt.GetFields(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance)) { Log($" field {f.Name}:{f.FieldType.Name}"); } }catch{}
-                var curType = GetMaybe(d,new[]{"Type","type","Kind","kind","Op","op","Mode","mode","Operation","operation","Modifier","modifier"}); Log(" currentType="+ (curType==null?"<null>":curType.ToString()));
-                break; }
+            if (!HasItem(out var item)) return; var read = AcquireRead(); if (read == null) { Log("Read service null"); return; }
+            var mRead = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mRead?.Invoke(read, new object[] { item }); bool ok = rr != null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); if (!ok) { Log("Read descriptions failed"); return; }
+            var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if (list == null) { Log("Descriptions null"); return; }
+            foreach (var d in list)
+            {
+                if (d == null) continue; string k = Convert.ToString(GetMaybe(d, new[] { "Key", "key", "Name", "name" })); if (k != key) continue; var dt = d.GetType(); Log($"DescType={dt.FullName}");
+                try { foreach (var p in dt.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)) { Log($" prop {p.Name}:{p.PropertyType.Name}"); } } catch { }
+                try { foreach (var f in dt.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)) { Log($" field {f.Name}:{f.FieldType.Name}"); } } catch { }
+                var curType = GetMaybe(d, new[] { "Type", "type", "Kind", "kind", "Op", "op", "Mode", "mode", "Operation", "operation", "Modifier", "modifier" }); Log(" currentType=" + (curType == null ? "<null>" : curType.ToString()));
+                break;
+            }
         }
-        private void DirectSetTypeString(string key,string type)
+        private void DirectSetTypeString(string key, string type)
         {
-            if(!HasItem(out var item)) return; var read = AcquireRead(); var write = AcquireWrite(); if(read==null || write==null){ Log("Read/Write null"); return; }
-            var mRead = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mRead?.Invoke(read,new object[]{ item }); bool ok = rr!=null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); if(!ok){ Log("Read descriptions failed"); return; }
-            var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if(list==null){ Log("Descriptions null"); return; }
-            foreach(var d in list){ if(d==null) continue; string k = Convert.ToString(GetMaybe(d,new[]{"Key","key","Name","name"})); if(k!=key) continue; var dt = d.GetType();
-                bool set = false; foreach(var name in new[]{"Type","type","Kind","kind","Op","op","Mode","mode","Operation","operation","Modifier","modifier"})
+            if (!HasItem(out var item)) return; var read = AcquireRead(); var write = AcquireWrite(); if (read == null || write == null) { Log("Read/Write null"); return; }
+            var mRead = read.GetType().GetMethod("TryReadModifierDescriptions"); var rr = mRead?.Invoke(read, new object[] { item }); bool ok = rr != null && (bool)(rr.GetType().GetProperty("Ok")?.GetValue(rr) ?? false); if (!ok) { Log("Read descriptions failed"); return; }
+            var list = rr.GetType().GetProperty("Value")?.GetValue(rr) as System.Collections.IEnumerable; if (list == null) { Log("Descriptions null"); return; }
+            foreach (var d in list)
+            {
+                if (d == null) continue; string k = Convert.ToString(GetMaybe(d, new[] { "Key", "key", "Name", "name" })); if (k != key) continue; var dt = d.GetType();
+                bool set = false; foreach (var name in new[] { "Type", "type", "Kind", "kind", "Op", "op", "Mode", "mode", "Operation", "operation", "Modifier", "modifier" })
                 {
-                    try{ var p = dt.GetProperty(name, BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance); if(p!=null){ if(p.PropertyType==typeof(string)){ p.SetValue(d, type); set=true; break; } }
-                         var f = dt.GetField(name, BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance); if(f!=null){ if(f.FieldType==typeof(string)){ f.SetValue(d, type); set=true; break; } } }catch{}
+                    try
+                    {
+                        var p = dt.GetProperty(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance); if (p != null) { if (p.PropertyType == typeof(string)) { p.SetValue(d, type); set = true; break; } }
+                        var f = dt.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance); if (f != null) { if (f.FieldType == typeof(string)) { f.SetValue(d, type); set = true; break; } }
+                    }
+                    catch { }
                 }
-                Log("DirectSetTypeString result="+set);
-                break; }
-            try{ var mRe = write.GetType().GetMethod("TryReapplyModifiers"); var rr2 = mRe?.Invoke(write,new object[]{ item }); LogResult("Reapply", key, rr2); }catch{}
+                Log("DirectSetTypeString result=" + set);
+                break;
+            }
+            try { var mRe = write.GetType().GetMethod("TryReapplyModifiers"); var rr2 = mRe?.Invoke(write, new object[] { item }); LogResult("Reapply", key, rr2); } catch { }
         }
-        private static object GetMaybe(object obj, string[] names){ if(obj==null) return null; var tt=obj.GetType(); foreach(var n in names){ var p=tt.GetProperty(n, BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance); if(p!=null){ try { return p.GetValue(obj); } catch { } } var f=tt.GetField(n, BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance); if(f!=null){ try { return f.GetValue(obj); } catch { } } } return null; }
-        private static float ConvertToFloat(object v){ try { if(v==null) return 0f; if(v is float f) return f; if(v is double d) return (float)d; if(v is int i) return i; if(v is long l) return l; if(v is string s && float.TryParse(s, out var pf)) return pf; return Convert.ToSingle(v); } catch { return 0f; } }
-        private void LogResult(string action,string key, object rr)
+        private static object GetMaybe(object obj, string[] names) { if (obj == null) return null; var tt = obj.GetType(); foreach (var n in names) { var p = tt.GetProperty(n, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance); if (p != null) { try { return p.GetValue(obj); } catch { } } var f = tt.GetField(n, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance); if (f != null) { try { return f.GetValue(obj); } catch { } } } return null; }
+        private static float ConvertToFloat(object v) { try { if (v == null) return 0f; if (v is float f) return f; if (v is double d) return (float)d; if (v is int i) return i; if (v is long l) return l; if (v is string s && float.TryParse(s, out var pf)) return pf; return Convert.ToSingle(v); } catch { return 0f; } }
+        private void LogResult(string action, string key, object rr)
         {
             try
             {
-                bool ok = rr!=null && (bool)(rr?.GetType().GetProperty("Ok")?.GetValue(rr) ?? false);
+                bool ok = rr != null && (bool)(rr?.GetType().GetProperty("Ok")?.GetValue(rr) ?? false);
                 string err = rr?.GetType().GetProperty("Error")?.GetValue(rr)?.ToString();
                 Log($"{action} key={key} ok={ok} err={err}");
             }

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using IMK.SettingsUI.Cards;
-using IMK.SettingsUI.Table;
 using IMK.SettingsUI.Providers;
+using IMK.SettingsUI.Table;
 
 namespace IMK.SettingsUI.InternalMods.CoreShell
 {
@@ -19,19 +17,19 @@ namespace IMK.SettingsUI.InternalMods.CoreShell
     }
     internal sealed class ProviderManagerDataSet : ITableDataSet
     {
-        private readonly List<Row> _rows = new List<Row>();
+        private readonly List<Row> _rows = new();
         private bool _dirty;
-        private Dictionary<string, ProviderPreferences.Entry> _snapshot;
+        private Dictionary<string, ProviderPreferences.Entry> _snapshot; // retained for potential diff/undo
         public int Count => _rows.Count;
         public bool IsDirty => _dirty;
-        public ProviderManagerDataSet(){ Reload(); }
+        public ProviderManagerDataSet() { Reload(); }
         public IRowAdapter GetRow(int index) => new RowAdapter(this, _rows[index]);
         public bool AddNew() => false; // not supported
         public bool RemoveAt(int index) => false;
         public bool Move(int from, int to)
         {
-            if (from<0||to<0||from>=_rows.Count||to>=_rows.Count) return false; if (from==to) return true;
-            var r=_rows[from]; _rows.RemoveAt(from); _rows.Insert(to,r); _dirty=true; RenumberOrders(true); return true;
+            if (from < 0 || to < 0 || from >= _rows.Count || to >= _rows.Count) return false; if (from == to) return true;
+            var r = _rows[from]; _rows.RemoveAt(from); _rows.Insert(to, r); _dirty = true; RenumberOrders(true); return true;
         }
         public bool Commit()
         {
@@ -39,10 +37,7 @@ namespace IMK.SettingsUI.InternalMods.CoreShell
             {
                 // ensure sequential order before save
                 RenumberOrders(false);
-                foreach (var r in _rows)
-                {
-                    ProviderPreferences.Set(r.id, r.enabled, r.order, r.title);
-                }
+                foreach (var r in _rows) ProviderPreferences.Set(r.id, r.enabled, r.order, r.title);
                 ProviderPreferences.Save();
                 // rebuild nav pane
                 try
@@ -52,7 +47,7 @@ namespace IMK.SettingsUI.InternalMods.CoreShell
                     pane?.Refresh();
                 }
                 catch { }
-                _dirty=false; return true;
+                _dirty = false; return true;
             }
             catch { return false; }
         }
@@ -62,19 +57,16 @@ namespace IMK.SettingsUI.InternalMods.CoreShell
             {
                 _rows.Clear(); _snapshot = ProviderPreferences.Snapshot();
                 var list = ProviderPreferences.BuildOrderedList(ProviderRegistry.All);
-                foreach (var it in list)
-                {
-                    _rows.Add(new Row{ id=it.id, title=it.title, enabled=it.pref.Enabled, order=it.pref.Order });
-                }
+                foreach (var it in list) _rows.Add(new Row { id = it.id, title = it.title, enabled = it.pref.Enabled, order = it.pref.Order });
                 // normalize order to 1..N without marking dirty
                 RenumberOrders(false);
-                _dirty=false; return true;
+                _dirty = false; return true;
             }
             catch { return false; }
         }
         private void RenumberOrders(bool markDirty)
         {
-            for (int i=0;i<_rows.Count;i++) _rows[i].order = i+1;
+            for (int i = 0; i < _rows.Count; i++) _rows[i].order = i + 1;
             if (markDirty) _dirty = true;
         }
         private sealed class Row
@@ -84,19 +76,21 @@ namespace IMK.SettingsUI.InternalMods.CoreShell
         private sealed class RowAdapter : IRowAdapter
         {
             private readonly ProviderManagerDataSet _ds; private Row _r;
-            public RowAdapter(ProviderManagerDataSet ds, Row r){ _ds=ds; _r=r; }
-            public object Get(string columnId){ switch(columnId){ case "id": return _r.id; case "title": return _r.title; case "enabled": return _r.enabled; case "order": return _r.order; default: return null; } }
+            public RowAdapter(ProviderManagerDataSet ds, Row r) { _ds = ds; _r = r; }
+            public object Get(string columnId) { switch (columnId) { case "id": return _r.id; case "title": return _r.title; case "enabled": return _r.enabled; case "order": return _r.order; default: return null; } }
             public bool Set(string columnId, object value)
             {
-                switch(columnId)
+                switch (columnId)
                 {
-                    case "enabled": _r.enabled = value is bool b ? b : _r.enabled; _ds._dirty=true; return true;
+                    case "enabled": _r.enabled = value is bool b ? b : _r.enabled; _ds._dirty = true; return true;
                     case "order":
-                        try {
+                        try
+                        {
                             int val;
-                            if (value is int ii) val=ii; else if (value is string ss) { int.TryParse(ss, out val); } else val = System.Convert.ToInt32(value);
-                            _r.order = val; _ds._dirty=true; return true;
-                        } catch { return false; }
+                            if (value is int ii) val = ii; else if (value is string ss) { int.TryParse(ss, out val); } else val = System.Convert.ToInt32(value);
+                            _r.order = val; _ds._dirty = true; return true;
+                        }
+                        catch { return false; }
                     default: return false;
                 }
             }

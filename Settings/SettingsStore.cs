@@ -11,8 +11,8 @@ namespace IMK.SettingsUI.Settings
         private const string FileName = "ui.json";
         public static UiConfig Current = new UiConfig();
 
-        public static string GetDir(){ return Path.Combine(Application.persistentDataPath, "Mods", Folder); }
-        public static string GetFile(){ return Path.Combine(GetDir(), FileName); }
+        public static string GetDir() => Path.Combine(Application.persistentDataPath, "Mods", Folder);
+        public static string GetFile() => Path.Combine(GetDir(), FileName);
 
         public static void Load()
         {
@@ -22,22 +22,21 @@ namespace IMK.SettingsUI.Settings
                 if (File.Exists(path))
                 {
                     var json = File.ReadAllText(path);
-                    var cfg = JsonConvert.DeserializeObject<UiConfig>(json);
-                    if (cfg != null) Current = cfg;
+                    if (JsonConvert.DeserializeObject<UiConfig>(json) is UiConfig cfg) Current = cfg;
                 }
                 Apply(Current);
             }
-            catch (Exception ex){ Debug.LogWarning($"[IMK.SettingsUI] Load settings failed: {ex.Message}"); }
+            catch (Exception ex) { Debug.LogWarning($"[IMK.SettingsUI] Load settings failed: {ex.Message}"); }
         }
         public static void Save()
         {
             try
             {
-                var dir = GetDir(); if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
-                var json = JsonConvert.SerializeObject(Current, Formatting.Indented);
-                File.WriteAllText(GetFile(), json);
+                var dir = GetDir();
+                if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+                File.WriteAllText(GetFile(), JsonConvert.SerializeObject(Current, Formatting.Indented));
             }
-            catch (Exception ex){ Debug.LogWarning($"[IMK.SettingsUI] Save settings failed: {ex.Message}"); }
+            catch (Exception ex) { Debug.LogWarning($"[IMK.SettingsUI] Save settings failed: {ex.Message}"); }
         }
         public static void Apply(UiConfig cfg)
         {

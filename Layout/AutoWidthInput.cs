@@ -30,17 +30,23 @@ namespace IMK.SettingsUI.Layout
         {
             Unhook();
         }
+        private UnityEngine.Events.UnityAction<string> _cachedHandler;
         void TryHook()
         {
             if (Target == null) Target = GetComponent<InputField>();
-            if (Target != null)
+            if (Target != null && _cachedHandler == null)
             {
-                Target.onValueChanged.AddListener(_ => UpdateWidth());
+                _cachedHandler = _ => UpdateWidth();
+                Target.onValueChanged.AddListener(_cachedHandler);
             }
         }
         void Unhook()
         {
-            if (Target != null) Target.onValueChanged.RemoveListener(_ => UpdateWidth());
+            if (Target != null && _cachedHandler != null)
+            {
+                Target.onValueChanged.RemoveListener(_cachedHandler);
+                _cachedHandler = null;
+            }
         }
         void UpdateWidth()
         {

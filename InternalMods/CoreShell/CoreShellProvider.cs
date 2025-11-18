@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using IMK.SettingsUI.Cards;
 using IMK.SettingsUI.Providers;
 using UnityEngine;
-using IMK.SettingsUI.Table;
 
 namespace IMK.SettingsUI.InternalMods.CoreShell
 {
@@ -19,16 +18,16 @@ namespace IMK.SettingsUI.InternalMods.CoreShell
         public IEnumerable<NavItem> GetNavItems()
         {
             // Only expose Root explicitly (optional). Navigation controller auto rewrites provider selection to :Root.
-            yield return new NavItem{ Id="CoreShell:Root", Title="Home" };
+            yield return new NavItem { Id = "CoreShell:Root", Title = "Home" };
         }
         public void BuildPage(string pageId, Transform parent)
         {
             // Legacy path (not used by current NavController but kept for safety)
             var models = BuildPageModels(pageId);
-            for (int i=parent.childCount-1;i>=0;i--) Object.DestroyImmediate(parent.GetChild(i).gameObject);
+            for (int i = parent.childCount - 1; i >= 0; i--) Object.DestroyImmediate(parent.GetChild(i).gameObject);
             if (models != null)
             {
-                float y=0f; const float gap=8f; foreach (var m in models){ var go = CardTemplates.Bind(m,null); go.transform.SetParent(parent,false); var rt=go.GetComponent<RectTransform>(); rt.anchoredPosition=new Vector2(0f,-y); y += rt.sizeDelta.y + gap; }
+                float y = 0f; const float gap = 8f; foreach (var m in models) { var go = CardTemplates.Bind(m, null); go.transform.SetParent(parent, false); var rt = go.GetComponent<RectTransform>(); rt.anchoredPosition = new Vector2(0f, -y); y += rt.sizeDelta.y + gap; }
             }
         }
         public IEnumerable<ICardModel> BuildPageModels(string pageId)
@@ -39,10 +38,10 @@ namespace IMK.SettingsUI.InternalMods.CoreShell
         private List<ICardModel> BuildHomeModels()
         {
             var list = new List<ICardModel>();
-            list.Add(new MarkdownCardModel{ Id="home.welcome", Title="IMK.SettingsUI Home", Markdown="# IMK.SettingsUI\n\n»¶Ó­Ê¹ÓÃÍ³Ò»ÉèÖÃ´°¿Ú¡£\n\n**ËµÃ÷**:\n- ×ó²àµ¼º½ÁĞ³öÒÑ×¢²áµÄ Provider (ºóÖÃÄ£×é).\n- Ãæ°üĞ¼ÏÔÊ¾²ã¼¶Â·¾¶·½±ã·µ»Ø.\n- ¿ÉÍ¨¹ı PublicApi.RegisterProvider ÔÚÔËĞĞÆÚÌí¼ÓÉèÖÃÃæ°å.\n\n**¿¨Æ¬ÀàĞÍ**:\n- Navigation: Ìø×ª\n- Setting: ²ÎÊı±à¼­\n- Action: Á¢¼´Ö´ĞĞ\n- Markdown: ÎÄµµ / ÌáÊ¾\n", HeightOverride = -1 });
+            list.Add(new MarkdownCardModel { Id = "home.welcome", Title = "IMK.SettingsUI Home", Markdown = "# IMK.SettingsUI\n\næ¬¢è¿ä½¿ç”¨ç»Ÿä¸€è®¾ç½®çª—å£ã€‚\n\n**è¯´æ˜**:\n- å·¦ä¾§å¯¼èˆªåˆ—å‡ºå·²æ³¨å†Œçš„ Provider (åç½®æ¨¡ç»„).\n- é¢åŒ…å±‘æ˜¾ç¤ºå±‚çº§è·¯å¾„æ–¹ä¾¿è¿”å›.\n- å¯é€šè¿‡ PublicApi.RegisterProvider åœ¨è¿è¡ŒæœŸæ·»åŠ è®¾ç½®é¢æ¿.\n\n**å¡ç‰‡ç±»å‹**:\n- Navigation: è·³è½¬\n- Setting: å‚æ•°ç¼–è¾‘\n- Action: ç«‹å³æ‰§è¡Œ\n- Markdown: æ–‡æ¡£ / æç¤º\n", HeightOverride = -1 });
             if (IMK.SettingsUI.Providers.ProviderRegistry.All.Count <= 2) // core + settings panel only
             {
-                list.Add(new MarkdownCardModel{ Id="home.empty", Title="No Providers", Markdown="### ¿Õ×´Ì¬\nµ±Ç°Ã»ÓĞÍâ²¿ÉèÖÃ Provider ±»×¢²á¡£\n\nÄã¿ÉÒÔ£º\n1. ÔÚ ModBehaviour ÖĞµ÷ÓÃ PublicApi.RegisterProvider(new MyProvider())¡£\n2. ÆôÓÃÆäËû InternalMods Ê¾Àı (SampleProvider µÈ)¡£\n3. ±àĞ´ÊµÏÖ ISettingsProvider µÄÀà²¢ÔÚ Awake() ×¢²á¡£\n\nÊ¾Àı´úÂë£º\n````csharp\npublic sealed class MyProvider : ISettingsProvider { /* ... */ }\nvoid Awake(){ IMK.SettingsUI.PublicApi.RegisterProvider(new MyProvider()); }\n````\n" });
+                list.Add(new MarkdownCardModel { Id = "home.empty", Title = "No Providers", Markdown = "### ç©ºçŠ¶æ€\nå½“å‰æ²¡æœ‰å¤–éƒ¨è®¾ç½® Provider è¢«æ³¨å†Œã€‚\n\nä½ å¯ä»¥ï¼š\n1. åœ¨ ModBehaviour ä¸­è°ƒç”¨ PublicApi.RegisterProvider(new MyProvider())ã€‚\n2. å¯ç”¨å…¶ä»– InternalMods ç¤ºä¾‹ (SampleProvider ç­‰)ã€‚\n3. ç¼–å†™å®ç° ISettingsProvider çš„ç±»å¹¶åœ¨ Awake() æ³¨å†Œã€‚\n\nç¤ºä¾‹ä»£ç ï¼š\n````csharp\npublic sealed class MyProvider : ISettingsProvider { /* ... */ }\nvoid Awake(){ IMK.SettingsUI.PublicApi.RegisterProvider(new MyProvider()); }\n````\n" });
             }
             return list;
         }

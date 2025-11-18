@@ -1,9 +1,9 @@
-using UnityEngine;
 using IMK.SettingsUI.App;
-using IMK.SettingsUI.Providers;
-using SampleInternal = IMK.SettingsUI.InternalMods.Sample.SampleProvider;
-using IMK.SettingsUI.InternalMods.SettingsPanel;
 using IMK.SettingsUI.InternalMods.ItemModKitPanel;
+using IMK.SettingsUI.InternalMods.SettingsPanel;
+using IMK.SettingsUI.Providers;
+using UnityEngine;
+using SampleInternal = IMK.SettingsUI.InternalMods.Sample.SampleProvider;
 
 namespace IMK.SettingsUI
 {

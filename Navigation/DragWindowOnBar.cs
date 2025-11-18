@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 namespace IMK.SettingsUI.Navigation
 {
     /// <summary>Allow dragging the settings window by dragging anywhere on the top bar (breadcrumb area).
-    /// Uses a small threshold so simple clicks on buttonsÈÔÈ»¿É´¥·¢£¬³¬¹ıãĞÖµÔò½øÈëÍÏ×§¡£</summary>
+    /// Uses a small threshold so simple clicks on buttonsä»ç„¶å¯è§¦å‘ï¼Œè¶…è¿‡é˜ˆå€¼åˆ™è¿›å…¥æ‹–æ‹½ã€‚</summary>
     public sealed class DragWindowOnBar : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         public RectTransform Window;
@@ -22,7 +22,7 @@ namespace IMK.SettingsUI.Navigation
         {
             if (Window == null) return;
             var delta = (Vector2)eventData.position - _startMouse;
-            if (delta.sqrMagnitude >= Threshold*Threshold) _dragging = true;
+            if (delta.sqrMagnitude >= Threshold * Threshold) _dragging = true;
         }
         public void OnDrag(PointerEventData eventData)
         {
@@ -30,7 +30,7 @@ namespace IMK.SettingsUI.Navigation
             if (!_dragging)
             {
                 var delta0 = (Vector2)eventData.position - _startMouse;
-                if (delta0.sqrMagnitude < Threshold*Threshold) return;
+                if (delta0.sqrMagnitude < Threshold * Threshold) return;
                 _dragging = true;
             }
             var delta = (Vector2)eventData.position - _startMouse;

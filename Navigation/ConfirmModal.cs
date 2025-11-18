@@ -54,31 +54,31 @@ namespace IMK.SettingsUI.Navigation
 
         private void BuildUI(RectTransform root)
         {
-            _overlay = root; _overlay.anchorMin = Vector2.zero; _overlay.anchorMax = Vector2.one; _overlay.pivot = new Vector2(0.5f,0.5f); _overlay.offsetMin = Vector2.zero; _overlay.offsetMax = Vector2.zero;
-            var img = _overlay.gameObject.AddComponent<UnityEngine.UI.Image>(); img.color = new Color(0f,0f,0f,0.6f); img.raycastTarget = true;
+            _overlay = root; _overlay.anchorMin = Vector2.zero; _overlay.anchorMax = Vector2.one; _overlay.pivot = new Vector2(0.5f, 0.5f); _overlay.offsetMin = Vector2.zero; _overlay.offsetMax = Vector2.zero;
+            var img = _overlay.gameObject.AddComponent<UnityEngine.UI.Image>(); img.color = new Color(0f, 0f, 0f, 0.6f); img.raycastTarget = true;
 
             // panel
             _panel = new GameObject("Panel").AddComponent<RectTransform>(); _panel.SetParent(_overlay, false);
-            _panel.anchorMin = new Vector2(0.5f,0.5f); _panel.anchorMax = new Vector2(0.5f,0.5f); _panel.pivot = new Vector2(0.5f,0.5f); _panel.sizeDelta = new Vector2(520f, 240f);
+            _panel.anchorMin = new Vector2(0.5f, 0.5f); _panel.anchorMax = new Vector2(0.5f, 0.5f); _panel.pivot = new Vector2(0.5f, 0.5f); _panel.sizeDelta = new Vector2(520f, 240f);
             var pbg = _panel.gameObject.AddComponent<UnityEngine.UI.Image>(); pbg.color = Theme.ThemeColors.ContentBg;
 
             // title
             var titleGo = new GameObject("Title").AddComponent<RectTransform>(); titleGo.SetParent(_panel, false);
-            titleGo.anchorMin = new Vector2(0f,1f); titleGo.anchorMax = new Vector2(1f,1f); titleGo.pivot = new Vector2(0.5f,1f); titleGo.sizeDelta = new Vector2(0f,48f); titleGo.anchoredPosition = new Vector2(0f,-8f);
+            titleGo.anchorMin = new Vector2(0f, 1f); titleGo.anchorMax = new Vector2(1f, 1f); titleGo.pivot = new Vector2(0.5f, 1f); titleGo.sizeDelta = new Vector2(0f, 48f); titleGo.anchoredPosition = new Vector2(0f, -8f);
             _title = titleGo.gameObject.AddComponent<UnityEngine.UI.Text>(); _title.font = Theme.ThemeColors.DefaultFont; _title.alignment = TextAnchor.UpperLeft; _title.color = Color.white; _title.fontSize = 18;
 
             // message
             var msgGo = new GameObject("Message").AddComponent<RectTransform>(); msgGo.SetParent(_panel, false);
-            msgGo.anchorMin = new Vector2(0f,0f); msgGo.anchorMax = new Vector2(1f,1f); msgGo.pivot = new Vector2(0.5f,0.5f); msgGo.offsetMin = new Vector2(16f,64f); msgGo.offsetMax = new Vector2(-16f,-64f);
+            msgGo.anchorMin = new Vector2(0f, 0f); msgGo.anchorMax = new Vector2(1f, 1f); msgGo.pivot = new Vector2(0.5f, 0.5f); msgGo.offsetMin = new Vector2(16f, 64f); msgGo.offsetMax = new Vector2(-16f, -64f);
             _message = msgGo.gameObject.AddComponent<UnityEngine.UI.Text>(); _message.font = Theme.ThemeColors.DefaultFont; _message.alignment = TextAnchor.UpperLeft; _message.color = Theme.ThemeColors.TextDim; _message.fontSize = 14; _message.horizontalOverflow = HorizontalWrapMode.Wrap; _message.verticalOverflow = VerticalWrapMode.Truncate;
 
             // buttons container
             var btns = new GameObject("Buttons").AddComponent<RectTransform>(); btns.SetParent(_panel, false);
-            btns.anchorMin = new Vector2(0.5f,0f); btns.anchorMax = new Vector2(0.5f,0f); btns.pivot = new Vector2(0.5f,0f); btns.anchoredPosition = new Vector2(0f, 12f); btns.sizeDelta = new Vector2(480f, 44f);
+            btns.anchorMin = new Vector2(0.5f, 0f); btns.anchorMax = new Vector2(0.5f, 0f); btns.pivot = new Vector2(0.5f, 0f); btns.anchoredPosition = new Vector2(0f, 12f); btns.sizeDelta = new Vector2(480f, 44f);
 
-            _btnPrimary = CreateButton("Primary", btns, new Vector2(-160f,0f)); _btnPrimaryText = _btnPrimary.GetComponentInChildren<UnityEngine.UI.Text>();
-            _btnSecondary = CreateButton("Secondary", btns, new Vector2(0f,0f)); _btnSecondaryText = _btnSecondary.GetComponentInChildren<UnityEngine.UI.Text>();
-            _btnCancel = CreateButton("Cancel", btns, new Vector2(160f,0f)); _btnCancelText = _btnCancel.GetComponentInChildren<UnityEngine.UI.Text>();
+            _btnPrimary = CreateButton("Primary", btns, new Vector2(-160f, 0f)); _btnPrimaryText = _btnPrimary.GetComponentInChildren<UnityEngine.UI.Text>();
+            _btnSecondary = CreateButton("Secondary", btns, new Vector2(0f, 0f)); _btnSecondaryText = _btnSecondary.GetComponentInChildren<UnityEngine.UI.Text>();
+            _btnCancel = CreateButton("Cancel", btns, new Vector2(160f, 0f)); _btnCancelText = _btnCancel.GetComponentInChildren<UnityEngine.UI.Text>();
 
             gameObject.SetActive(false);
         }
@@ -86,7 +86,7 @@ namespace IMK.SettingsUI.Navigation
         private UnityEngine.UI.Button CreateButton(string name, RectTransform parent, Vector2 pos)
         {
             var go = new GameObject(name).AddComponent<RectTransform>(); go.SetParent(parent, false);
-            go.anchorMin = new Vector2(0.5f,0f); go.anchorMax = new Vector2(0.5f,0f); go.pivot = new Vector2(0.5f,0f); go.anchoredPosition = pos; go.sizeDelta = new Vector2(140f, 36f);
+            go.anchorMin = new Vector2(0.5f, 0f); go.anchorMax = new Vector2(0.5f, 0f); go.pivot = new Vector2(0.5f, 0f); go.anchoredPosition = pos; go.sizeDelta = new Vector2(140f, 36f);
             var img = go.gameObject.AddComponent<UnityEngine.UI.Image>(); img.color = Theme.ThemeColors.NavItem;
             var btn = go.gameObject.AddComponent<UnityEngine.UI.Button>();
             var txtGo = new GameObject("Text").AddComponent<RectTransform>(); txtGo.SetParent(go, false);
@@ -104,10 +104,10 @@ namespace IMK.SettingsUI.Navigation
             _btnCancelText.text = string.IsNullOrEmpty(cancelLabel) ? "Cancel" : cancelLabel;
             _onPrimary = onPrimary; _onSecondary = onSecondary; _onCancel = onCancel;
             _btnPrimary.onClick.RemoveAllListeners(); _btnSecondary.onClick.RemoveAllListeners(); _btnCancel.onClick.RemoveAllListeners();
-            _btnPrimary.onClick.AddListener(()=> { SafeClose(); try { _onPrimary?.Invoke(); } catch { } });
-            _btnSecondary.onClick.AddListener(()=> { SafeClose(); try { _onSecondary?.Invoke(); } catch { } });
-            _btnCancel.onClick.AddListener(()=> { SafeClose(); try { _onCancel?.Invoke(); } catch { } });
+            _btnPrimary.onClick.AddListener(() => { SafeClose(); try { _onPrimary?.Invoke(); } catch { } });
+            _btnSecondary.onClick.AddListener(() => { SafeClose(); try { _onSecondary?.Invoke(); } catch { } });
+            _btnCancel.onClick.AddListener(() => { SafeClose(); try { _onCancel?.Invoke(); } catch { } });
         }
-        private void SafeClose(){ try{ gameObject.SetActive(false);}catch{} }
+        private void SafeClose() { try { gameObject.SetActive(false); } catch { } }
     }
 }

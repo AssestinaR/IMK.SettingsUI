@@ -19,18 +19,22 @@ namespace IMK.SettingsUI
             if (string.IsNullOrWhiteSpace(minVersion)) return true;
             try
             {
-                var cur = Parse(ApiVersion); var req = Parse(minVersion);
-                if (cur.major != req.major) return cur.major > req.major;
-                if (cur.minor != req.minor) return cur.minor >= req.minor;
-                return cur.patch >= req.patch;
+                var cur = Parse(ApiVersion);
+                var req = Parse(minVersion);
+                return cur.major != req.major
+                    ? cur.major > req.major
+                    : cur.minor != req.minor
+                        ? cur.minor >= req.minor
+                        : cur.patch >= req.patch;
             }
             catch { return false; }
         }
-        private static (int major,int minor,int patch) Parse(string v)
+        private static (int major, int minor, int patch) Parse(string v)
         {
             var core = v.Split('-')[0]; // drop prerelease if any
-            var parts = core.Split('.'); int[] nums = new int[3] {0,0,0};
-            for (int i=0;i<Math.Min(3, parts.Length);i++) int.TryParse(parts[i], out nums[i]);
+            var parts = core.Split('.');
+            int[] nums = { 0, 0, 0 };
+            for (int i = 0; i < parts.Length && i < 3; i++) int.TryParse(parts[i], out nums[i]);
             return (nums[0], nums[1], nums[2]);
         }
 

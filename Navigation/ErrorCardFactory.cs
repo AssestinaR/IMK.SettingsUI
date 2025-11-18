@@ -6,13 +6,13 @@ namespace IMK.SettingsUI.Navigation
     {
         public static ICardModel CreateError(string providerId, string pageId, string msg)
         {
-            string md = $"### Page Error\nProvider: `{providerId}`\n\nPage: `{pageId}`\n\nError: `{msg}`\n\nÇë¼ì²é¸Ã Provider µÄ BuildPageModels ÊµÏÖ£¬»ò²é¿´ÈÕÖ¾¡£";
-            return new MarkdownCardModel{ Id=$"{providerId}:{pageId}:error", Title="Error", Markdown=md };
+            string md = $"### Page Error\nProvider: `{providerId}`\n\nPage: `{pageId}`\n\nError: `{msg}`\n\nè¯·æ£€æŸ¥è¯¥ Provider çš„ BuildPageModels å®ç°ï¼Œæˆ–æŸ¥çœ‹æ—¥å¿—ã€‚";
+            return new MarkdownCardModel { Id = $"{providerId}:{pageId}:error", Title = "Error", Markdown = md };
         }
         public static ICardModel CreateEmpty(string providerId, string pageId)
         {
-            string md = $"### Empty Page\nProvider: `{providerId}`\n\nPage: `{pageId}`\n\nÎ´·µ»ØÈÎºÎ¿¨Æ¬¡£ÇëÔÚ BuildPageModels ·µ»ØÖÁÉÙÒ»¸ö¿¨Æ¬Ä£ĞÍ£¨ÀıÈç Markdown ËµÃ÷¿¨»òÌø×ª¿¨£©¡£";
-            return new MarkdownCardModel{ Id=$"{providerId}:{pageId}:empty", Title="Empty", Markdown=md };
+            string md = $"### Empty Page\nProvider: `{providerId}`\n\nPage: `{pageId}`\n\næœªè¿”å›ä»»ä½•å¡ç‰‡ã€‚è¯·åœ¨ BuildPageModels è¿”å›è‡³å°‘ä¸€ä¸ªå¡ç‰‡æ¨¡å‹ï¼ˆä¾‹å¦‚ Markdown è¯´æ˜å¡æˆ–è·³è½¬å¡ï¼‰ã€‚";
+            return new MarkdownCardModel { Id = $"{providerId}:{pageId}:empty", Title = "Empty", Markdown = md };
         }
     }
 }

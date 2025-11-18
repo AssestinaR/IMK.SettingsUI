@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using UnityEngine;
-using IMK.SettingsUI.Cards;
-using IMK.SettingsUI.Providers;
 using System;
+using System.Collections.Generic;
+using IMK.SettingsUI.Cards;
 using IMK.SettingsUI.InternalMods.CoreShell; // reuse ProviderManagerSchema/DataSet
+using IMK.SettingsUI.Providers;
 using IMK.SettingsUI.Table;
+using UnityEngine;
 
 namespace IMK.SettingsUI.InternalMods.SettingsPanel
 {
@@ -14,25 +14,22 @@ namespace IMK.SettingsUI.InternalMods.SettingsPanel
         public string Id => "SettingsUI";
         public string Title => "Settings UI";
         // Provide direct nav items (optional) but Root will still be shown first when selecting provider
-        public IEnumerable<NavItem> GetNavItems(){
-            yield return new NavItem{ Id="SettingsUI:Configure", Title="Configure" };
-            yield return new NavItem{ Id="SettingsUI:Diagnostics", Title="Diagnostics" };
-            yield return new NavItem{ Id="SettingsUI:ProviderManager", Title="Manage Providers" };
+        public IEnumerable<NavItem> GetNavItems()
+        {
+            yield return new NavItem { Id = "SettingsUI:Configure", Title = "Configure" };
+            yield return new NavItem { Id = "SettingsUI:Diagnostics", Title = "Diagnostics" };
+            yield return new NavItem { Id = "SettingsUI:ProviderManager", Title = "Manage Providers" };
         }
         public void BuildPage(string pageId, Transform parent)
         {
-            // Legacy path: delegate to model building if NavController uses BuildPage instead
-            var pure = pageId; int c = pageId.IndexOf(':'); if (c>=0 && c<pageId.Length-1) pure = pageId.Substring(c+1);
+            var pure = pageId; int c = pageId.IndexOf(':'); if (c >= 0 && c < pageId.Length - 1) pure = pageId[(c + 1)..];
             var models = BuildPageModels(pure);
-            for (int i=parent.childCount-1;i>=0;i--) UnityEngine.Object.DestroyImmediate(parent.GetChild(i).gameObject);
-            if (models != null)
+            for (int i = parent.childCount - 1; i >= 0; i--) UnityEngine.Object.DestroyImmediate(parent.GetChild(i).gameObject);
+            if (models == null)
             {
-                float y=0f; const float gap=8f; foreach (var m in models){ var go = CardTemplates.Bind(m,null); go.transform.SetParent(parent,false); var rt=go.GetComponent<RectTransform>(); rt.anchoredPosition=new Vector2(0f,-y); y += rt.sizeDelta.y + gap; }
+                var lbl = new GameObject("SettingsUILabel").AddComponent<UnityEngine.UI.Text>(); lbl.transform.SetParent(parent, false); lbl.font = Theme.ThemeColors.DefaultFont; lbl.color = Color.white; lbl.alignment = TextAnchor.UpperLeft; lbl.text = "Settings UI provider page: " + pure + " (no models)"; var rt = lbl.GetComponent<RectTransform>(); rt.anchorMin = new Vector2(0f, 1f); rt.anchorMax = new Vector2(1f, 1f); rt.pivot = new Vector2(0.5f, 1f); rt.sizeDelta = new Vector2(0f, 40f); return;
             }
-            else
-            {
-                var lbl = new GameObject("SettingsUILabel").AddComponent<UnityEngine.UI.Text>(); lbl.transform.SetParent(parent,false); lbl.font = Theme.ThemeColors.DefaultFont; lbl.color = Color.white; lbl.alignment = TextAnchor.UpperLeft; lbl.text = "Settings UI provider page: " + pure + " (no models)"; var rt = lbl.GetComponent<RectTransform>(); rt.anchorMin=new Vector2(0f,1f); rt.anchorMax=new Vector2(1f,1f); rt.pivot=new Vector2(0.5f,1f); rt.sizeDelta=new Vector2(0f,40f);
-            }
+            float y = 0f; const float gap = 8f; foreach (var m in models) { var go = CardTemplates.Bind(m, null); go.transform.SetParent(parent, false); var rt = go.GetComponent<RectTransform>(); rt.anchoredPosition = new Vector2(0f, -y); y += rt.sizeDelta.y + gap; }
         }
         private static void Navigate(string logicalPageId)
         {
@@ -44,44 +41,40 @@ namespace IMK.SettingsUI.InternalMods.SettingsPanel
             }
             catch { }
         }
-        private List<ICardModel> BuildRootModels()
+        private List<ICardModel> BuildRootModels() => new()
         {
-            var list = new List<ICardModel>();
-            list.Add(new MarkdownCardModel{ Id="settings.root.header", Title="Settings UI", Markdown="# Settings UI Root\nÇëÑ¡ÔñÒ»¸ö×ÓÒ³Ãæ:" });
-            list.Add(new NavigationCardModel{ Id="SettingsUI:Configure", Title="Configure", Desc="ÅäÖÃ´°¿ÚÓë¿¨Æ¬²ÎÊý", OnClick = ()=> Navigate("SettingsUI:Configure") });
-            list.Add(new NavigationCardModel{ Id="SettingsUI:Diagnostics", Title="Diagnostics", Desc="µ÷ÊÔÓëÈÕÖ¾¿ª¹Ø", OnClick = ()=> Navigate("SettingsUI:Diagnostics") });
-            list.Add(new NavigationCardModel{ Id="SettingsUI:ProviderManager", Title="Manage Providers", Desc="µ÷Õû×ó²àµ¼º½À¸ Provider µÄÏÔÊ¾ÓëË³Ðò", OnClick = ()=> Navigate("SettingsUI:ProviderManager") });
-            return list;
-        }
-        private List<ICardModel> BuildConfigureModels(){ return UiSettingsPageBuilder.Build(); }
-        private List<ICardModel> BuildDiagnosticsModels()
+            new MarkdownCardModel{ Id="settings.root.header", Title="Settings UI", Markdown="# Settings UI Root\nè¯·é€‰æ‹©ä¸€ä¸ªå­é¡µé¢:" },
+            new NavigationCardModel{ Id="SettingsUI:Configure", Title="Configure", Desc="é…ç½®çª—å£ä¸Žå¡ç‰‡å‚æ•°", OnClick = ()=> Navigate("SettingsUI:Configure") },
+            new NavigationCardModel{ Id="SettingsUI:Diagnostics", Title="Diagnostics", Desc="è°ƒè¯•ä¸Žæ—¥å¿—å¼€å…³", OnClick = ()=> Navigate("SettingsUI:Diagnostics") },
+            new NavigationCardModel{ Id="SettingsUI:ProviderManager", Title="Manage Providers", Desc="è°ƒæ•´å·¦ä¾§å¯¼èˆªæ  Provider çš„æ˜¾ç¤ºä¸Žé¡ºåº", OnClick = ()=> Navigate("SettingsUI:ProviderManager") },
+        };
+        private List<ICardModel> BuildConfigureModels() { return UiSettingsPageBuilder.Build(); }
+        private List<ICardModel> BuildDiagnosticsModels() => new()
         {
-            var list = new List<ICardModel>();
-            list.Add(new MarkdownCardModel{ Id="ui.debug.header", Title="Diagnostics", Markdown="## Diagnostics\nÆôÓÃ»ò¹Ø±ÕÄÚ²¿µ÷ÊÔÐÅÏ¢¡£" });
-            list.Add(new BoundSettingCardModel{ Id="ui.debug.textDiag", Title="Text Diagnostics", Desc="Êä³ö¿¨Æ¬°ó¶¨/ÎÄ±¾äÖÈ¾ÈÕÖ¾", Getter=()=> IMK.SettingsUI.Diagnostics.DebugFlags.TextDiagEnabled, Setter=v=> IMK.SettingsUI.Diagnostics.DebugFlags.TextDiagEnabled = System.Convert.ToBoolean(v), ValueType=typeof(bool) });
-            list.Add(new BoundSettingCardModel{ Id="ui.debug.tableDiag", Title="Table Diagnostics", Desc="Êä³ö±í¸ñ²¼¾Ö/Êý¾ÝÈÕÖ¾", Getter=()=> IMK.SettingsUI.Diagnostics.DebugFlags.TableDiagEnabled, Setter=v=> IMK.SettingsUI.Diagnostics.DebugFlags.TableDiagEnabled = System.Convert.ToBoolean(v), ValueType=typeof(bool) });
-            return list;
-        }
+            new MarkdownCardModel{ Id="ui.debug.header", Title="Diagnostics", Markdown="## Diagnostics\nå¯ç”¨æˆ–å…³é—­å†…éƒ¨è°ƒè¯•ä¿¡æ¯ã€‚" },
+            new BoundSettingCardModel{ Id="ui.debug.textDiag", Title="Text Diagnostics", Desc="è¾“å‡ºå¡ç‰‡ç»‘å®š/æ–‡æœ¬æ¸²æŸ“æ—¥å¿—", Getter=()=> IMK.SettingsUI.Diagnostics.DebugFlags.TextDiagEnabled, Setter=v=> IMK.SettingsUI.Diagnostics.DebugFlags.TextDiagEnabled = System.Convert.ToBoolean(v), ValueType=typeof(bool) },
+            new BoundSettingCardModel{ Id="ui.debug.tableDiag", Title="Table Diagnostics", Desc="è¾“å‡ºè¡¨æ ¼å¸ƒå±€/æ•°æ®æ—¥å¿—", Getter=()=> IMK.SettingsUI.Diagnostics.DebugFlags.TableDiagEnabled, Setter=v=> IMK.SettingsUI.Diagnostics.DebugFlags.TableDiagEnabled = System.Convert.ToBoolean(v), ValueType=typeof(bool) },
+        };
         private List<ICardModel> BuildProviderManagerModels()
         {
-            var list = new List<ICardModel>();
-            list.Add(new MarkdownCardModel{ Id="providers.header", Title="Provider Manager", Markdown="### Provider Manager\nÒþ²Ø»òÏÔÊ¾Ä³Ð© Provider£¬²¢µ÷ÕûË³Ðò¡£\n- Core Óë Sample Ä¬ÈÏÎªÒþ²Ø¡£\n- ÐÞ¸Ä `Enabled` »ò `Order`£¬µã»÷ÏÂ·½ Save ±£´æ²¢Ë¢ÐÂ×ó²àµ¼º½¡£" });
-            var schema = new IMK.SettingsUI.InternalMods.CoreShell.ProviderManagerSchema();
-            var data = new IMK.SettingsUI.InternalMods.CoreShell.ProviderManagerDataSet();
-            var table = new TableCardModel{ Id="providers.table", Title="Providers", Schema=schema, DataSet=data, ShowAddButton=false, ShowImportExport=false, ShowMoveButtons=false };
-            table.Size = CardSize.XLarge;
-            list.Add(table);
-            list.Add(new ActionCardModel{ Id="providers.save", Title="Save", Desc="±£´æ²¢Ë¢ÐÂ×ó²àµ¼º½", OnInvoke = ()=> { try{ data.Commit(); } catch {} } });
-            list.Add(new ActionCardModel{ Id="providers.reload", Title="Reload", Desc="´ÓÎÄ¼þÖØÐÂ¼ÓÔØÆ«ºÃ", OnInvoke = ()=> { try{ data.Reload(); } catch {} } });
-            return list;
+            var schema = new ProviderManagerSchema();
+            var data = new ProviderManagerDataSet();
+            var table = new TableCardModel { Id = "providers.table", Title = "Providers", Schema = schema, DataSet = data, ShowAddButton = false, ShowImportExport = false, ShowMoveButtons = false, Size = CardSize.XLarge };
+            return new List<ICardModel>
+            {
+                new MarkdownCardModel{ Id="providers.header", Title="Provider Manager", Markdown="### Provider Manager\néšè—æˆ–æ˜¾ç¤ºæŸäº› Providerï¼Œå¹¶è°ƒæ•´é¡ºåºã€‚\n- Core ä¸Ž Sample é»˜è®¤ä¸ºéšè—ã€‚\n- ä¿®æ”¹ `Enabled` æˆ– `Order`ï¼Œç‚¹å‡»ä¸‹æ–¹ Save ä¿å­˜å¹¶åˆ·æ–°å·¦ä¾§å¯¼èˆªã€‚" },
+                table,
+                new ActionCardModel{ Id="providers.save", Title="Save", Desc="ä¿å­˜å¹¶åˆ·æ–°å·¦ä¾§å¯¼èˆª", OnInvoke = ()=> { try{ data.Commit(); } catch {} } },
+                new ActionCardModel{ Id="providers.reload", Title="Reload", Desc="ä»Žæ–‡ä»¶é‡æ–°åŠ è½½åå¥½", OnInvoke = ()=> { try{ data.Reload(); } catch {} } },
+            };
         }
-        public IEnumerable<ICardModel> BuildPageModels(string pageId)
+        public IEnumerable<ICardModel> BuildPageModels(string pageId) => pageId switch
         {
-            if (string.Equals(pageId, "Root", StringComparison.Ordinal)) return BuildRootModels();
-            if (string.Equals(pageId, "Configure", StringComparison.Ordinal)) return BuildConfigureModels();
-            if (string.Equals(pageId, "Diagnostics", StringComparison.Ordinal)) return BuildDiagnosticsModels();
-            if (string.Equals(pageId, "ProviderManager", StringComparison.Ordinal)) return BuildProviderManagerModels();
-            return null;
-        }
+            var p when string.Equals(p, "Root", StringComparison.Ordinal) => BuildRootModels(),
+            var p when string.Equals(p, "Configure", StringComparison.Ordinal) => BuildConfigureModels(),
+            var p when string.Equals(p, "Diagnostics", StringComparison.Ordinal) => BuildDiagnosticsModels(),
+            var p when string.Equals(p, "ProviderManager", StringComparison.Ordinal) => BuildProviderManagerModels(),
+            _ => null
+        };
     }
 }

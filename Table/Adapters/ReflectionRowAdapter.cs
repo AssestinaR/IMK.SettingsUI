@@ -7,7 +7,7 @@ namespace IMK.SettingsUI.Table.Adapters
     {
         private readonly T _instance;
         private readonly Func<string, MemberInfo> _resolver;
-        public ReflectionRowAdapter(T instance) : this(instance, null) {}
+        public ReflectionRowAdapter(T instance) : this(instance, null) { }
         public ReflectionRowAdapter(T instance, Func<string, MemberInfo> resolver)
         {
             _instance = instance; _resolver = resolver;
@@ -37,13 +37,13 @@ namespace IMK.SettingsUI.Table.Adapters
                 var r = _resolver(id); if (r != null) return r;
             }
             var t = typeof(T);
-            var p = t.GetProperty(id, BindingFlags.Public|BindingFlags.Instance|BindingFlags.IgnoreCase); if (p!=null) return p;
-            var f = t.GetField(id, BindingFlags.Public|BindingFlags.Instance|BindingFlags.IgnoreCase); if (f!=null) return f;
+            var p = t.GetProperty(id, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase); if (p != null) return p;
+            var f = t.GetField(id, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase); if (f != null) return f;
             return null;
         }
         private object ConvertValue(object v, Type t)
         {
-            if (v == null) return t.IsValueType? Activator.CreateInstance(t) : null;
+            if (v == null) return t.IsValueType ? Activator.CreateInstance(t) : null;
             try
             {
                 if (t.IsEnum) return Enum.Parse(t, v.ToString(), true);

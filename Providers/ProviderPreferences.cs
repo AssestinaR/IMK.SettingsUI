@@ -11,7 +11,7 @@ namespace IMK.SettingsUI.Providers
     {
         private class Model
         {
-            public Dictionary<string, Entry> Entries = new Dictionary<string, Entry>(StringComparer.OrdinalIgnoreCase);
+            public Dictionary<string, Entry> Entries = new(StringComparer.OrdinalIgnoreCase);
         }
         public sealed class Entry
         {
@@ -44,7 +44,7 @@ namespace IMK.SettingsUI.Providers
                 var json = JsonConvert.SerializeObject(_model, Formatting.Indented);
                 File.WriteAllText(NewFile, json);
             }
-            catch (System.Exception ex){ Debug.LogWarning("[SettingsUI.ProviderPreferences] Save failed: "+ex.Message); }
+            catch (System.Exception ex) { Debug.LogWarning("[SettingsUI.ProviderPreferences] Save failed: " + ex.Message); }
         }
         public static Entry GetOrCreate(string id, string title)
         {
@@ -85,8 +85,9 @@ namespace IMK.SettingsUI.Providers
                 list.Add((id, title, pref));
             }
             // sort by Order ascending, then title
-            list.Sort((a,b)=> {
-                int c = a.pref.Order.CompareTo(b.pref.Order); if (c!=0) return c; return string.Compare(a.title, b.title, StringComparison.OrdinalIgnoreCase);
+            list.Sort((a, b) =>
+            {
+                int c = a.pref.Order.CompareTo(b.pref.Order); if (c != 0) return c; return string.Compare(a.title, b.title, StringComparison.OrdinalIgnoreCase);
             });
             return list;
         }

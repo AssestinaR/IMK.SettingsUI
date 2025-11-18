@@ -4,24 +4,24 @@ using System.Collections.Generic;
 namespace IMK.SettingsUI.Table
 {
     /// <summary>
-    /// Public, provider-agnostic table UI contracts. Mods can implement these½Ó¿ÚÒÔ¸´ÓÃ SettingsUI µÄÍ¨ÓÃ±í¸ñ¿Ø¼ş¡£
-    /// ½ö±©Â¶½Ó¿ÚÓë¼òµ¥POCO£¬ÄÚ²¿ÊµÏÖÓë¿ØÖÆÆ÷±£³Ö¿ÉÌæ»»¡£
+    /// Public, provider-agnostic table UI contracts. Mods can implement theseæ¥å£ä»¥å¤ç”¨ SettingsUI çš„é€šç”¨è¡¨æ ¼æ§ä»¶ã€‚
+    /// ä»…æš´éœ²æ¥å£ä¸ç®€å•POCOï¼Œå†…éƒ¨å®ç°ä¸æ§åˆ¶å™¨ä¿æŒå¯æ›¿æ¢ã€‚
     /// </summary>
     public enum TableCellKind { Text, Number, Slider, Dropdown, Toggle, Readonly }
 
     public sealed class TableColumn
     {
-        public string Id;               // Î¨Ò»ÁĞid
-        public string Title;            // ÏÔÊ¾±êÌâ
-        public TableCellKind Kind;      // ±à¼­Æ÷ÀàĞÍ
-        public Type ValueType;          // ÖµÀàĞÍ£¨string/float/int/bool...£©
-        public float? Min;              // ÊıÖµÏÂÏŞ£¨Number/Slider£©
-        public float? Max;              // ÊıÖµÉÏÏŞ£¨Number/Slider£©
-        public string[] Options;        // ÏÂÀ­¿ÉÑ¡Ïî£¨Dropdown£©
-        public bool ReadOnly;           // Ö»¶ÁÁĞ
-        public float? WidthHint;        // ¿í¶È½¨Òé£¨ÏñËØ£©
-        public Func<object,string> Formatter;   // ÏÔÊ¾¸ñÊ½»¯£¨¿ÉÑ¡£©
-        public Func<object,bool> Validator;     // Ğ£Ñé£¨·µ»Øtrue±íÊ¾ºÏ·¨£©
+        public string Id;               // å”¯ä¸€åˆ—id
+        public string Title;            // æ˜¾ç¤ºæ ‡é¢˜
+        public TableCellKind Kind;      // ç¼–è¾‘å™¨ç±»å‹
+        public Type ValueType;          // å€¼ç±»å‹ï¼ˆstring/float/int/bool...ï¼‰
+        public float? Min;              // æ•°å€¼ä¸‹é™ï¼ˆNumber/Sliderï¼‰
+        public float? Max;              // æ•°å€¼ä¸Šé™ï¼ˆNumber/Sliderï¼‰
+        public string[] Options;        // ä¸‹æ‹‰å¯é€‰é¡¹ï¼ˆDropdownï¼‰
+        public bool ReadOnly;           // åªè¯»åˆ—
+        public float? WidthHint;        // å®½åº¦å»ºè®®ï¼ˆåƒç´ ï¼‰
+        public Func<object, string> Formatter;   // æ˜¾ç¤ºæ ¼å¼åŒ–ï¼ˆå¯é€‰ï¼‰
+        public Func<object, bool> Validator;     // æ ¡éªŒï¼ˆè¿”å›trueè¡¨ç¤ºåˆæ³•ï¼‰
     }
 
     public interface ITableSchema
@@ -29,14 +29,14 @@ namespace IMK.SettingsUI.Table
         IReadOnlyList<TableColumn> Columns { get; }
     }
 
-    /// <summary>µ¥ĞĞÊÊÅäÆ÷£º°´ÁĞid¶ÁĞ´µ¥Ôª¸ñ¡£</summary>
+    /// <summary>å•è¡Œé€‚é…å™¨ï¼šæŒ‰åˆ—idè¯»å†™å•å…ƒæ ¼ã€‚</summary>
     public interface IRowAdapter
     {
         object Get(string columnId);
         bool Set(string columnId, object value);
     }
 
-    /// <summary>Êı¾İ¼¯£ºĞĞ·ÃÎÊÓë³Ö¾Ã»¯¡£</summary>
+    /// <summary>æ•°æ®é›†ï¼šè¡Œè®¿é—®ä¸æŒä¹…åŒ–ã€‚</summary>
     public interface ITableDataSet
     {
         int Count { get; }
@@ -44,14 +44,14 @@ namespace IMK.SettingsUI.Table
         bool AddNew();
         bool RemoveAt(int index);
         bool Move(int from, int to);
-        bool Commit();     // ³Ö¾Ã»¯±£´æ
-        bool Reload();     // ÖØĞÂ´Ó´æ´¢¼ÓÔØ£¨¶ªÆúÎ´Ìá½»£©
+        bool Commit();     // æŒä¹…åŒ–ä¿å­˜
+        bool Reload();     // é‡æ–°ä»å­˜å‚¨åŠ è½½ï¼ˆä¸¢å¼ƒæœªæäº¤ï¼‰
         bool IsDirty { get; }
     }
 
-    /// <summary>¿ÉÑ¡£º×Ô¶¨Òåµ¥Ôª¸ñ±à¼­Æ÷¹¤³§£¨¸ß¼¶À©Õ¹µã£©¡£</summary>
+    /// <summary>å¯é€‰ï¼šè‡ªå®šä¹‰å•å…ƒæ ¼ç¼–è¾‘å™¨å·¥å‚ï¼ˆé«˜çº§æ‰©å±•ç‚¹ï¼‰ã€‚</summary>
     public interface ICellEditorFactory
     {
-        // Ô¤Áô£ººóĞø SchemaTableController Ê¹ÓÃ¡£µ±Ç°Õ¼Î»ÒÔ±£³ÖAPIÎÈ¶¨¡£
+        // é¢„ç•™ï¼šåç»­ SchemaTableController ä½¿ç”¨ã€‚å½“å‰å ä½ä»¥ä¿æŒAPIç¨³å®šã€‚
     }
 }

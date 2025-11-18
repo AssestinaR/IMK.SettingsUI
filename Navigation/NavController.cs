@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using UnityEngine;
 using IMK.SettingsUI.Cards;
 using IMK.SettingsUI.Providers;
-using IMK.SettingsUI.Theme;
+using UnityEngine;
 
 namespace IMK.SettingsUI.Navigation
 {
@@ -49,17 +48,15 @@ namespace IMK.SettingsUI.Navigation
             var exp = _presenter.GetComponentInChildren<MarkdownExpandable>(true);
             if (exp != null) { try { exp.TryExpand(); } catch { } }
         }
-        private void Log(string msg){ Debug.Log("[SettingsUI.Nav] " + msg); }
+        private void Log(string msg) { Debug.Log("[SettingsUI.Nav] " + msg); }
         private void HandleNavSelect(string id)
         {
             Log("NavSelect: " + id);
             if (ProviderRegistry.All.TryGetValue(id, out var provider))
             {
-                // Selecting provider always goes to ProviderId:Root
                 NavigateTo(provider.Id + ":Root");
-                return;
             }
-            if (id == "HOME") NavigateTo("HOME");
+            else if (id == "HOME") NavigateTo("HOME");
         }
         /// <summary>
         /// Navigate to a logical page Id. Accepts: HOME or ProviderId:PageId.
@@ -98,7 +95,7 @@ namespace IMK.SettingsUI.Navigation
         {
             Log("NavigateTo: " + id);
             int newDepth = 1;
-            List<ICardModel> modelsOut = null; List<(string,string)> chainOut = null;
+            List<ICardModel> modelsOut = null; List<(string, string)> chainOut = null;
             // If navigating to provider id without page, rewrite to ProviderId:Root
             if (!string.IsNullOrEmpty(id) && !id.Contains(":"))
             {
@@ -116,26 +113,26 @@ namespace IMK.SettingsUI.Navigation
                     {
                         var built = mpHome.BuildPageModels("Root");
                         var listBuilt = built != null ? new List<ICardModel>(built) : new List<ICardModel>();
-                        modelsOut = listBuilt; chainOut = new List<(string,string)>{ ("HOME","Home") }; newDepth = chainOut.Count;
+                        modelsOut = listBuilt; chainOut = new List<(string, string)> { ("HOME", "Home") }; newDepth = chainOut.Count;
                     }
                     catch (System.Exception ex)
                     {
-                        modelsOut = new List<ICardModel>{ ErrorCardFactory.CreateError("CoreShell","Root", ex.Message) }; chainOut = new List<(string,string)>{ ("HOME","Home") }; newDepth = chainOut.Count;
+                        modelsOut = new List<ICardModel> { ErrorCardFactory.CreateError("CoreShell", "Root", ex.Message) }; chainOut = new List<(string, string)> { ("HOME", "Home") }; newDepth = chainOut.Count;
                     }
                 }
                 else
                 {
-                    modelsOut = new List<ICardModel>{ ErrorCardFactory.CreateError("CoreShell","Root","CoreShell provider missing") }; chainOut = new List<(string,string)>{ ("HOME","Home") }; newDepth = chainOut.Count;
+                    modelsOut = new List<ICardModel> { ErrorCardFactory.CreateError("CoreShell", "Root", "CoreShell provider missing") }; chainOut = new List<(string, string)> { ("HOME", "Home") }; newDepth = chainOut.Count;
                 }
             }
             else
             {
                 // split only at the first colon to allow pageId to contain ':'
                 int sep = id.IndexOf(':');
-                if (sep > 0 && sep < id.Length-1)
+                if (sep > 0 && sep < id.Length - 1)
                 {
-                    var providerId = id.Substring(0, sep);
-                    var pageId = id.Substring(sep+1);
+                    var providerId = id[..sep];
+                    var pageId = id[(sep + 1)..];
                     if (ProviderRegistry.All.TryGetValue(providerId, out var provider))
                     {
                         if (provider is INavPageModelProvider mp)
@@ -147,21 +144,21 @@ namespace IMK.SettingsUI.Navigation
                                 {
                                     var listBuilt = new List<ICardModel>(built); if (listBuilt.Count > 0) modelsOut = listBuilt;
                                 }
-                                if (modelsOut == null) modelsOut = new List<ICardModel>{ ErrorCardFactory.CreateEmpty(providerId, pageId) };
+                                if (modelsOut == null) modelsOut = new List<ICardModel> { ErrorCardFactory.CreateEmpty(providerId, pageId) };
                             }
                             catch (System.Exception ex)
                             {
-                                UnityEngine.Debug.LogWarning("[SettingsUI.Nav] Provider BuildPageModels error: "+ex.Message);
-                                modelsOut = new List<ICardModel>{ ErrorCardFactory.CreateError(providerId, pageId, ex.Message) };
+                                UnityEngine.Debug.LogWarning("[SettingsUI.Nav] Provider BuildPageModels error: " + ex.Message);
+                                modelsOut = new List<ICardModel> { ErrorCardFactory.CreateError(providerId, pageId, ex.Message) };
                             }
                         }
                         else
                         {
-                            modelsOut = new List<ICardModel>{ ErrorCardFactory.CreateError(providerId, pageId, "Provider does not implement INavPageModelProvider") };
+                            modelsOut = new List<ICardModel> { ErrorCardFactory.CreateError(providerId, pageId, "Provider does not implement INavPageModelProvider") };
                         }
 
                         // Build breadcrumb chain
-                        chainOut = new List<(string,string)>{ ("HOME","Home"), (providerId, provider.Title) };
+                        chainOut = new List<(string, string)> { ("HOME", "Home"), (providerId, provider.Title) };
                         if (!string.Equals(pageId, "Root"))
                         {
                             // Provider breadcrumb support
@@ -172,14 +169,14 @@ namespace IMK.SettingsUI.Navigation
                                     foreach (var seg in chain)
                                     {
                                         var fullId = providerId + ":" + seg.id;
-                                        chainOut.Add((fullId, string.IsNullOrEmpty(seg.title)? seg.id : seg.title));
+                                        chainOut.Add((fullId, string.IsNullOrEmpty(seg.title) ? seg.id : seg.title));
                                     }
                                 }
                                 else
                                 {
                                     // Try parent mapping walk-up
-                                    var stack = new System.Collections.Generic.Stack<(string id,string title)>();
-                                    string cur = pageId; int guard=0;
+                                    var stack = new System.Collections.Generic.Stack<(string id, string title)>();
+                                    string cur = pageId; int guard = 0;
                                     while (!string.IsNullOrEmpty(cur) && guard++ < 20)
                                     {
                                         string title = cur; if (bp.TryGetTitle(cur, out var t)) title = t;
@@ -191,24 +188,24 @@ namespace IMK.SettingsUI.Navigation
                                         }
                                         break;
                                     }
-                                    while (stack.Count>0)
+                                    while (stack.Count > 0)
                                     {
-                                        var seg = stack.Pop(); chainOut.Add((providerId+":"+seg.id, seg.title));
+                                        var seg = stack.Pop(); chainOut.Add((providerId + ":" + seg.id, seg.title));
                                     }
                                 }
                             }
                             else
                             {
                                 // Default: single segment for current page
-                                chainOut.Add((providerId+":"+pageId, pageId));
+                                chainOut.Add((providerId + ":" + pageId, pageId));
                             }
                         }
                         newDepth = chainOut.Count;
                     }
                     else
                     {
-                        modelsOut = new List<ICardModel>{ ErrorCardFactory.CreateError(providerId, pageId, "Provider not found") };
-                        chainOut = new List<(string,string)>{ ("HOME","Home"), (providerId, providerId), (id, pageId) }; newDepth = chainOut.Count;
+                        modelsOut = new List<ICardModel> { ErrorCardFactory.CreateError(providerId, pageId, "Provider not found") };
+                        chainOut = new List<(string, string)> { ("HOME", "Home"), (providerId, providerId), (id, pageId) }; newDepth = chainOut.Count;
                     }
                 }
             }

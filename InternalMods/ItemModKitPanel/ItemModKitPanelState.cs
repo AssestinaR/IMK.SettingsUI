@@ -12,10 +12,9 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
         public static string CapturedItemTitle; // display name (Name or RawName)
         public static DateTime CapturedTime;
         // Original values snapshot at capture time (memberName -> value)
-        private static Dictionary<string, object> _originalSnapshot = new Dictionary<string, object>();
-        // Latest read values (for incremental refresh if needed)
-        private static Dictionary<string, object> _currentValues = new Dictionary<string, object>();
-        private static readonly HashSet<string> s_coreIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        private static readonly Dictionary<string, object> _originalSnapshot = new();
+        private static readonly Dictionary<string, object> _currentValues = new();
+        private static readonly HashSet<string> s_coreIds = new(StringComparer.OrdinalIgnoreCase)
         { "Name", "RawName", "TypeId", "Quality", "DisplayQuality", "Value" };
         private static object _originalCoreFields; // ItemModKit.Core.CoreFields snapshot
         private static string _txToken; // active transaction token if any
@@ -31,7 +30,7 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                 // IMKDuckov.UISelection.TryGetCurrentItem(out object item)
                 var uiSelType = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov");
                 if (uiSelType == null) { error = "IMKDuckov type not found"; return false; }
-                var uiSelProp = uiSelType.GetProperty("UISelection", BindingFlags.Public|BindingFlags.Static);
+                var uiSelProp = uiSelType.GetProperty("UISelection", BindingFlags.Public | BindingFlags.Static);
                 object uiSelObj = null;
                 if (uiSelProp != null)
                 {
@@ -40,11 +39,11 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                 else
                 {
                     // fallback: field lookup
-                    var uiSelField = uiSelType.GetField("UISelection", BindingFlags.Public|BindingFlags.Static);
+                    var uiSelField = uiSelType.GetField("UISelection", BindingFlags.Public | BindingFlags.Static);
                     if (uiSelField != null) uiSelObj = uiSelField.GetValue(null);
                 }
                 if (uiSelObj == null) { error = "UISelection instance null"; return false; }
-                var tryGetMethod = uiSelObj.GetType().GetMethod("TryGetCurrentItem", BindingFlags.Public|BindingFlags.Instance); if (tryGetMethod == null) { error = "TryGetCurrentItem missing"; return false; }
+                var tryGetMethod = uiSelObj.GetType().GetMethod("TryGetCurrentItem", BindingFlags.Public | BindingFlags.Instance); if (tryGetMethod == null) { error = "TryGetCurrentItem missing"; return false; }
                 object[] args = { null }; bool ok = (bool)tryGetMethod.Invoke(uiSelObj, args);
                 if (!ok || args[0] == null) { error = "No item selected"; return false; }
                 current = args[0];
@@ -64,11 +63,11 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
             try
             {
                 var duck = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov"); if (duck == null) return;
-                var write = duck.GetProperty("Write", BindingFlags.Public|BindingFlags.Static)?.GetValue(null);
-                var m = write?.GetType().GetMethod("BeginTransaction", new Type[]{ typeof(object) });
+                var write = duck.GetProperty("Write", BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
+                var m = write?.GetType().GetMethod("BeginTransaction", new Type[] { typeof(object) });
                 if (m != null)
                 {
-                    var tok = m.Invoke(write, new object[]{ CapturedItem }) as string;
+                    var tok = m.Invoke(write, new object[] { CapturedItem }) as string;
                     if (!string.IsNullOrEmpty(tok)) _txToken = tok;
                 }
             }
@@ -81,10 +80,10 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
             try
             {
                 var duck = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov"); if (duck == null) return;
-                var read = duck.GetProperty("Read", BindingFlags.Public|BindingFlags.Static)?.GetValue(null);
+                var read = duck.GetProperty("Read", BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
                 var helper = GetDuckovType("ItemModKit.Core.SnapshotHelper"); if (helper == null) return;
-                var cap = helper.GetMethod("CaptureCore", BindingFlags.Public|BindingFlags.Static);
-                _originalCoreFields = cap?.Invoke(null, new object[]{ read, CapturedItem });
+                var cap = helper.GetMethod("CaptureCore", BindingFlags.Public | BindingFlags.Static);
+                _originalCoreFields = cap?.Invoke(null, new object[] { read, CapturedItem });
             }
             catch { }
         }
@@ -104,14 +103,16 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
         {
             _originalSnapshot.Clear(); _currentValues.Clear();
             if (CapturedItem == null) return; var t = CapturedItem.GetType();
-            var members = new List<MemberInfo>(); members.AddRange(t.GetProperties(BindingFlags.Public|BindingFlags.Instance)); members.AddRange(t.GetFields(BindingFlags.Public|BindingFlags.Instance));
+            var members = new List<MemberInfo>();
+            members.AddRange(t.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+            members.AddRange(t.GetFields(BindingFlags.Public | BindingFlags.Instance));
             foreach (var m in members)
             {
-                object val = null; Type vt = null; bool readable=false;
+                object val = null; Type vt = null; bool readable = false;
                 try
                 {
-                    if (m is PropertyInfo p && p.CanRead) { vt = p.PropertyType; if (IsPrimitiveSupported(vt)) { val = p.GetValue(CapturedItem); readable=true; } }
-                    else if (m is FieldInfo f && f.IsPublic) { vt = f.FieldType; if (IsPrimitiveSupported(vt)) { val = f.GetValue(CapturedItem); readable=true; } }
+                    if (m is PropertyInfo p && p.CanRead) { vt = p.PropertyType; if (IsPrimitiveSupported(vt)) { val = p.GetValue(CapturedItem); readable = true; } }
+                    else if (m is FieldInfo f && f.IsPublic) { vt = f.FieldType; if (IsPrimitiveSupported(vt)) { val = f.GetValue(CapturedItem); readable = true; } }
                 }
                 catch { }
                 if (readable) { _originalSnapshot[m.Name] = val; _currentValues[m.Name] = val; }
@@ -121,10 +122,10 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
         private static string TryGetName(object item)
         {
             if (item == null) return null; var t = item.GetType();
-            foreach (var nameField in new[]{"Name","RawName","DisplayName","name"})
+            foreach (var nameField in new[] { "Name", "RawName", "DisplayName", "name" })
             {
-                var p = t.GetProperty(nameField, BindingFlags.Public|BindingFlags.Instance|BindingFlags.IgnoreCase); if (p!=null && p.PropertyType==typeof(string)) { var v = p.GetValue(item) as string; if (!string.IsNullOrEmpty(v)) return v; }
-                var f = t.GetField(nameField, BindingFlags.Public|BindingFlags.Instance|BindingFlags.IgnoreCase); if (f!=null && f.FieldType==typeof(string)) { var v = f.GetValue(item) as string; if (!string.IsNullOrEmpty(v)) return v; }
+                var p = t.GetProperty(nameField, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase); if (p != null && p.PropertyType == typeof(string)) { var v = p.GetValue(item) as string; if (!string.IsNullOrEmpty(v)) return v; }
+                var f = t.GetField(nameField, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase); if (f != null && f.FieldType == typeof(string)) { var v = f.GetValue(item) as string; if (!string.IsNullOrEmpty(v)) return v; }
             }
             return null;
         }
@@ -135,27 +136,29 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
             var list = new List<ICardModel>();
             if (CapturedItem == null)
             {
-                list.Add(new MarkdownCardModel{ Id="imk.item.none", Title="No Item", Markdown="…–Œ¥≤∂ªÒŒÔ∆∑°£«Î∑µªÿ Inspector “≥√Ê≤¢µ„ª˜ Capture ∞¥≈•°£" });
+                list.Add(new MarkdownCardModel { Id = "imk.item.none", Title = "No Item", Markdown = "Â∞öÊú™ÊçïËé∑Áâ©ÂìÅ„ÄÇËØ∑ËøîÂõû Inspector È°µÈù¢Âπ∂ÁÇπÂáª Capture ÊåâÈíÆ„ÄÇ" });
                 return list;
             }
-            list.Add(new MarkdownCardModel{ Id="imk.item.header", Title=CapturedItemTitle, Markdown=$"### {CapturedItemTitle}\n≤∂ªÒ ±º‰: {CapturedTime:HH:mm:ss}\n¿‡–Õ: {CapturedItem.GetType().Name}" });
+            list.Add(new MarkdownCardModel { Id = "imk.item.header", Title = CapturedItemTitle, Markdown = $"### {CapturedItemTitle}\nÊçïËé∑Êó∂Èó¥: {CapturedTime:HH:mm:ss}\nÁ±ªÂûã: {CapturedItem.GetType().Name}" });
             var t = CapturedItem.GetType();
-            var members = new List<MemberInfo>(); members.AddRange(t.GetProperties(BindingFlags.Public|BindingFlags.Instance)); members.AddRange(t.GetFields(BindingFlags.Public|BindingFlags.Instance));
+            var members = new List<MemberInfo>();
+            members.AddRange(t.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+            members.AddRange(t.GetFields(BindingFlags.Public | BindingFlags.Instance));
             int added = 0;
             foreach (var m in members)
             {
-                Type valType = null; bool canRead=false; bool canWrite=false; System.Func<object> getter=null; System.Action<object> rawSetter=null; string id=m.Name;
+                Type valType = null; bool canRead = false; bool canWrite = false; System.Func<object> getter = null; System.Action<object> rawSetter = null; string id = m.Name;
                 if (m is PropertyInfo p)
                 {
-                    valType = p.PropertyType; canRead = p.CanRead; canWrite = p.CanWrite && p.SetMethod!=null && p.SetMethod.IsPublic;
-                    if (canRead) getter = ()=> { try { return p.GetValue(CapturedItem); } catch { return null; } };
-                    if (canWrite) rawSetter = v=> { try { p.SetValue(CapturedItem, ConvertValue(v, valType)); } catch { } };
+                    valType = p.PropertyType; canRead = p.CanRead; canWrite = p.CanWrite && p.SetMethod != null && p.SetMethod.IsPublic;
+                    if (canRead) getter = () => { try { return p.GetValue(CapturedItem); } catch { return null; } };
+                    if (canWrite) rawSetter = v => { try { p.SetValue(CapturedItem, ConvertValue(v, valType)); } catch { } };
                 }
                 else if (m is FieldInfo f)
                 {
-                    valType = f.FieldType; canRead=true; canWrite=!f.IsInitOnly && !f.IsLiteral && f.IsPublic;
-                    getter = ()=> { try { return f.GetValue(CapturedItem); } catch { return null; } };
-                    if (canWrite) rawSetter = v=> { try { f.SetValue(CapturedItem, ConvertValue(v, valType)); } catch { } };
+                    valType = f.FieldType; canRead = true; canWrite = !f.IsInitOnly && !f.IsLiteral && f.IsPublic;
+                    getter = () => { try { return f.GetValue(CapturedItem); } catch { return null; } };
+                    if (canWrite) rawSetter = v => { try { f.SetValue(CapturedItem, ConvertValue(v, valType)); } catch { } };
                 }
                 if (!canRead) continue; if (!IsPrimitiveSupported(valType)) continue;
                 var original = _originalSnapshot.TryGetValue(id, out var ov) ? ov : getter();
@@ -164,16 +167,16 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                 System.Action<object> setter = null;
                 if (s_coreIds.Contains(id))
                 {
-                    setter = v=> { EnsureTransactionStarted(); TryWriteCoreField(id, v); };
+                    setter = v => { EnsureTransactionStarted(); TryWriteCoreField(id, v); };
                 }
                 else if (rawSetter != null)
                 {
-                    setter = v=> { EnsureTransactionStarted(); rawSetter(v); };
+                    setter = v => { EnsureTransactionStarted(); rawSetter(v); };
                 }
 
                 var bound = new BoundSettingCardModel
                 {
-                    Id = "imk.item."+id,
+                    Id = "imk.item." + id,
                     Title = id,
                     Desc = valType.Name,
                     Getter = getter,
@@ -187,17 +190,17 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                 list.Add(bound);
                 added++; if (added >= 40) break;
             }
-            if (added==0) list.Add(new MarkdownCardModel{ Id="imk.item.empty", Title="No Editable Fields", Markdown="Œ¥’“µΩø…œ‘ æµƒª˘¥°◊÷∂Œ°£" });
+            if (added == 0) list.Add(new MarkdownCardModel { Id = "imk.item.empty", Title = "No Editable Fields", Markdown = "Êú™ÊâæÂà∞ÂèØÊòæÁ§∫ÁöÑÂü∫Á°ÄÂ≠óÊÆµ„ÄÇ" });
             // navigation to advanced collections
-            list.Add(new NavigationCardModel{ Id="ItemModKit:VariablesOnly", Title="Variables", Desc="±‡º≠±‰¡ø", OnClick = ()=> NavigateProgrammatic("ItemModKit:VariablesOnly") });
-            list.Add(new NavigationCardModel{ Id="ItemModKit:Constants", Title="Constants", Desc="±‡º≠≥£¡ø", OnClick = ()=> NavigateProgrammatic("ItemModKit:Constants") });
-            list.Add(new NavigationCardModel{ Id="ItemModKit:Tags", Title="Tags", Desc="±‡º≠±Í«©", OnClick = ()=> NavigateProgrammatic("ItemModKit:Tags") });
-            list.Add(new NavigationCardModel{ Id="ItemModKit:Stats", Title="Stats", Desc="≤Èø¥≤¢±‡º≠ ˝÷µÕ≥º∆", OnClick = ()=> NavigateProgrammatic("ItemModKit:Stats") });
-            list.Add(new NavigationCardModel{ Id="ItemModKit:Slots", Title="Slots", Desc="≤Èø¥≤¢π‹¿Ì≤Â≤€", OnClick = ()=> NavigateProgrammatic("ItemModKit:Slots") });
-            list.Add(new NavigationCardModel{ Id="ItemModKit:Modifiers", Title="Modifiers", Desc="≤Èø¥≤¢±‡º≠–ﬁ Œ∑˚√Ë ˆ", OnClick = ()=> NavigateProgrammatic("ItemModKit:Modifiers") });
-            list.Add(new ActionCardModel{ Id="imk.item.apply", Title="Apply / Commit", Desc="Ã·Ωª ¬ŒÒ≤¢À¢–¬≥÷æ√ªØ", OnInvoke = ()=> { CommitTransactionAndFlush(); RebuildCurrentDetailPage(); } });
-            list.Add(new ActionCardModel{ Id="imk.item.refresh", Title="Refresh Values", Desc="÷ÿ–¬∂¡»°À˘”–◊÷∂Œ", OnInvoke = ()=> { RefreshCapturedValues(true); RebuildCurrentDetailPage(); } });
-            list.Add(new ActionCardModel{ Id="imk.item.rollback", Title="Rollback (Prefer Tx)", Desc="”≈œ» ¬ŒÒªÿπˆ£¨∑Ò‘Ú π”√øÏ’’ªÿπˆ", OnInvoke = ()=> { RollbackPreferTransaction(); RebuildCurrentDetailPage(); } });
+            list.Add(new NavigationCardModel { Id = "ItemModKit:VariablesOnly", Title = "Variables", Desc = "ÁºñËæëÂèòÈáè", OnClick = () => NavigateProgrammatic("ItemModKit:VariablesOnly") });
+            list.Add(new NavigationCardModel { Id = "ItemModKit:Constants", Title = "Constants", Desc = "ÁºñËæëÂ∏∏Èáè", OnClick = () => NavigateProgrammatic("ItemModKit:Constants") });
+            list.Add(new NavigationCardModel { Id = "ItemModKit:Tags", Title = "Tags", Desc = "ÁºñËæëÊ†áÁ≠æ", OnClick = () => NavigateProgrammatic("ItemModKit:Tags") });
+            list.Add(new NavigationCardModel { Id = "ItemModKit:Stats", Title = "Stats", Desc = "Êü•ÁúãÂπ∂ÁºñËæëÊï∞ÂÄºÁªüËÆ°", OnClick = () => NavigateProgrammatic("ItemModKit:Stats") });
+            list.Add(new NavigationCardModel { Id = "ItemModKit:Slots", Title = "Slots", Desc = "Êü•ÁúãÂπ∂ÁÆ°ÁêÜÊèíÊßΩ", OnClick = () => NavigateProgrammatic("ItemModKit:Slots") });
+            list.Add(new NavigationCardModel { Id = "ItemModKit:Modifiers", Title = "Modifiers", Desc = "Êü•ÁúãÂπ∂ÁºñËæë‰øÆÈ•∞Á¨¶ÊèèËø∞", OnClick = () => NavigateProgrammatic("ItemModKit:Modifiers") });
+            list.Add(new ActionCardModel { Id = "imk.item.apply", Title = "Apply / Commit", Desc = "Êèê‰∫§‰∫ãÂä°Âπ∂Âà∑Êñ∞ÊåÅ‰πÖÂåñ", OnInvoke = () => { CommitTransactionAndFlush(); RebuildCurrentDetailPage(); } });
+            list.Add(new ActionCardModel { Id = "imk.item.refresh", Title = "Refresh Values", Desc = "ÈáçÊñ∞ËØªÂèñÊâÄÊúâÂ≠óÊÆµ", OnInvoke = () => { RefreshCapturedValues(true); RebuildCurrentDetailPage(); } });
+            list.Add(new ActionCardModel { Id = "imk.item.rollback", Title = "Rollback (Prefer Tx)", Desc = "‰ºòÂÖà‰∫ãÂä°ÂõûÊªöÔºåÂê¶Âàô‰ΩøÁî®Âø´ÁÖßÂõûÊªö", OnInvoke = () => { RollbackPreferTransaction(); RebuildCurrentDetailPage(); } });
             return list;
         }
 
@@ -210,18 +213,18 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                 if (!string.IsNullOrEmpty(_txToken))
                 {
                     var duck = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov");
-                    var write = duck?.GetProperty("Write", BindingFlags.Public|BindingFlags.Static)?.GetValue(null);
-                    var m = write?.GetType().GetMethod("CommitTransaction", new Type[]{ typeof(object), typeof(string) });
-                    var rr = m?.Invoke(write, new object[]{ CapturedItem, _txToken });
-                    bool ok = false; try { var okProp = rr?.GetType().GetProperty("Ok"); if (okProp!=null) ok = (bool)okProp.GetValue(rr); } catch { }
+                    var write = duck?.GetProperty("Write", BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
+                    var m = write?.GetType().GetMethod("CommitTransaction", new Type[] { typeof(object), typeof(string) });
+                    var rr = m?.Invoke(write, new object[] { CapturedItem, _txToken });
+                    bool ok = false; try { var okProp = rr?.GetType().GetProperty("Ok"); if (okProp != null) ok = (bool)okProp.GetValue(rr); } catch { }
                     if (ok) { committed = true; _txToken = null; }
                 }
                 // Flush dirty if available
                 try
                 {
                     var duck = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov");
-                    var flush = duck?.GetMethod("FlushDirty", BindingFlags.Public|BindingFlags.Static);
-                    flush?.Invoke(null, new object[]{ CapturedItem, false });
+                    var flush = duck?.GetMethod("FlushDirty", BindingFlags.Public | BindingFlags.Static);
+                    flush?.Invoke(null, new object[] { CapturedItem, false });
                 }
                 catch { }
                 if (committed) { RefreshCapturedValues(true); }
@@ -234,14 +237,14 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
             try
             {
                 var duck = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov"); if (duck == null) return false;
-                var writeProp = duck.GetProperty("Write", BindingFlags.Public|BindingFlags.Static); if (writeProp == null) return false;
+                var writeProp = duck.GetProperty("Write", BindingFlags.Public | BindingFlags.Static); if (writeProp == null) return false;
                 var writeSvc = writeProp.GetValue(null);
                 var changesType = GetDuckovType("ItemModKit.Core.CoreFieldChanges"); if (changesType == null) return false;
                 var changes = Activator.CreateInstance(changesType);
                 // map id -> property on CoreFieldChanges
                 void Set(string prop, object v)
                 {
-                    var pi = changesType.GetProperty(prop, BindingFlags.Public|BindingFlags.Instance);
+                    var pi = changesType.GetProperty(prop, BindingFlags.Public | BindingFlags.Instance);
                     if (pi != null)
                     {
                         try
@@ -265,9 +268,9 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                     case "Value": Set("Value", value); break;
                     default: return false;
                 }
-                var method = writeSvc.GetType().GetMethod("TryWriteCoreFields", new Type[]{ typeof(object), changesType });
+                var method = writeSvc.GetType().GetMethod("TryWriteCoreFields", new Type[] { typeof(object), changesType });
                 if (method == null) return false;
-                var rr = method.Invoke(writeSvc, new object[]{ CapturedItem, changes });
+                var rr = method.Invoke(writeSvc, new object[] { CapturedItem, changes });
                 bool ok = false;
                 try { var okProp = rr.GetType().GetProperty("Ok"); if (okProp != null) ok = (bool)okProp.GetValue(rr); } catch { }
                 if (ok)
@@ -277,8 +280,8 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
                     {
                         var dirtyKind = GetDuckovType("ItemModKit.Core.DirtyKind");
                         var coreVal = Enum.Parse(dirtyKind, "Core");
-                        var mark = duck.GetMethod("MarkDirty", BindingFlags.Public|BindingFlags.Static);
-                        mark?.Invoke(null, new object[]{ CapturedItem, coreVal, false });
+                        var mark = duck.GetMethod("MarkDirty", BindingFlags.Public | BindingFlags.Static);
+                        mark?.Invoke(null, new object[] { CapturedItem, coreVal, false });
                     }
                     catch { }
                     return true;
@@ -290,15 +293,17 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
 
         public static void RefreshCapturedValues(bool rebuildSnapshot = false)
         {
-            if (CapturedItem==null) return; var t = CapturedItem.GetType();
-            var members = new List<MemberInfo>(); members.AddRange(t.GetProperties(BindingFlags.Public|BindingFlags.Instance)); members.AddRange(t.GetFields(BindingFlags.Public|BindingFlags.Instance));
+            if (CapturedItem == null) return; var t = CapturedItem.GetType();
+            var members = new List<MemberInfo>();
+            members.AddRange(t.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+            members.AddRange(t.GetFields(BindingFlags.Public | BindingFlags.Instance));
             foreach (var m in members)
             {
-                string id = m.Name; object val = null; Type vt = null; bool readable=false;
+                string id = m.Name; object val = null; Type vt = null; bool readable = false;
                 try
                 {
-                    if (m is PropertyInfo p && p.CanRead) { vt = p.PropertyType; if (IsPrimitiveSupported(vt)) { val = p.GetValue(CapturedItem); readable=true; } }
-                    else if (m is FieldInfo f && f.IsPublic) { vt = f.FieldType; if (IsPrimitiveSupported(vt)) { val = f.GetValue(CapturedItem); readable=true; } }
+                    if (m is PropertyInfo p && p.CanRead) { vt = p.PropertyType; if (IsPrimitiveSupported(vt)) { val = p.GetValue(CapturedItem); readable = true; } }
+                    else if (m is FieldInfo f && f.IsPublic) { vt = f.FieldType; if (IsPrimitiveSupported(vt)) { val = f.GetValue(CapturedItem); readable = true; } }
                 }
                 catch { }
                 if (readable) _currentValues[id] = val;
@@ -308,16 +313,16 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
 
         public static void RollbackPreferTransaction()
         {
-            if (CapturedItem==null) return;
+            if (CapturedItem == null) return;
             bool usedTx = false;
             try
             {
                 if (!string.IsNullOrEmpty(_txToken))
                 {
                     var duck = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov");
-                    var write = duck?.GetProperty("Write", BindingFlags.Public|BindingFlags.Static)?.GetValue(null);
-                    var m = write?.GetType().GetMethod("RollbackTransaction", new Type[]{ typeof(object), typeof(string) });
-                    var rr = m?.Invoke(write, new object[]{ CapturedItem, _txToken });
+                    var write = duck?.GetProperty("Write", BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
+                    var m = write?.GetType().GetMethod("RollbackTransaction", new Type[] { typeof(object), typeof(string) });
+                    var rr = m?.Invoke(write, new object[] { CapturedItem, _txToken });
                     _txToken = null; usedTx = true;
                 }
             }
@@ -334,30 +339,32 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
 
         public static void RollbackToOriginal()
         {
-            if (CapturedItem==null) return;
+            if (CapturedItem == null) return;
             // First rollback core via SnapshotHelper to honor WriteService semantics
             try
             {
                 if (_originalCoreFields != null)
                 {
                     var duck = GetDuckovType("ItemModKit.Adapters.Duckov.IMKDuckov");
-                    var write = duck?.GetProperty("Write", BindingFlags.Public|BindingFlags.Static)?.GetValue(null);
+                    var write = duck?.GetProperty("Write", BindingFlags.Public | BindingFlags.Static)?.GetValue(null);
                     var helper = GetDuckovType("ItemModKit.Core.SnapshotHelper");
-                    var rb = helper?.GetMethod("RollbackCore", BindingFlags.Public|BindingFlags.Static);
-                    var rr = rb?.Invoke(null, new object[]{ write, CapturedItem, _originalCoreFields });
+                    var rb = helper?.GetMethod("RollbackCore", BindingFlags.Public | BindingFlags.Static);
+                    var rr = rb?.Invoke(null, new object[] { write, CapturedItem, _originalCoreFields });
                 }
             }
             catch { }
             // Then rollback other primitive fields
             var t = CapturedItem.GetType();
-            var members = new List<MemberInfo>(); members.AddRange(t.GetProperties(BindingFlags.Public|BindingFlags.Instance)); members.AddRange(t.GetFields(BindingFlags.Public|BindingFlags.Instance));
+            var members = new List<MemberInfo>();
+            members.AddRange(t.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+            members.AddRange(t.GetFields(BindingFlags.Public | BindingFlags.Instance));
             foreach (var m in members)
             {
                 string id = m.Name; if (!_originalSnapshot.TryGetValue(id, out var orig)) continue;
                 if (s_coreIds.Contains(id)) continue; // already handled via write service
                 try
                 {
-                    if (m is PropertyInfo p && p.CanRead && p.CanWrite && p.SetMethod!=null && p.SetMethod.IsPublic && IsPrimitiveSupported(p.PropertyType)) p.SetValue(CapturedItem, ConvertValue(orig, p.PropertyType));
+                    if (m is PropertyInfo p && p.CanRead && p.CanWrite && p.SetMethod != null && p.SetMethod.IsPublic && IsPrimitiveSupported(p.PropertyType)) p.SetValue(CapturedItem, ConvertValue(orig, p.PropertyType));
                     else if (m is FieldInfo f && !f.IsInitOnly && !f.IsLiteral && f.IsPublic && IsPrimitiveSupported(f.FieldType)) f.SetValue(CapturedItem, ConvertValue(orig, f.FieldType));
                 }
                 catch { }
@@ -380,12 +387,12 @@ namespace IMK.SettingsUI.InternalMods.ItemModKitPanel
 
         private static bool IsPrimitiveSupported(Type t)
         {
-            if (t==typeof(string) || t==typeof(int) || t==typeof(float) || t==typeof(double) || t==typeof(bool) || t==typeof(long) || t==typeof(short) || t==typeof(byte)) return true;
+            if (t == typeof(string) || t == typeof(int) || t == typeof(float) || t == typeof(double) || t == typeof(bool) || t == typeof(long) || t == typeof(short) || t == typeof(byte)) return true;
             if (t.IsEnum) return true; return false;
         }
         private static object ConvertValue(object v, Type target)
         {
-            if (v == null) return target.IsValueType? Activator.CreateInstance(target) : null;
+            if (v == null) return target.IsValueType ? Activator.CreateInstance(target) : null;
             try
             {
                 if (target.IsEnum) return Enum.Parse(target, v.ToString(), true);

@@ -1,0 +1,73 @@
+root = true
+
+[*.cs]
+###############################
+# Coding Style & Diagnostics  #
+###############################
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+# Avoid suggestions we intentionally reject
+# Disable primary constructor suggestions for now (keep classic style)
+dotnet_diagnostic.IDE0290.severity = none
+# Allow private field _underscore style without forcing rename warnings
+dotnet_diagnostic.IDE1006.severity = suggestion
+
+# Prefer file-scoped namespace OFF (keep braces for clarity in modding context)
+dotnet_diagnostic.IDE0161.severity = none
+
+# Enable readonly field suggestion
+csharp_style_readonly_field = true:suggestion
+
+# Pattern matching / switch expressions encouraged
+csharp_style_prefer_switch_expression = true:suggestion
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+
+# Object / collection initializers
+csharp_style_object_initializer = true:suggestion
+csharp_style_collection_initializer = true:suggestion
+
+# var preference (explicit for primitives for clarity)
+csharp_style_var_for_built_in_types = false:silent
+csharp_style_var_for_local_variables = false:silent
+csharp_style_var_when_type_is_apparent = true:suggestion
+
+# Expression-bodied members (keep moderate)
+csharp_style_expression_bodied_methods = when_possible:suggestion
+csharp_style_expression_bodied_properties = when_possible:suggestion
+
+# Using directives inside namespace disabled for consistency
+dotnet_style_namespace_match_folder = false:none
+
+# Prefer newer language features where safe under .NET Standard 2.1
+dotnet_style_prefer_range_operator = true:suggestion
+dotnet_style_prefer_index_operator = true:suggestion
+
+# Null checking
+csharp_style_conditional_delegate_call = true:suggestion
+
+# Formatting preferences
+dotnet_sort_system_directives_first = true
+csharp_new_line_before_open_brace = all
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+
+# Remove unused usings
+dotnet_diagnostic.IDE0005.severity = warning
+
+# Prefer static local functions
+dotnet_diagnostic.IDE0062.severity = suggestion
+
+# Simplify boolean expressions / ternaries
+dotnet_diagnostic.IDE0034.severity = suggestion
+
+###############################
+# Additional Guidance         #
+###############################
+# If future analyzers produce excessive noise, tune them here before bulk code changes.
+# Keep suggestions rather than warnings for stylistic items to avoid cluttering CI.

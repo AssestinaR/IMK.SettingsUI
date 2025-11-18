@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using IMK.SettingsUI.Cards;
+using UnityEngine;
 
 namespace IMK.SettingsUI.Providers
 {

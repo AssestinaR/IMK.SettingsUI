@@ -20,7 +20,7 @@ namespace IMK.SettingsUI.Settings
                     var newVal = b.Pending ?? b.Getter?.Invoke();
                     if (!Equals(newVal, b.OriginalValue))
                     {
-                        try { b.Setter?.Invoke(newVal); b.OriginalValue = newVal; changed = true; } catch (Exception ex) { Debug.LogWarning("[SettingsUI.Apply] Bound setting apply failed: "+ex.Message); }
+                        try { b.Setter?.Invoke(newVal); b.OriginalValue = newVal; changed = true; } catch (Exception ex) { Debug.LogWarning("[SettingsUI.Apply] Bound setting apply failed: " + ex.Message); }
                         if (b.Persist)
                         {
                             var group = ResolveGroup(m, b.PersistGroup);
@@ -35,7 +35,7 @@ namespace IMK.SettingsUI.Settings
                     var vals = ls.PendingValues ?? ls.InitialValues;
                     if (!SequenceEqual(vals, ls.InitialValues))
                     {
-                        try { ls.Setter?.Invoke(vals ?? System.Array.Empty<string>()); ls.InitialValues = vals; changed = true; } catch (Exception ex) { Debug.LogWarning("[SettingsUI.Apply] List setting apply failed: "+ex.Message); }
+                        try { ls.Setter?.Invoke(vals ?? System.Array.Empty<string>()); ls.InitialValues = vals; changed = true; } catch (Exception ex) { Debug.LogWarning("[SettingsUI.Apply] List setting apply failed: " + ex.Message); }
                         if (ls.Persist)
                         {
                             var group = ResolveGroup(m, ls.PersistGroup);
@@ -49,7 +49,7 @@ namespace IMK.SettingsUI.Settings
                 {
                     if (ts.Pending != ts.Initial)
                     {
-                        try { ts.Setter?.Invoke(ts.Pending); ts.Initial = ts.Pending; changed = true; } catch (Exception ex) { Debug.LogWarning("[SettingsUI.Apply] Toggle slider apply failed: "+ex.Message); }
+                        try { ts.Setter?.Invoke(ts.Pending); ts.Initial = ts.Pending; changed = true; } catch (Exception ex) { Debug.LogWarning("[SettingsUI.Apply] Toggle slider apply failed: " + ex.Message); }
                         if (ts.Persist)
                         {
                             var group = ResolveGroup(m, ts.PersistGroup);
@@ -64,7 +64,7 @@ namespace IMK.SettingsUI.Settings
                     if (s.Pending != null && !Equals(s.Pending, s.Initial))
                     {
                         bool mapped = SettingsApplyRegistry.TryApply(s.Id, s.Pending);
-                        if (!mapped) Debug.LogWarning("[SettingsUI.Apply] Unmapped SettingCardModel id="+s.Id);
+                        if (!mapped) Debug.LogWarning("[SettingsUI.Apply] Unmapped SettingCardModel id=" + s.Id);
                         s.Initial = s.Pending; if (mapped) changed = true;
                         if (s.Persist)
                         {
@@ -102,13 +102,13 @@ namespace IMK.SettingsUI.Settings
             // default to provider id inferred from model.Id prefix "Provider:...", otherwise fallback to "IMK.SettingsUI"
             var id = model?.Id; if (!string.IsNullOrEmpty(id))
             {
-                int sep = id.IndexOf(':'); if (sep > 0) return id.Substring(0, sep);
+                int sep = id.IndexOf(':'); if (sep > 0) return id[..sep];
             }
             return "IMK.SettingsUI";
         }
         private static bool SequenceEqual(string[] a, string[] b)
         {
-            if (a==b) return true; if (a==null || b==null) return false; if (a.Length!=b.Length) return false; for (int i=0;i<a.Length;i++) if (!System.String.Equals(a[i], b[i])) return false; return true;
+            if (a == b) return true; if (a == null || b == null) return false; if (a.Length != b.Length) return false; for (int i = 0; i < a.Length; i++) if (!System.String.Equals(a[i], b[i])) return false; return true;
         }
     }
 }
